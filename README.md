@@ -103,15 +103,16 @@ Hacerlo **después** de que el dominio sirva 200, no durante el cambio.
 
 ---
 
-## Pendiente de confirmar por el operador
+## Datos que dependen del operador
 
-Tres cosas que el código deja listas pero que requieren un dato externo:
+**Confirmado el 10-sep-2026**: el buzón de contacto es **`hola@iaconsultores.com`**
+(`contacto@` no existe). Es la única llamada a la acción del sitio. Si algún día
+cambia, es un *buscar y reemplazar* sobre los tres `.html`: 14 apariciones en
+7 enlaces (cada enlace lleva la dirección en el `href` y en el texto).
 
-1. **El buzón `contacto@iaconsultores.com` tiene que existir.** Es la única
-   llamada a la acción del sitio y aparece en 7 sitios. Si el dominio no tiene
-   correo configurado, el enlace rebota. Cambiar la dirección es un
-   *buscar y reemplazar* sobre los tres `.html`.
-2. **Razón social.** Se usa `Agentia Codex S.L. (sociedad en constitución)`,
+Dos cosas siguen pendientes de un dato externo:
+
+1. **Razón social.** Se usa `Agentia Codex S.L. (sociedad en constitución)`,
    la fórmula vigente del canon. ISSUE-044 decía `IA Consultores Software S.L.`,
    nombre que quedó superado en `architecture.md` v4.1.1 (12-may-2026).
    **Cuando la sociedad se constituya**, en `aviso-legal.html` y
@@ -119,7 +120,7 @@ Tres cosas que el código deja listas pero que requieren un dato externo:
    «(sociedad en constitución)» y quitar el recuadro de aviso. Es el mismo
    trabajo que ISSUE-042 tiene pendiente para las páginas legales de la
    plataforma.
-3. **Copy.** El texto de la portada es un borrador y ninguna afirmación es
+2. **Copy.** El texto de la portada es un borrador y ninguna afirmación es
    inventada: no hay clientes, cifras, logotipos ni testimonios que no se
    puedan sostener. Revisar la propuesta de valor antes de publicar.
 
@@ -130,5 +131,7 @@ Tres cosas que el código deja listas pero que requieren un dato externo:
 - **No prometer lo que no se pueda demostrar.** Regla de veracidad del proyecto.
 - Si algún día se añade analítica, un formulario o cualquier cookie:
   **actualizar `privacidad.html`**, que hoy afirma que no hay ninguna, y
-  reconsiderar el banner de consentimiento.
+  reconsiderar el banner de consentimiento. Y **abrir la CSP de `_headers`**:
+  hoy prohíbe todo script, así que la casilla «Web Analytics» de Cloudflare
+  Pages inyectaría un beacon que el navegador bloquearía en silencio.
 - Commits en español y en imperativo (`Añade`, `Corrige`, `Documenta`).
