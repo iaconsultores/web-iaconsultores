@@ -1,0 +1,67 @@
+---
+import "../styles/base.css";
+import "@fontsource/ibarra-real-nova/400.css";
+import "@fontsource/ibarra-real-nova/400-italic.css";
+import "@fontsource/ibarra-real-nova/500.css";
+import "@fontsource/ibarra-real-nova/500-italic.css";
+import "@fontsource/ibarra-real-nova/600.css";
+import "@fontsource/ibarra-real-nova/700.css";
+import "@fontsource/dm-sans/400.css";
+import "@fontsource/dm-sans/400-italic.css";
+import "@fontsource/dm-sans/500.css";
+import "@fontsource/dm-sans/600.css";
+import "@fontsource/dm-sans/700.css";
+import "@fontsource/dm-mono/400.css";
+import "@fontsource/dm-mono/500.css";
+import fuenteTitular from "@fontsource/ibarra-real-nova/files/ibarra-real-nova-latin-500-normal.woff2?url";
+import Nav from "../components/Nav.astro";
+import Pie from "../components/Pie.astro";
+import { SITIO } from "../datos/sitio";
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+  ruta: string;
+  noindex?: boolean;
+}
+
+const { titulo, descripcion, ruta, noindex = false } = Astro.props;
+const canonica = new URL(ruta, SITIO.url).href;
+const imagen = new URL("/og.png", SITIO.url).href;
+---
+<!doctype html>
+<html lang="es" data-provincia="alicante">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonica} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href={fuenteTitular} as="font" type="font/woff2" crossorigin />
+    <meta name="theme-color" content="#FFFFFF" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="IA Consultores" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:image" content={imagen} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="saltar" href="#principal">Saltar al contenido</a>
+    <Nav />
+    <main id="principal"><slot /></main>
+    <Pie />
+    <slot name="final" />
+    <script>
+      import "../scripts/iac";
+      import { cargarAnalitica } from "../scripts/analitica";
+      import { SITIO } from "../datos/sitio";
+      cargarAnalitica(SITIO.tokenAnalitica, new URL(SITIO.url).hostname);
+    </script>
+  </body>
+</html>

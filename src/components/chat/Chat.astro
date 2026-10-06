@@ -1,0 +1,36 @@
+---
+import "./chat.css";
+---
+<div class="chat" id="chat">
+  <div class="chat-burbuja" id="chatBurbuja">¿Qué proceso te quita más tiempo? Pregúntame 👋</div>
+  <button class="chat-lanzador" type="button" id="chatAbrir" aria-expanded="false" aria-controls="chatPanel">
+    <span class="ch-avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13c2.5-2.5 5 2.5 8 0s5.5 2.5 8 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7" r="2.6" fill="currentColor"/></svg></span>
+    <span class="ch-l-txt">Asistente IA</span>
+  </button>
+  <section class="chat-panel" id="chatPanel" aria-label="Asistente IA Consultores">
+    <header class="ch-cabecera">
+      <span class="ch-avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13c2.5-2.5 5 2.5 8 0s5.5 2.5 8 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7" r="2.6" fill="currentColor"/></svg></span>
+      <div><div class="ch-titulo">Asistente IA Consultores</div><div class="ch-estado">Claude · en línea</div></div>
+      <button class="ch-cerrar" type="button" id="chatCerrar" aria-label="Cerrar el chat">×</button>
+    </header>
+    <div class="ch-cuerpo" id="chatCuerpo">
+      <div class="ch-msg ch-bot">Hola, soy el asistente de IA de IA Consultores (funciono con Claude). ¿Qué proceso de tu empresa te gustaría mejorar?</div>
+      <div class="ch-chips">
+        <button type="button" data-ir="#servicios">Ver servicios</button>
+        <button type="button" data-ir="#contacto">Llamada gratuita</button>
+        <button type="button" data-pregunta="Soy reclutador: ¿qué experiencia tiene Juan Luis en IA y automatización?">Soy reclutador</button>
+      </div>
+    </div>
+    <form class="ch-form" id="chatForm">
+      <label class="sr" for="chatInput">Tu pregunta</label>
+      <input id="chatInput" type="text" placeholder="Escribe tu pregunta…" autocomplete="off" maxlength="1000" />
+      <button type="submit" aria-label="Enviar">→</button>
+    </form>
+    <p class="ch-contador" id="chatContador" hidden></p>
+    <div class="sr" id="chatAnuncio" aria-live="polite"></div>
+    <p class="ch-nota">Asistente de IA (Claude). Puede equivocarse: para decisiones importantes, hablamos por teléfono. No compartas datos sensibles.</p>
+  </section>
+</div>
+<script>
+  import "./chat";
+</script>

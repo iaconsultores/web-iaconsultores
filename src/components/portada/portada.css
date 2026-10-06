@@ -1,0 +1,281 @@
+/* ===== Portada (#portada) · frag-hero.html =====
+   Texto + arco con la escena de la provincia + columna geo (coordenadas, rosa, curiosidad, selector)
+   y, bajo la portada, la banda interactiva de la provincia. Las escenas y bandas de Albacete, Madrid y
+   España llegan por los SLOT de frag-hero-2.html; aquí se definen su tamaño y su visibilidad. */
+#portada{position:relative;isolation:isolate;overflow:hidden;background:var(--bg)}
+#portada .sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#portada .por-rejilla{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 340px 232px;column-gap:38px;align-items:start;padding-top:30px;padding-bottom:38px}
+#portada .por-texto{padding-right:6px;min-width:0}
+
+/* --- Texto --- */
+@keyframes por-sube{from{opacity:0;transform:translateY(12px)}}
+#portada .por-texto > *{animation:por-sube .8s cubic-bezier(.2,.7,.2,1) both}
+#portada .por-texto > :nth-child(2){animation-delay:.07s}
+#portada .por-texto > :nth-child(3){animation-delay:.16s}
+#portada .por-texto > :nth-child(4){animation-delay:.22s}
+#portada .por-texto > :nth-child(5){animation-delay:.28s}
+#portada .por-texto > :nth-child(6){animation-delay:.34s}
+#portada .geo{animation:por-sube .9s .3s cubic-bezier(.2,.7,.2,1) both}
+/* El nombre de la provincia «enfoca» al cambiar */
+#portada .nombre-nuevo{animation:por-nombre .75s cubic-bezier(.2,.7,.2,1)}
+@keyframes por-nombre{from{opacity:0;filter:blur(5px)}}
+#portada .antetitulo{display:flex;align-items:center;gap:12px;margin:0 0 18px;font:500 13px/1.35 var(--f-mono);letter-spacing:.03em;color:var(--muted)}
+#portada .antetitulo svg{flex:none;width:34px;height:12px}
+#portada .titular{margin:0;font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);color:var(--ink)}
+#portada .tv{display:none;font-size:var(--tam);line-height:1.02;text-wrap:balance}
+#portada .tv em{font-style:italic}
+#portada .tv em.kern-v{margin-left:-.1em}
+#portada .tv[data-v="1"]{--tam:clamp(36px,3.7vw,54px);display:block}
+#portada .lema{margin:20px 0 0;max-width:30em;font:400 clamp(19px,1.55vw,22px)/1.4 var(--f-display);color:var(--ink);text-wrap:pretty}
+#portada .lema em{font-style:italic;font-weight:600;padding:0 .06em}
+#portada .intro{margin:14px 0 0;max-width:37em;font-size:15.5px;line-height:1.62;color:var(--muted)}
+#portada .acciones{display:flex;flex-wrap:wrap;align-items:center;gap:16px 30px;margin-top:22px}
+#portada .btn-chat{display:inline-flex;align-items:center;gap:10px;padding:8px 0 7px;border:0;border-bottom:1.5px solid currentColor;border-radius:0;background:none;color:var(--sea);font:600 16px/1 var(--f-body);cursor:pointer;transition:color .2s}
+#portada .btn-chat:hover{color:var(--ink)}
+#portada .btn-chat svg{flex:none;width:20px;height:20px}
+#portada .firma{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:18px 0 0;font-size:14.5px;color:var(--muted)}
+#portada .firma::before{content:"";align-self:center;width:28px;height:1.5px;background:var(--red)}
+#portada .firma b{font:italic 500 19px/1 var(--f-display);color:var(--ink)}
+
+/* --- Arco con la escena de la provincia --- */
+#portada .por-arco{position:relative;z-index:2;margin:14px 0 0}
+#portada .arco-marco{position:relative}
+#portada .arco-marco::before{content:"";position:absolute;inset:-11px;border:1px solid var(--line-2);border-radius:999px 999px 8px 8px;pointer-events:none}
+/* El fondo del arco solo se ve si una provincia aún no tiene escena (reserva sin JS) */
+#portada .arco{position:relative;aspect-ratio:400/520;border-radius:999px 999px 4px 4px;overflow:hidden;transform:translateZ(0);background:radial-gradient(circle at 70% 47%,#E7C3B8 0 12%,transparent 12.4%),linear-gradient(#E4EEF6,#FFFFFF 60%,#D5E4EF 60.3%,#BCD3E5)}
+#portada .escena{display:none;position:absolute;inset:0;animation:por-entra .8s cubic-bezier(.2,.7,.2,1) both}
+#portada .escena > svg{display:block;width:100%;height:100%}
+@keyframes por-entra{from{opacity:0;transform:scale(1.04)}}
+html[data-provincia="alicante"] #portada .escena[data-prov="alicante"],
+html[data-provincia="valencia"] #portada .escena[data-prov="valencia"],
+html[data-provincia="murcia"] #portada .escena[data-prov="murcia"],
+html[data-provincia="albacete"] #portada .escena[data-prov="albacete"],
+html[data-provincia="madrid"] #portada .escena[data-prov="madrid"],
+html[data-provincia="espana"] #portada .escena[data-prov="espana"],
+html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-provincia="albacete"]):not([data-provincia="madrid"]):not([data-provincia="espana"]) #portada .escena[data-prov="alicante"]{display:block}
+#portada .lugar{margin:24px 0 0;text-align:center;font:italic 400 18px/1.3 var(--f-display);color:var(--ink);transition:opacity .22s}
+#portada .lugar.cambiando{opacity:0}
+
+/* Movimiento sutil de cada escena */
+#portada .ali-sol{animation:por-sol 22s ease-in-out infinite alternate}
+@keyframes por-sol{to{transform:translateY(16px)}}
+#portada .ali-anillo{transform-box:fill-box;transform-origin:center;opacity:.35;animation:por-anillo 7s ease-out infinite}
+#portada .ali-anillo.a2{animation-delay:-3.5s}
+@keyframes por-anillo{from{transform:scale(1);opacity:.55}to{transform:scale(1.85);opacity:0}}
+#portada .rizos use{animation:por-rizo 8s ease-in-out infinite alternate}
+#portada .rizos use:nth-child(2n){animation-duration:10s;animation-delay:-4s}
+#portada .rizos use:nth-child(3n){animation-duration:12s;animation-delay:-7s}
+@keyframes por-rizo{to{transform:translateX(24px)}}
+#portada .brillos line{animation:por-brillo 3.4s ease-in-out infinite}
+#portada .brillos line:nth-child(2n){animation-delay:-1.2s}
+#portada .brillos line:nth-child(3n){animation-delay:-2.3s}
+@keyframes por-brillo{50%{opacity:.2}}
+#portada .mur-noria{transform-box:view-box;transform-origin:330px 446px;animation:por-noria 32s linear infinite}
+@keyframes por-noria{to{transform:rotate(360deg)}}
+
+/* Sombras de palmera y de naranjo (como en la 07) */
+#portada .sombra{display:none;position:absolute;z-index:3;top:-160px;left:0;width:780px;height:660px;color:var(--ink);opacity:.12;mix-blend-mode:multiply;filter:blur(1.4px);pointer-events:none}
+#portada .sombra .sw{transform-box:view-box;animation:por-vaiven 9s ease-in-out infinite alternate}
+#portada .sombra .sw:nth-child(2n){animation-duration:11s;animation-delay:-3s}
+#portada .sombra .sw:nth-child(3n){animation-duration:13s;animation-delay:-6s}
+@keyframes por-vaiven{from{transform:rotate(-1.8deg)}to{transform:rotate(2deg)}}
+html[data-provincia="alicante"] #portada .sombra-palmera,
+html[data-provincia="murcia"] #portada .sombra-palmera,
+html[data-provincia="valencia"] #portada .sombra-naranjo{display:block}
+
+/* --- Columna geo: rosa, coordenadas, curiosidad y selector --- */
+#portada .geo{position:relative;display:flex;flex-direction:column;align-self:stretch;min-width:0;margin-top:14px}
+#portada .rosa{display:block;width:50px;height:50px;margin:0 0 18px;transition:transform 1.3s cubic-bezier(.2,.8,.2,1)}
+#portada .coords{margin:0;padding-top:16px;border-top:1px solid var(--ink);font:500 15px/1 var(--f-mono);letter-spacing:.01em;color:var(--sea);white-space:nowrap}
+#portada .coords-nota{margin-left:6px;font-size:12px;color:var(--muted)}
+#portada .mapa{display:block;width:100%;max-width:178px;height:auto;margin:24px 0 0;overflow:visible}
+#portada .mapa-tierra{fill:var(--bg-2);stroke:var(--ink);stroke-opacity:.38;stroke-width:.7;stroke-linejoin:round}
+#portada .mapa-punto{transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+#portada .mapa-onda{fill:none;stroke:var(--red);stroke-width:1.2;transform-box:fill-box;transform-origin:center;animation:por-onda 2.4s ease-out infinite}
+@keyframes por-onda{from{transform:scale(.8);opacity:.9}to{transform:scale(3.2);opacity:0}}
+#portada .dato{margin-top:auto;padding-top:14px;border-top:1px solid var(--line-2)}
+#portada .dato-etq{margin:0 0 9px;font:500 11.5px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
+#portada .dato-texto{transition:opacity .22s}
+#portada .dato-texto p{margin:0;font-size:14.5px;line-height:1.5;color:var(--ink);text-wrap:pretty}
+#portada .dato-texto p + p{margin-top:9px}
+#portada .dato.cambiando .dato-texto{opacity:0}
+#portada .selector{padding-top:22px}
+
+/* --- Bandas interactivas a todo el ancho --- */
+#portada .bandas{position:relative;z-index:1;height:clamp(196px,15.28vw,252px);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);background:var(--bg)}
+#portada .banda{display:none;position:absolute;inset:0;overflow:hidden;animation:por-funde .7s ease both}
+#portada .banda > svg{position:absolute;inset:0;display:block;width:100%;height:100%}
+@keyframes por-funde{from{opacity:0}}
+html[data-provincia="alicante"] #portada .banda[data-prov="alicante"],
+html[data-provincia="valencia"] #portada .banda[data-prov="valencia"],
+html[data-provincia="murcia"] #portada .banda[data-prov="murcia"],
+html[data-provincia="albacete"] #portada .banda[data-prov="albacete"],
+html[data-provincia="madrid"] #portada .banda[data-prov="madrid"],
+html[data-provincia="espana"] #portada .banda[data-prov="espana"],
+html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-provincia="albacete"]):not([data-provincia="madrid"]):not([data-provincia="espana"]) #portada .banda[data-prov="alicante"]{display:block}
+#portada.sin-banda .banda[data-prov="reserva"]{display:block}
+#portada .carril{fill:none;stroke:var(--ink);stroke-opacity:.32;stroke-width:1.2;stroke-dasharray:1 8;stroke-linecap:round}
+#portada .amb{fill:var(--bg);stroke:var(--ink);stroke-opacity:.45;stroke-width:1}
+#portada .mur-flujo{animation:por-flujo 1.4s linear infinite}
+@keyframes por-flujo{to{stroke-dashoffset:-26}}
+#portada .paradas{list-style:none;margin:0;padding:0}
+#portada .parada{position:absolute;z-index:2;left:50%;top:45%;transform:translate(-50%,-50%)}
+#portada .parada:nth-child(1){left:12%}
+#portada .parada:nth-child(2){left:37%}
+#portada .parada:nth-child(3){left:62%}
+#portada .parada:nth-child(4){left:87%}
+#portada .medalla{--m-fondo:var(--bg);--m-aro:var(--red);--a1:4px;--a2:5.5px;position:relative;display:grid;place-items:center;width:54px;height:54px;padding:0;border:2px solid var(--ink);border-radius:50%;background:var(--m-fondo);box-shadow:inset 0 0 0 var(--a1) var(--m-fondo),inset 0 0 0 var(--a2) var(--m-aro);font:500 24px/1 var(--f-display);color:var(--ink);cursor:pointer;transition:background-color .35s,color .35s,box-shadow .35s,transform .25s}
+#portada .medalla:hover{transform:scale(1.07)}
+#portada .medalla:focus-visible{outline:2px solid var(--sea);outline-offset:4px;border-radius:50%}
+#portada .medalla::after{content:"";position:absolute;inset:-5px;border:2px solid var(--red);border-radius:50%;opacity:0;pointer-events:none}
+#portada .parada.hecho .medalla{--m-fondo:var(--line)}
+#portada .parada.activo .medalla{--m-fondo:var(--red);--m-aro:var(--bg);color:#fff}
+#portada .parada.activo .medalla::after{animation:por-ping 1.6s ease-out infinite}
+@keyframes por-ping{from{transform:scale(1);opacity:.8}to{transform:scale(1.9);opacity:0}}
+#portada .m-nombre{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);padding:4px 8px 5px;border-radius:4px;background:var(--bg);box-shadow:0 1px 2px rgba(27,31,42,.14);font:500 13px/1 var(--f-body);color:var(--ink);white-space:nowrap;pointer-events:none}
+#portada .paso-texto{position:absolute;z-index:3;top:0;left:0;width:max-content;max-width:230px;margin:0;padding:8px 12px 9px;border-radius:8px;background:var(--surface);box-shadow:0 1px 2px rgba(27,31,42,.08),0 6px 16px rgba(27,31,42,.1);font-size:13.5px;line-height:1.38;color:var(--ink);opacity:0;transform:translateY(-3px);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
+#portada .paso-texto.ver{opacity:1;transform:none}
+#portada .paso-texto b{display:block;margin:0 0 4px;font:500 11.5px/1 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--red)}
+#portada .pausa{position:absolute;z-index:4;top:12px;right:max(16px,calc((100% - var(--container)) / 2 + var(--gutter)));display:grid;place-items:center;width:34px;height:34px;padding:0;border:1px solid var(--line-2);border-radius:50%;background:var(--bg);color:var(--ink);cursor:pointer;transition:border-color .2s}
+#portada .pausa:hover{border-color:var(--ink)}
+#portada .pausa svg{width:12px;height:12px}
+#portada .pausa .i-play,#portada .pausa[aria-pressed="true"] .i-pausa{display:none}
+#portada .pausa[aria-pressed="true"] .i-play{display:block}
+
+/* Pausa (botón o portada fuera de pantalla) y movimiento reducido */
+#portada.en-pausa *,#portada.en-pausa *::after,#portada.fuera *,#portada.fuera *::after{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){
+  #portada *,#portada *::before,#portada *::after{animation:none!important;transition:none!important}
+  #portada .pausa{display:none}
+}
+
+/* --- Tableta --- */
+@media (max-width:1180px){
+  #portada .por-rejilla{grid-template-columns:minmax(0,1fr) 300px;column-gap:48px}
+  #portada .tv[data-v="1"]{--tam:clamp(36px,4.4vw,53px)}
+  #portada .geo{grid-column:1/-1;display:grid;grid-template-columns:auto minmax(0,1fr) minmax(240px,1fr);align-items:start;gap:0 36px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line-2)}
+  #portada .rosa{width:44px;height:44px;margin:0 0 14px}
+  #portada .mapa{display:none}
+  #portada .coords{padding-top:0;border-top:0}
+  #portada .dato{margin-top:0;padding-top:0;border-top:0}
+  #portada .selector{padding-top:0}
+  #portada .bandas{height:232px}
+  #portada .paso-texto{top:auto;bottom:10px;left:12px;right:12px;width:auto;max-width:none;text-align:center}
+  #portada .paso-texto b{display:inline;margin:0 6px 0 0}
+}
+@media (max-width:900px){
+  #portada .geo{grid-template-columns:auto minmax(0,1fr);gap:22px 28px}
+  #portada .geo-cabeza{grid-row:span 2}
+  #portada .firma .firma-sep{display:none}
+  #portada .firma .firma-rol{flex-basis:100%;padding-left:38px}
+}
+
+/* --- Móvil --- */
+@media (max-width:760px){
+  #portada .por-rejilla{grid-template-columns:minmax(0,1fr);padding-top:26px;padding-bottom:34px}
+  #portada .por-texto{padding-right:0}
+  #portada .antetitulo{margin-bottom:18px;font-size:12.5px}
+  #portada .tv[data-v="1"]{--tam:clamp(32px,9vw,41px)}
+  #portada .lema{margin-top:18px;font-size:19px}
+  #portada .intro{font-size:15.5px}
+  #portada .acciones{gap:18px 24px;margin-top:24px}
+  #portada .por-arco{width:min(100%,300px);margin:46px auto 0}
+  #portada .lugar{margin-top:22px;font-size:17px}
+  #portada .sombra{top:-141px;left:0;width:688px;height:582px}
+  #portada .geo{grid-template-columns:auto minmax(0,1fr);gap:22px 16px;margin-top:34px}
+  #portada .geo-cabeza{display:contents}
+  #portada .rosa{margin:0}
+  #portada .coords{align-self:center}
+  #portada .dato,#portada .selector{grid-column:1/-1}
+  #portada .medalla{--a1:3px;--a2:4.5px;width:42px;height:42px;font-size:19px}
+  #portada .m-nombre{top:calc(100% + 6px);padding:3px 6px 4px;font-size:11.5px}
+  #portada .paso-texto{font-size:13px}
+  #portada .pausa{top:10px;right:10px;width:32px;height:32px}
+}
+/* ===== Provincias 2 (Albacete · Madrid · España): escenas del arco y bandas animadas ===== */
+#portada :is(.escena,.banda):is([data-prov="albacete"],[data-prov="madrid"],[data-prov="espana"]) > .h2-svg{display:block;width:100%;height:100%}
+
+/* --- Escenas: un movimiento sutil en cada una --- */
+#portada .escena[data-prov="albacete"] .h2a-aspas{transform-box:view-box}
+#portada .escena[data-prov="madrid"] .h2m-aro{transform-box:view-box;transform-origin:262px 128px;opacity:0}
+#portada .escena[data-prov="espana"] .h2e-ropa > g{transform-box:view-box}
+@media (prefers-reduced-motion:no-preference){
+  /* Albacete: las aspas del molino giran despacio al fondo del pasaje */
+  #portada .escena[data-prov="albacete"] .h2a-aspas{animation:h2-giro 18s linear infinite}
+  /* Madrid: el sol late tras la Victoria (como el de la 07), el estanque se mueve, balizas de las torres */
+  #portada .escena[data-prov="madrid"] .h2m-aro{animation:h2-aro 7s ease-out infinite}
+  #portada .escena[data-prov="madrid"] .h2m-aro2{animation-delay:-3.5s}
+  #portada .escena[data-prov="madrid"] .h2m-ondas use{animation:h2-onda 9s ease-in-out infinite alternate}
+  #portada .escena[data-prov="madrid"] .h2m-ondas use:nth-child(2n){animation-duration:11s;animation-delay:-4s}
+  #portada .escena[data-prov="madrid"] .h2m-ondas use:nth-child(3n){animation-duration:13s;animation-delay:-7s}
+  #portada .escena[data-prov="madrid"] .h2m-balizas circle{animation:h2-baliza 2.8s ease-in-out infinite}
+  #portada .escena[data-prov="madrid"] .h2m-balizas circle:nth-child(2n){animation-delay:-1.4s}
+  /* España: la ropa tendida se mece con la brisa; la cruz de la farmacia respira; el café humea */
+  #portada .escena[data-prov="espana"] .h2e-ropa > g{animation:h2-vaiven 3.6s ease-in-out infinite alternate}
+  #portada .escena[data-prov="espana"] .h2e-ropa > g:nth-child(2){animation-duration:4.4s;animation-delay:-1.2s}
+  #portada .escena[data-prov="espana"] .h2e-ropa > g:nth-child(3){animation-duration:3.1s;animation-delay:-.6s}
+  #portada .escena[data-prov="espana"] .h2e-ropa > g:nth-child(4){animation-duration:3.4s;animation-delay:-2s}
+  #portada .escena[data-prov="espana"] .h2e-halo{animation:h2-halo 3.2s ease-in-out infinite}
+  #portada .escena[data-prov="espana"] .h2e-vapor{animation:h2-vapor 4s ease-in-out infinite}
+}
+@media (prefers-reduced-motion:reduce){ #portada .escena[data-prov="madrid"] .h2m-aro:not(.h2m-aro2){opacity:.35;transform:scale(1.2)} }
+@keyframes h2-giro{to{transform:rotate(360deg)}}
+@keyframes h2-aro{from{transform:scale(1);opacity:.55}to{transform:scale(1.85);opacity:0}}
+@keyframes h2-onda{to{transform:translateX(24px)}}
+@keyframes h2-baliza{50%{opacity:.25}}
+@keyframes h2-vaiven{from{transform:rotate(-2.6deg)}to{transform:rotate(3deg)}}
+@keyframes h2-halo{50%{opacity:.35}}
+@keyframes h2-vapor{0%{opacity:0;transform:translateY(4px)}40%{opacity:1}100%{opacity:0;transform:translateY(-6px)}}
+
+/* --- Bandas: elementos propios del SVG --- */
+#portada .banda:is([data-prov="albacete"],[data-prov="madrid"],[data-prov="espana"]) .h2-pk{stroke:#A3312A;stroke-width:2.4}
+#portada .banda:is([data-prov="albacete"],[data-prov="madrid"],[data-prov="espana"]) .h2-amb{stroke:#1B1F2A;stroke-opacity:.5;stroke-width:1.2}
+#portada .banda:is([data-prov="albacete"],[data-prov="madrid"],[data-prov="espana"]) .h2-carril{fill:none;stroke:#1B1F2A;stroke-opacity:.35;stroke-width:1.2;stroke-dasharray:1 8;stroke-linecap:round}
+#portada .banda[data-prov="madrid"] .h2-km{font:500 13px var(--f-mono,monospace);letter-spacing:.04em;text-anchor:middle;fill:#1B1F2A}
+@media (max-width:760px){ #portada .banda[data-prov="madrid"] .h2-km{font-size:11px} }
+
+/* --- Medallas, nombres y leyenda: mismas clases y aspecto que las bandas de la portada (frag-hero.html).
+   Reglas de especificidad cero (:where) para que, montadas en la portada, manden las de la portada. --- */
+:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]){position:relative}
+:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paradas{list-style:none;margin:0;padding:0}
+:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .parada{position:absolute;z-index:2;transform:translate(-50%,-50%)}
+:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .medalla{--m-fondo:var(--bg);--m-aro:var(--red);--a1:4px;--a2:5.5px;position:relative;display:grid;place-items:center;width:54px;height:54px;padding:0;border:2px solid var(--ink);border-radius:50%;background:var(--m-fondo);box-shadow:inset 0 0 0 var(--a1) var(--m-fondo),inset 0 0 0 var(--a2) var(--m-aro);font:500 24px/1 var(--f-display);color:var(--ink);cursor:pointer;transition:background-color .35s,color .35s,box-shadow .35s,transform .25s}
+:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .medalla:hover{transform:scale(1.07)}
+:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .medalla:focus-visible{outline:2px solid var(--sea);outline-offset:4px;border-radius:50%}
+:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .medalla::after{content:"";position:absolute;inset:-5px;border:2px solid var(--red);border-radius:50%;opacity:0;pointer-events:none}
+:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .parada.hecho .medalla{--m-fondo:var(--line)}
+:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .parada.activo .medalla{--m-fondo:var(--red);--m-aro:var(--bg);color:#fff}
+:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .m-nombre{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);padding:4px 8px 5px;border-radius:4px;background:var(--bg);box-shadow:0 1px 2px rgba(27,31,42,.14);font:500 13px/1 var(--f-body);color:var(--ink);white-space:nowrap;pointer-events:none}
+:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto{position:absolute;z-index:3;top:0;left:0;width:max-content;max-width:230px;margin:0;padding:8px 12px 9px;border-radius:8px;background:var(--surface,#fff);box-shadow:0 1px 2px rgba(27,31,42,.08),0 6px 16px rgba(27,31,42,.1);font-size:13.5px;line-height:1.38;color:var(--ink);opacity:0;transform:translateY(-3px);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
+:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto.ver{opacity:1;transform:none}
+:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto b{display:block;margin:0 0 4px;font:500 11.5px/1 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--red)}
+@media (prefers-reduced-motion:no-preference){
+  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .parada.activo .medalla::after{animation:h2-ping 1.6s ease-out infinite}
+}
+@keyframes h2-ping{from{transform:scale(1);opacity:.8}to{transform:scale(1.9);opacity:0}}
+@media (max-width:1180px){
+  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto{top:auto;bottom:10px;left:12px;right:12px;width:auto;max-width:none;text-align:center}
+  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto b{display:inline;margin:0 6px 0 0}
+}
+@media (max-width:760px){
+  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .medalla{--a1:3px;--a2:4.5px;width:42px;height:42px;font-size:19px}
+  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .m-nombre{top:calc(100% + 6px);padding:3px 6px 4px;font-size:11.5px}
+  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto{font-size:13px}
+}
+/* ===== Rotación de provincias: pila sin saltos de diseño y botones ===== */
+#portada .pila-prov{display:inline-grid;font-style:inherit}
+#portada .pila-prov>span{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility 0s linear .6s}
+html[data-provincia="alicante"] #portada .pila-prov>[data-p="alicante"],
+html[data-provincia="valencia"] #portada .pila-prov>[data-p="valencia"],
+html[data-provincia="murcia"] #portada .pila-prov>[data-p="murcia"],
+html[data-provincia="albacete"] #portada .pila-prov>[data-p="albacete"],
+html[data-provincia="madrid"] #portada .pila-prov>[data-p="madrid"],
+html[data-provincia="espana"] #portada .pila-prov>[data-p="espana"]{opacity:1;visibility:visible;transition:opacity .6s ease}
+#portada .tv .pila-prov>[data-p="valencia"]{margin-left:-.1em}
+#portada .sel-titulo{display:flex;align-items:center;gap:7px;margin:0 0 10px;font:600 14px/1.25 var(--f-body);color:var(--ink)}
+#portada .sel-titulo svg{flex:none;width:13px;height:13px;color:var(--red)}
+#portada .prov-chips{display:flex;flex-wrap:wrap;gap:6px}
+#portada .prov-chip{border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:7px 11px;font:500 13px/1.2 var(--f-body);color:var(--ink);cursor:pointer;transition:background-color .2s,border-color .2s,color .2s}
+#portada .prov-chip:hover{border-color:var(--ink)}
+#portada .prov-chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+@media (prefers-reduced-motion:reduce){#portada .pila-prov>span{transition:none}}

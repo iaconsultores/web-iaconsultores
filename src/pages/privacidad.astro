@@ -1,0 +1,32 @@
+---
+import Legal from "../components/Legal.astro";
+import { SITIO } from "../datos/sitio";
+---
+<Legal titulo="Política de privacidad" descripcion="Cómo tratamos tus datos en iaconsultores.com." ruta="/privacidad">
+  <h2>Responsable del tratamiento</h2>
+  <p>{SITIO.titular} (ver el <a href="/aviso-legal">aviso legal</a>). Contacto: <a href={`mailto:${SITIO.email}`}>{SITIO.email}</a>.</p>
+  <h2>Qué datos tratamos y para qué</h2>
+  <ul>
+    <li><b>Solicitudes de llamada o de colaboración</b> (formulario o tarjeta del asistente): nombre, teléfono, empresa, el proceso que quieres mejorar y la franja horaria. Las usamos para llamarte y preparar la propuesta que nos pidas. Base jurídica: aplicar medidas precontractuales a petición tuya y tu consentimiento.</li>
+    <li><b>Conversaciones con el asistente de IA</b>: lo que escribes en el chat se envía a Anthropic para generar la respuesta. No compartas datos sensibles en el chat; tu nombre y tu teléfono nunca se envían al asistente. Base jurídica: tu consentimiento al usarlo.</li>
+    <li><b>Seguridad</b>: tratamos temporalmente la dirección IP para limitar abusos (límites de uso), sin guardarla en registros. Base jurídica: interés legítimo en proteger el servicio.</li>
+    <li><b>Analítica</b>: estadísticas agregadas de visitas sin cookies ni identificadores personales (Cloudflare Web Analytics).</li>
+  </ul>
+  <h2>Cuánto tiempo los conservamos</h2>
+  <ul>
+    <li>Solicitudes: el tiempo necesario para atenderlas y, si no llegamos a colaborar, un máximo de 12 meses.</li>
+    <li>Conversaciones del asistente: viven en la memoria del servidor un máximo de 30 minutos sin actividad y no se guardan en disco. Anthropic borra lo que recibe por su API en un plazo máximo de 30 días, salvo excepciones legales o de seguridad, y conforme a sus condiciones comerciales no lo usa para entrenar sus modelos.</li>
+  </ul>
+  <h2>Encargados del tratamiento y transferencias internacionales</h2>
+  <ul>
+    <li>Hostinger International Ltd. (Chipre, UE): alojamiento web.</li>
+    <li>Anthropic, PBC (EE. UU.): asistente de IA.</li>
+    <li>Resend, Inc. (EE. UU.): envío del email con tu solicitud.</li>
+    <li>Cloudflare, Inc. (EE. UU.): DNS y analítica web sin cookies.</li>
+  </ul>
+  <p>Las transferencias a EE. UU. se amparan en el Marco de Privacidad de Datos UE-EE. UU. o en las cláusulas contractuales tipo de la Comisión Europea, según el proveedor.</p>
+  <h2>Tus derechos</h2>
+  <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a <a href={`mailto:${SITIO.email}`}>{SITIO.email}</a>. Si consideras que no hemos atendido bien tu solicitud, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
+  <h2>Inteligencia artificial</h2>
+  <p>El asistente de la web es un sistema de IA y se identifica como tal desde el primer mensaje, conforme al artículo 50 del Reglamento (UE) 2024/1689 de Inteligencia Artificial. No tomamos decisiones automatizadas con efectos jurídicos sobre ti.</p>
+</Legal>

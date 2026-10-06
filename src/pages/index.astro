@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+import Portada from "../components/portada/Portada.astro";
+import Panel from "../components/panel/Panel.astro";
+import Servicios from "../components/servicios/Servicios.astro";
+import Flujos from "../components/flujos/Flujos.astro";
+import Contenido from "../components/contenido/Contenido.astro";
+import Chat from "../components/chat/Chat.astro";
+---
+<Base titulo="Inteligencia artificial para empresas reales | IA Consultores" descripcion="Implantamos IA y automatización en pymes y autónomos: primero entendemos tu negocio. Llamada de diagnóstico gratuita de 30 minutos." ruta="/">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "IA Consultores",
+    url: "https://iaconsultores.com",
+    telephone: "+34678310660",
+    email: "juanluis@iaconsultores.com",
+    description: "Consultoría de inteligencia artificial y automatización para pymes y autónomos.",
+    areaServed: { "@type": "Country", name: "España" },
+    founder: { "@type": "Person", name: "Juan Luis Toboso", sameAs: ["https://www.linkedin.com/in/juanluistoboso"] },
+  })} />
+  <Portada />
+  <Panel />
+  <Servicios />
+  <Flujos />
+  <Contenido />
+  <Chat slot="final" />
+</Base>

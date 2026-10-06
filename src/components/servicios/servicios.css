@@ -1,0 +1,90 @@
+/* ===== Servicios · «Qué implantamos en tu empresa» · variantes: tarjetas (por defecto) · lista ===== */
+
+#servicios{--s-ease:cubic-bezier(.2,.7,.2,1)}
+#servicios .s-sprite{position:absolute;width:0;height:0;overflow:hidden}
+
+/* Cabecera */
+#servicios .s-cab{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:end;gap:22px 72px;margin-bottom:60px}
+#servicios .s-cab .eyebrow{margin:0 0 18px}
+#servicios .s-ola{width:30px;height:10px;flex:none;color:var(--red)}
+#servicios .s-cab .titulo-seccion{margin:0;text-wrap:balance}
+#servicios .s-cab .entradilla{max-width:42ch;margin:0 0 6px}
+
+/* Iconos: trazo azul mar + acento rojo Alicante */
+#servicios .ico svg{display:block;overflow:visible}
+#servicios .ico .l{color:var(--sea);fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#servicios .ico .a{color:var(--red);transform-box:fill-box;transform-origin:var(--ao,50% 50%);transition:transform .55s var(--s-ease)}
+#servicios .s-item:hover .ico .a{transform:var(--am)}
+
+/* Piezas comunes */
+#servicios .t-tit{font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:27px;line-height:1.1;margin:0;text-wrap:balance}
+#servicios .t-desc{margin:0;font-size:15.5px;line-height:1.6;color:var(--muted);text-wrap:pretty}
+#servicios .b-et{display:block;font:500 11.5px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+#servicios .b-tx{display:block;font-size:16.5px;line-height:1.5;font-weight:500;color:var(--ink);text-wrap:pretty}
+#servicios .herr{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+#servicios .herr li{display:inline-flex;align-items:center;gap:7px;font:500 12px/1 var(--f-mono);padding:7px 10px 6px;border-radius:999px;background:var(--bg);color:var(--ink);white-space:nowrap}
+#servicios .herr .n8n{box-shadow:inset 0 0 0 1px rgba(234,75,113,.4)}
+#servicios .herr .n8n::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--n8n)}
+#servicios .herr .val{font-size:10.5px;color:var(--red)}
+
+/* ---------- Variante «tarjetas» ---------- */
+#servicios .v-tarjetas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:22px}
+#servicios .tarjeta{grid-column:span 4;grid-row:span 4;display:grid;grid-template-rows:subgrid;row-gap:0;padding:30px 30px 28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);transition:border-color .35s,box-shadow .35s}
+#servicios .tarjeta.ancha{grid-column:span 6}
+#servicios .tarjeta:hover{border-color:var(--line-2);box-shadow:0 1px 2px rgba(27,31,42,.04),0 22px 44px -22px rgba(27,31,42,.2)}
+#servicios .t-cab{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:26px}
+#servicios .tarjeta .ico{display:grid;place-items:center;width:56px;height:60px;padding-top:6px;border-radius:28px 28px 10px 10px;background:var(--sea-soft);box-shadow:0 0 0 4px var(--surface),0 0 0 5px var(--line-2);transition:box-shadow .35s}
+#servicios .tarjeta:hover .ico{box-shadow:0 0 0 4px var(--surface),0 0 0 5px var(--sea)}
+#servicios .tarjeta .ico svg{width:34px;height:34px}
+#servicios .t-num{font:500 12.5px/1 var(--f-mono);letter-spacing:.05em;color:var(--muted);padding-top:4px;transition:color .35s}
+#servicios .tarjeta:hover .t-num{color:var(--red)}
+#servicios .t-txt{margin-bottom:26px}
+#servicios .tarjeta .t-tit{margin-bottom:12px}
+#servicios .tarjeta .beneficio{position:relative;margin:0 0 22px;padding-top:18px;border-top:1px solid var(--line)}
+#servicios .tarjeta .beneficio::before{content:"";position:absolute;left:0;top:-1px;width:36px;height:2px;background:var(--red);transform-origin:left}
+#servicios .tarjeta .b-et{margin-bottom:10px}
+#servicios .tarjeta .herr{align-self:end}
+
+
+/* Cierre */
+#servicios .s-cierre{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:last baseline;gap:20px 48px;margin-top:56px;padding-top:34px;border-top:1px solid var(--line-2)}
+#servicios .s-cierre p{margin:0;color:var(--muted);font-size:17px}
+#servicios .s-cierre strong{display:block;margin-bottom:6px;font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:clamp(25px,2.3vw,30px);line-height:1.15;color:var(--ink);text-wrap:balance}
+#servicios .s-acc{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 28px}
+#servicios .s-chat{padding:0;border:0;background:none;color:var(--ink);font-weight:500;text-decoration:underline;text-decoration-color:var(--line-2);text-decoration-thickness:1.5px;text-underline-offset:5px;cursor:pointer;transition:text-decoration-color .25s}
+#servicios .s-chat:hover{text-decoration-color:var(--ink)}
+
+/* Entrada al hacer scroll (solo con JS y sin «movimiento reducido») */
+#servicios.anim .s-item{opacity:0;translate:0 26px;transition:opacity .7s ease var(--d,0ms),translate .95s var(--s-ease) var(--d,0ms),border-color .35s,box-shadow .35s}
+#servicios.anim .s-item.visto{opacity:1;translate:0 0}
+#servicios.anim .s-item .ico .l{stroke-dasharray:1 2;stroke-dashoffset:1}
+#servicios.anim .s-item.visto .ico .l{stroke-dashoffset:0;transition:stroke-dashoffset 1.25s cubic-bezier(.55,.1,.25,1) calc(var(--d,0ms) + .12s)}
+#servicios.anim .s-item .ico .a{opacity:0;scale:.3;transition:transform .55s var(--s-ease),scale .55s var(--s-ease) calc(var(--d,0ms) + .75s),opacity .3s ease calc(var(--d,0ms) + .75s)}
+#servicios.anim .s-item.visto .ico .a{opacity:1;scale:1}
+#servicios.anim .tarjeta .beneficio::before{transform:scaleX(0)}
+#servicios.anim .tarjeta.visto .beneficio::before{transform:none;transition:transform .8s var(--s-ease) calc(var(--d,0ms) + .45s)}
+
+/* Tipografía editorial (sans) */
+
+@media (max-width:1100px){
+  #servicios .v-tarjetas{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #servicios .tarjeta,#servicios .tarjeta.ancha{grid-column:auto}
+  #servicios .s-cierre{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:900px){
+  #servicios .s-cab{grid-template-columns:minmax(0,1fr);gap:16px;margin-bottom:40px}
+}
+@media (max-width:760px){
+  #servicios .v-tarjetas{grid-template-columns:minmax(0,1fr);gap:14px}
+  #servicios .tarjeta{padding:24px 22px 22px}
+  #servicios .t-cab{margin-bottom:22px}
+  #servicios .t-tit{font-size:24px}
+  #servicios .b-tx{font-size:16px}
+  #servicios .s-cierre{margin-top:36px;padding-top:28px}
+  #servicios .s-cierre strong{font-size:23px}
+  #servicios .s-acc{flex-direction:column;gap:14px}
+}
+@supports not (grid-template-rows:subgrid){
+  #servicios .tarjeta{display:flex;flex-direction:column}
+  #servicios .tarjeta .beneficio{margin-top:auto}
+}

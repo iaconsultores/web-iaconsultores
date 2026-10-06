@@ -1,0 +1,271 @@
+{
+  "id": "iacLeadsWeb00001",
+  "name": "Leads de la web → Claude → tabla",
+  "nodes": [
+    {
+      "id": "6d2b3f7e-0c55-4a5c-9f43-1b6f1a2c0a01",
+      "name": "Nota",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        -260
+      ],
+      "parameters": {
+        "width": 1240,
+        "height": 180,
+        "content": "## Leads de iaconsultores.com\nLa web (src/lib/leads.ts) avisa de cada solicitud con una firma HMAC-SHA256. El flujo comprueba la firma y la hora, pide a **Claude Haiku** que clasifique la petición **sin nombre ni teléfono** y guarda el lead con su clasificación en la tabla «Leads web».\nSin secretos en el flujo: `IAC_WEBHOOK_SECRET` viene del entorno (.env) y la clave de Claude, de las credenciales de n8n."
+      }
+    },
+    {
+      "id": "6d2b3f7e-0c55-4a5c-9f43-1b6f1a2c0a02",
+      "name": "Aviso de la web",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "0b9f0c55-5a7e-4b1e-8f8e-2a4c6d8e1f30",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lead-iaconsultores",
+        "responseMode": "onReceived",
+        "options": {
+          "rawBody": true
+        }
+      }
+    },
+    {
+      "id": "6d2b3f7e-0c55-4a5c-9f43-1b6f1a2c0a03",
+      "name": "Verificar firma",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// La web firma «timestamp.cuerpo» con HMAC-SHA256 (src/lib/leads.ts → firmarWebhook)\nconst crypto = require('crypto');\nconst entrada = $input.first();\nconst cabeceras = entrada.json.headers ?? {};\nconst timestamp = Number(cabeceras['x-iac-timestamp']);\nconst firma = String(cabeceras['x-iac-firma'] ?? '');\nlet crudo;\ntry {\n  crudo = (await this.helpers.getBinaryDataBuffer(0, 'data')).toString('utf8');\n} catch {\n  crudo = JSON.stringify(entrada.json.body);\n}\nconst esperada = 'sha256=' + crypto.createHmac('sha256', $env.IAC_WEBHOOK_SECRET).update(`${timestamp}.${crudo}`).digest('hex');\nconst aTiempo = Number.isFinite(timestamp) && Math.abs(Date.now() / 1000 - timestamp) < 300;\nconst coincide = firma.length === esperada.length && crypto.timingSafeEqual(Buffer.from(firma), Buffer.from(esperada));\nif (!aTiempo || !coincide) throw new Error('Aviso rechazado: firma u hora no válidas');\nconst aviso = JSON.parse(crudo);\nreturn [{ json: { fecha: aviso.fecha, ...aviso.lead } }];"
+      }
+    },
+    {
+      "id": "6d2b3f7e-0c55-4a5c-9f43-1b6f1a2c0a04",
+      "name": "Tabla «Leads web»",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        440,
+        0
+      ],
+      "parameters": {
+        "resource": "table",
+        "operation": "create",
+        "tableName": "Leads web",
+        "columns": {
+          "column": [
+            {
+              "name": "fecha",
+              "type": "date"
+            },
+            {
+              "name": "nombre",
+              "type": "string"
+            },
+            {
+              "name": "telefono",
+              "type": "string"
+            },
+            {
+              "name": "empresa",
+              "type": "string"
+            },
+            {
+              "name": "proceso",
+              "type": "string"
+            },
+            {
+              "name": "franja",
+              "type": "string"
+            },
+            {
+              "name": "motivo",
+              "type": "string"
+            },
+            {
+              "name": "origen",
+              "type": "string"
+            },
+            {
+              "name": "categoria",
+              "type": "string"
+            },
+            {
+              "name": "urgencia",
+              "type": "string"
+            },
+            {
+              "name": "resumen",
+              "type": "string"
+            },
+            {
+              "name": "siguiente_paso",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "createIfNotExists": true
+        }
+      }
+    },
+    {
+      "id": "6d2b3f7e-0c55-4a5c-9f43-1b6f1a2c0a05",
+      "name": "Clasificar con Claude",
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        660,
+        0
+      ],
+      "parameters": {
+        "text": "={{ (() => { const l = $('Verificar firma').first().json; return `Empresa: ${l.empresa || 'sin indicar'}\\nQué quiere mejorar: ${l.proceso}\\nFranja preferida para la llamada: ${l.franja}\\nTipo de solicitud: ${l.motivo}\\nOrigen: ${l.origen}`; })() }}",
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"categoria\": {\n      \"type\": \"string\",\n      \"enum\": [\"facturas_contabilidad\", \"leads_crm\", \"documentos\", \"atencion_cliente\", \"informes\", \"web\", \"formacion\", \"colaboracion\", \"otro\"],\n      \"description\": \"Proceso principal que quiere mejorar\"\n    },\n    \"urgencia\": {\n      \"type\": \"string\",\n      \"enum\": [\"alta\", \"media\", \"baja\"],\n      \"description\": \"alta si menciona plazos inmediatos, errores o pérdidas; baja si solo explora\"\n    },\n    \"resumen\": {\n      \"type\": \"string\",\n      \"description\": \"Una frase en español de España con lo que necesita\"\n    },\n    \"siguiente_paso\": {\n      \"type\": \"string\",\n      \"description\": \"Qué preparar o preguntar en la llamada, en una frase\"\n    }\n  },\n  \"required\": [\"categoria\", \"urgencia\", \"resumen\", \"siguiente_paso\"]\n}",
+        "options": {
+          "systemPromptTemplate": "Eres el asistente interno de IA Consultores, una consultoría de IA y automatización para pymes. Clasificas las solicitudes de llamada que llegan desde la web. Usa solo la información del texto, sin inventar datos. Responde en español de España."
+        }
+      }
+    },
+    {
+      "id": "6d2b3f7e-0c55-4a5c-9f43-1b6f1a2c0a06",
+      "name": "Claude Haiku",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.6,
+      "position": [
+        660,
+        220
+      ],
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "id",
+          "value": "claude-haiku-4-5-20251001"
+        },
+        "options": {
+          "maxTokensToSample": 1024
+        }
+      }
+    },
+    {
+      "id": "6d2b3f7e-0c55-4a5c-9f43-1b6f1a2c0a07",
+      "name": "Preparar fila",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        980,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// Une el lead con la clasificación de Claude: los nombres coinciden con las columnas de la tabla\nconst lead = $('Verificar firma').first().json;\nconst ia = $input.first().json.output ?? {};\nreturn [{ json: {\n  fecha: lead.fecha,\n  nombre: lead.nombre,\n  telefono: lead.telefono,\n  empresa: lead.empresa || '',\n  proceso: lead.proceso,\n  franja: lead.franja,\n  motivo: lead.motivo,\n  origen: lead.origen,\n  categoria: ia.categoria ?? 'otro',\n  urgencia: ia.urgencia ?? 'media',\n  resumen: ia.resumen ?? '',\n  siguiente_paso: ia.siguiente_paso ?? '',\n} }];"
+      }
+    },
+    {
+      "id": "6d2b3f7e-0c55-4a5c-9f43-1b6f1a2c0a08",
+      "name": "Guardar en «Leads web»",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        1200,
+        0
+      ],
+      "parameters": {
+        "resource": "row",
+        "operation": "insert",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Leads web"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {}
+        },
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Aviso de la web": {
+      "main": [
+        [
+          {
+            "node": "Verificar firma",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificar firma": {
+      "main": [
+        [
+          {
+            "node": "Tabla «Leads web»",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tabla «Leads web»": {
+      "main": [
+        [
+          {
+            "node": "Clasificar con Claude",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude Haiku": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Clasificar con Claude",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clasificar con Claude": {
+      "main": [
+        [
+          {
+            "node": "Preparar fila",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar fila": {
+      "main": [
+        [
+          {
+            "node": "Guardar en «Leads web»",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "active": false
+}

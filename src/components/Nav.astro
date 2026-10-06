@@ -1,0 +1,44 @@
+---
+---
+<header class="nav" id="nav">
+  <div class="contenedor">
+    <a class="logo" href="/" aria-label="IA Consultores, inicio">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="5" fill="none" stroke="#A3312A" stroke-width="1.5"/><path d="M4 15c3-3 6 3 9 0s6 3 9 0" fill="none" stroke="#1A6AA6" stroke-width="1.8" stroke-linecap="round"/><circle cx="13" cy="8.5" r="2.4" fill="#A3312A"/></svg>
+      IA Consultores
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="/#servicios">Servicios</a>
+      <a href="/#como-trabajamos">Cómo trabajamos</a>
+      <a href="/#agentia">Agentia Contable</a>
+      <a href="/#sobre-mi">Sobre mí</a>
+      <a href="/#contacto">Contacto</a>
+    </nav>
+    <a class="btn btn-primario btn-nav" href="/#contacto">Llamada gratuita</a>
+    <button class="nav-menu" type="button" id="navMenu" aria-expanded="false" aria-controls="navDesplegable">Menú</button>
+  </div>
+  <div class="nav-desplegable" id="navDesplegable">
+    <a href="/#servicios">Servicios</a>
+    <a href="/#como-trabajamos">Cómo trabajamos</a>
+    <a href="/#agentia">Agentia Contable</a>
+    <a href="/#sobre-mi">Sobre mí</a>
+    <a href="/#contacto">Contacto · llamada gratuita</a>
+  </div>
+</header>
+
+<script>
+  const nav = document.getElementById("nav");
+  const menu = document.getElementById("navMenu");
+  if (nav && menu) {
+    addEventListener("scroll", () => nav.classList.toggle("con-borde", scrollY > 8), { passive: true });
+    menu.addEventListener("click", () => {
+      const abierto = nav.classList.toggle("abierto");
+      menu.setAttribute("aria-expanded", String(abierto));
+    });
+    nav.querySelectorAll(".nav-desplegable a").forEach((a) =>
+      a.addEventListener("click", () => {
+        nav.classList.remove("abierto");
+        menu.setAttribute("aria-expanded", "false");
+      }),
+    );
+  }
+</script>

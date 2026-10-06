@@ -1,0 +1,94 @@
+---
+import Base from "../layouts/Base.astro";
+import Chat from "../components/chat/Chat.astro";
+import Curriculum from "../components/mohure/Curriculum.astro";
+import Matriz from "../components/mohure/Matriz.astro";
+import { CIFRAS } from "../datos/cv";
+import { SITIO } from "../datos/sitio";
+---
+<Base titulo="Para MOHURE · Juan Luis Toboso · IA Consultores" descripcion="CV de Juan Luis Toboso y encaje requisito a requisito con la oferta de Consultor/a Técnico/a Freelance de IA y Automatización." ruta="/mohure" noindex>
+  <section class="seccion mh-intro">
+    <div class="contenedor">
+      <p class="eyebrow">Para el equipo de MOHURE</p>
+      <h1 class="titulo-seccion">Consultor/a Técnico/a Freelance de IA y Automatización</h1>
+      <p class="entradilla mh-resumen">Economista (Administración y Dirección de Empresas, Universidad de Alicante) y asesor fiscal, con el Postgrado en Dirección y Gestión de Proyectos Empresariales (Centro Europeo de Postgrado, CEUPE) y el Máster en IA Aplicada y Optimización de Procesos Productivos (Universidad Tecnológica Atlántico Mediterráneo, UTAMED; finalización prevista en octubre de 2026).</p>
+      <ul class="mh-cifras" role="list">
+        {CIFRAS.map((c) => (
+          <li>
+            <p class="mh-tema">{c.tema}</p>
+            <p class="mh-cifra">{c.cifra} <small>{c.unidad}</small></p>
+            <p class="mh-texto">{c.texto}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="mh-acciones">
+        <a class="btn btn-primario" href="/cv/juan-luis-toboso-consultor-ia.pdf" download>Descargar CV (PDF)</a>
+        <a class="btn btn-secundario" href={SITIO.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      </p>
+      <p class="mh-firma">Juan Luis Toboso · <a href={SITIO.telefonoEnlace}>{SITIO.telefono}</a> · <a href={`mailto:${SITIO.email}`}>{SITIO.email}</a> · <a href={SITIO.whatsapp} target="_blank" rel="noopener">WhatsApp</a></p>
+    </div>
+  </section>
+  <section class="seccion mh-cv">
+    <div class="contenedor">
+      <Curriculum pantalla />
+    </div>
+  </section>
+  <section class="seccion mh-prueba" id="prueba" aria-labelledby="prueba-titulo">
+    <div class="contenedor mh-prueba-rejilla">
+      <div>
+        <p class="eyebrow">Hecho, no contado</p>
+        <h2 class="titulo-seccion" id="prueba-titulo">Esta página es la prueba</h2>
+        <p class="entradilla">La web de IA Consultores y su asistente los he diseñado y dirigido yo, programados con agentes de IA (Claude Code), y están en producción. El código es público: podéis revisarlo.</p>
+        <p class="mh-acciones"><a class="btn btn-secundario" href={SITIO.repositorio} target="_blank" rel="noopener">Ver el código en GitHub</a></p>
+      </div>
+      <ul class="mh-prueba-lista" role="list">
+        <li><b>Asistente con la API de Claude</b> Respuestas en streaming y propuesta de llamada con confirmación humana: el nombre y el teléfono nunca pasan por la IA.</li>
+        <li><b>Formulario conectado</b> Aviso por email con Resend y webhook firmado con HMAC-SHA256.</li>
+        <li><b>Automatización con n8n</b> Cada lead pasa por un flujo n8n propio (Docker + Cloudflare Tunnel) que verifica la firma, lo clasifica con Claude y lo guarda en una tabla. <a class="enlace" href={`${SITIO.repositorio}/tree/main/automatizaciones/n8n`} target="_blank" rel="noopener">Ver el flujo</a></li>
+        <li><b>Seguridad</b> Política de contenido (CSP) con hashes, límites de uso por IP y diarios, y ninguna cookie.</li>
+        <li><b>Calidad</b> Más de 100 pruebas automáticas: unitarias, de integración y de navegador en escritorio y móvil.</li>
+        <li><b>Despliegue</b> Astro y Express en Hostinger, DNS en Cloudflare y analítica sin cookies.</li>
+      </ul>
+    </div>
+  </section>
+  <Matriz />
+  <Chat slot="final" />
+</Base>
+
+<style>
+  .mh-intro{padding-bottom:0}
+  .mh-resumen{max-width:96ch}
+  .mh-acciones{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 12px}
+  .mh-firma{color:var(--muted);font-size:15px}
+  .mh-firma a{color:inherit}
+  .mh-cv{padding-bottom:0}
+
+  /* Cifras: el mismo lenguaje que la franja «el director de orquesta» de la portada */
+  .mh-cifras{list-style:none;margin:32px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+  .mh-cifras li{display:flex;flex-direction:column;gap:10px;min-width:0;padding:24px 22px 22px;border-left:1px solid var(--line)}
+  .mh-cifras li:first-child{border-left:0;padding-left:0}
+  .mh-tema{margin:0;font:500 11.5px/1.2 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--red)}
+  .mh-cifra{margin:0;font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:clamp(30px,2.8vw,42px);line-height:.95;font-variant-numeric:lining-nums tabular-nums}
+  .mh-cifra small{font-size:.42em;letter-spacing:0;color:var(--muted)}
+  .mh-texto{margin:0;font-size:15px;line-height:1.35;color:var(--muted)}
+
+  .mh-prueba{padding-bottom:0}
+  .mh-prueba-rejilla{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:32px 72px;align-items:start}
+  .mh-prueba-lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+  .mh-prueba-lista li{display:grid;gap:4px;padding:15px 0 16px;border-bottom:1px solid var(--line-2);font-size:15.5px;line-height:1.45;color:var(--muted)}
+  .mh-prueba-lista b{font-weight:600;font-size:17px;color:var(--ink)}
+
+  @media (max-width:1100px){
+    .mh-cifras{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .mh-cifras li{padding:20px 0 18px 18px}
+    .mh-cifras li:nth-child(odd){border-left:0;padding-left:0}
+    .mh-cifras li:nth-child(n+3){border-top:1px solid var(--line)}
+    .mh-cifras li:last-child{grid-column:1/-1}
+  }
+  @media (max-width:900px){ .mh-prueba-rejilla{grid-template-columns:minmax(0,1fr)} }
+  @media (max-width:420px){
+    .mh-cifras{grid-template-columns:minmax(0,1fr)}
+    .mh-cifras li{border-left:0;padding-left:0}
+    .mh-cifras li:nth-child(n+2){border-top:1px solid var(--line)}
+  }
+</style>

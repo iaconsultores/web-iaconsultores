@@ -1,0 +1,38 @@
+{
+  "name": "web-iaconsultores",
+  "version": "1.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "description": "Web de IA Consultores (iaconsultores.com)",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "start": "node servidor.mjs",
+    "local": "astro build && node scripts/local.mjs",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "tipos": "astro sync && tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0",
+    "@astrojs/node": "^11.1.6",
+    "@fontsource/dm-mono": "^5.3.0",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/ibarra-real-nova": "^5.3.0",
+    "astro": "^7.3.5",
+    "express": "^5.2.1",
+    "resend": "^6.32.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.4",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.3"
+  }
+}

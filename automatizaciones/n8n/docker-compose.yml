@@ -1,0 +1,36 @@
+# n8n en local (Docker) y un túnel de Cloudflare que publica solo el webhook de leads de la web.
+# Guía paso a paso: automatizaciones/n8n/README.md
+name: iac-n8n
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5678:5678" # el editor solo se abre desde este PC
+    environment:
+      - GENERIC_TIMEZONE=Europe/Madrid
+      - TZ=Europe/Madrid
+      - WEBHOOK_URL=https://n8n.iaconsultores.com/
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - N8N_PERSONALIZATION_ENABLED=false
+      # El flujo lee el secreto del webhook del entorno: el JSON del repositorio no lleva secretos
+      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+      - IAC_WEBHOOK_SECRET=${IAC_WEBHOOK_SECRET}
+      - NODE_FUNCTION_ALLOW_BUILTIN=crypto
+    volumes:
+      - n8n_datos:/home/node/.n8n
+      - ./flujos:/files
+
+  tunel:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --config /etc/cloudflared/config.yml run
+    volumes:
+      - ./cloudflared:/etc/cloudflared:ro
+    depends_on:
+      - n8n
+
+volumes:
+  n8n_datos:

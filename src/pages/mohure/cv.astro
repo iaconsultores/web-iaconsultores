@@ -1,0 +1,33 @@
+---
+import "@fontsource/ibarra-real-nova/500.css";
+import "@fontsource/dm-sans/400.css";
+import "@fontsource/dm-sans/600.css";
+import Curriculum from "../../components/mohure/Curriculum.astro";
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>CV · Juan Luis Toboso · Consultor de IA y automatización</title>
+  </head>
+  <body>
+    <main>
+      <Curriculum />
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  @page{size:A4;margin:0}
+  body{margin:0;background:#fff;color:#1B1F2A;font:400 10.5pt/1.5 "DM Sans",system-ui,sans-serif}
+  .cv{max-width:180mm;margin:0 auto;padding:12mm 0}
+  .cv h1{font:500 26pt/1.1 "Ibarra Real Nova",Georgia,serif;margin:0}
+  .cv .rol{margin:4px 0 0;color:#A3312A;font-weight:600}
+  .cv .contacto{margin:6px 0 0;color:#5E6370;font-size:9.5pt}
+  .cv h2{font:600 10pt/1.2 "DM Sans",sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#1A6AA6;border-bottom:1px solid #CBD8E4;padding-bottom:4px;margin:16px 0 8px}
+  .cv ul{margin:0;padding-left:16px}
+  .cv li{margin:0 0 4px}
+  .cv p{margin:0 0 6px}
+</style>

@@ -1,0 +1,28 @@
+# Privado (candidatura, traspaso, memoria): nunca al repositorio
+docs/privado/
+
+# Generados por los scripts de maquetas (se regeneran con _montar.mjs)
+maquetas/r2/_capturas/
+maquetas/r2/_prev-*.html
+
+# Dependencias, builds y secretos
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+
+# Pruebas y temporales
+tmp/
+test-results/
+playwright-report/
+
+# Maquetas de diseño: solo en local
+maquetas/
+
+# Túnel de Cloudflare de n8n: credenciales locales, nunca al repositorio
+automatizaciones/n8n/cloudflared/

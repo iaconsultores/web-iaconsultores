@@ -1,0 +1,63 @@
+---
+import { CV } from "../../datos/cv";
+import { EVIDENCIAS, NIVELES } from "../../datos/evidencias";
+import { SITIO } from "../../datos/sitio";
+
+interface Props {
+  /** En /mohure el CV va dentro de la página (el nombre es un h2); en /mohure/cv es la página del PDF (h1) */
+  pantalla?: boolean;
+}
+
+const { pantalla = false } = Astro.props;
+const Nombre = pantalla ? "h2" : "h1";
+const Apartado = pantalla ? "h3" : "h2";
+const fuertes = EVIDENCIAS.filter((e) => e.nivel === "experiencia_real").map((e) => e.requisito);
+const enCamino = EVIDENCIAS.filter((e) => e.nivel !== "experiencia_real").map((e) => `${e.requisito} (${NIVELES[e.nivel].etiqueta.toLowerCase()})`);
+---
+<article class:list={["cv", { "cv-pantalla": pantalla }]} id={pantalla ? "cv" : undefined} aria-labelledby="cv-nombre">
+  <header class="cv-cabecera">
+    <Nombre id="cv-nombre">{CV.nombre}</Nombre>
+    <p class="rol">{CV.rol}</p>
+    <p class="contacto">{SITIO.telefono} · {SITIO.email} · linkedin.com/in/juanluistoboso · iaconsultores.com · {CV.zona}</p>
+  </header>
+  <div class="cv-cuerpo">
+    <div class="cv-columna">
+      <section>
+        <Apartado>Perfil</Apartado>
+        <p>{CV.perfil}</p>
+      </section>
+      <section>
+        <Apartado>Experiencia</Apartado>
+        <ul>{CV.experiencia.map((l) => <li><b>{l.inicio}</b>{l.resto}</li>)}</ul>
+      </section>
+    </div>
+    <div class="cv-columna">
+      <section>
+        <Apartado>Formación</Apartado>
+        <ul>{CV.formacion.map((l) => <li><b>{l.inicio}</b>{l.resto}</li>)}</ul>
+      </section>
+      <section>
+        <Apartado>Competencias técnicas</Apartado>
+        <p><b>Experiencia real:</b> {fuertes.join(" · ")}.</p>
+        <p><b>En camino:</b> {enCamino.join(" · ")}.</p>
+      </section>
+    </div>
+  </div>
+</article>
+
+<!-- Estilos de pantalla. Globales porque los títulos son etiquetas dinámicas; solo afectan a .cv-pantalla.
+     El PDF usa los suyos, en /mohure/cv. -->
+<style is:global>
+  .cv-pantalla .cv-cabecera{display:grid;gap:10px;padding-bottom:24px;border-bottom:1px solid var(--ink)}
+  .cv-pantalla h2{margin:0;font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:clamp(30px,3vw,42px);line-height:1.05}
+  .cv-pantalla .rol{display:flex;align-items:center;gap:14px;margin:0;font-size:17px}
+  .cv-pantalla .rol::before{content:"";flex:none;width:44px;height:2px;background:var(--red)}
+  .cv-pantalla .contacto{margin:0;color:var(--muted);font-size:15px;overflow-wrap:anywhere}
+  .cv-pantalla .cv-cuerpo{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:0 64px}
+  .cv-pantalla h3{margin:32px 0 12px;font:500 13px/1.3 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  .cv-pantalla p{margin:0 0 10px;font-size:16px;line-height:1.6;color:var(--muted)}
+  .cv-pantalla ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-2)}
+  .cv-pantalla li{padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px;line-height:1.5;color:var(--muted)}
+  .cv-pantalla b{color:var(--ink);font-weight:600}
+  @media (max-width:900px){ .cv-pantalla .cv-cuerpo{grid-template-columns:minmax(0,1fr)} }
+</style>

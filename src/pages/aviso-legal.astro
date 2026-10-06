@@ -1,0 +1,27 @@
+---
+import Legal from "../components/Legal.astro";
+import { SITIO } from "../datos/sitio";
+---
+<Legal titulo="Aviso legal" descripcion="Datos del titular y condiciones de uso de iaconsultores.com." ruta="/aviso-legal">
+  <h2>Titular del sitio web</h2>
+  <p>En cumplimiento del artículo 10 de la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico (LSSI-CE), te informamos de que iaconsultores.com es titularidad de:</p>
+  <ul>
+    <li>Denominación social: {SITIO.titular}</li>
+    <li>NIF: pendiente de asignación</li>
+    <li>Domicilio social: Avda. Teodomiro 30, Entlo. B, 03300 Orihuela (Alicante)</li>
+    <li>Inscripción: sociedad constituida ante notario; inscripción en el Registro Mercantil de Alicante en trámite</li>
+    <li>Email: <a href={`mailto:${SITIO.email}`}>{SITIO.email}</a> · Teléfono: <a href={SITIO.telefonoEnlace}>{SITIO.telefono}</a></li>
+  </ul>
+  <h2>Objeto</h2>
+  <p>Esta web presenta los servicios de consultoría de inteligencia artificial y automatización de IA Consultores y permite solicitar una llamada de diagnóstico o conversar con un asistente de IA.</p>
+  <h2>Condiciones de uso</h2>
+  <p>Al navegar por esta web aceptas usarla de forma lícita, sin dañar su funcionamiento ni intentar acceder a zonas o datos no públicos. Los contenidos son informativos y no constituyen una oferta vinculante: cada proyecto se presupuesta de forma personalizada.</p>
+  <h2>Asistente de inteligencia artificial</h2>
+  <p>El asistente de la web es un sistema de inteligencia artificial (Claude, de Anthropic). Sus respuestas son orientativas, pueden contener errores y no constituyen asesoramiento profesional, fiscal ni legal. Para decisiones importantes, solicita la llamada de diagnóstico.</p>
+  <h2>Propiedad intelectual e industrial</h2>
+  <p>Los textos, ilustraciones, diseño y código de esta web pertenecen a su titular o se usan con licencia. No se permite su reproducción con fines comerciales sin autorización. Las marcas de terceros que se mencionan pertenecen a sus respectivos titulares.</p>
+  <h2>Responsabilidad</h2>
+  <p>Trabajamos para que la información sea correcta y esté actualizada, pero no garantizamos la ausencia de errores ni la disponibilidad continua de la web. No respondemos de los contenidos de webs de terceros enlazadas.</p>
+  <h2>Legislación aplicable</h2>
+  <p>Estas condiciones se rigen por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales que correspondan conforme a la ley.</p>
+</Legal>

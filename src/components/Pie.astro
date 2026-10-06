@@ -1,0 +1,14 @@
+---
+import { SITIO } from "../datos/sitio";
+---
+<footer class="pie">
+  <div class="contenedor">
+    <span>© 2026 IA Consultores · un proyecto de {SITIO.titular}</span>
+    <nav aria-label="Legal">
+      <a href="/aviso-legal">Aviso legal</a>
+      <a href="/privacidad">Privacidad</a>
+      <a href="/cookies">Cookies</a>
+      <a href={SITIO.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</footer>

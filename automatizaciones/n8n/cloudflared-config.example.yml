@@ -1,0 +1,8 @@
+# Túnel de Cloudflare: solo el webhook de leads llega a n8n; todo lo demás, 404
+tunnel: <id-del-tunel>
+credentials-file: /etc/cloudflared/<id-del-tunel>.json
+ingress:
+  - hostname: n8n.iaconsultores.com
+    path: ^/webhook/lead-iaconsultores$
+    service: http://n8n:5678
+  - service: http_status:404

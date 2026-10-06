@@ -1,0 +1,206 @@
+<section id="panel" class="seccion" aria-labelledby="pnl-titulo">
+  <div class="contenedor">
+    <header class="pnl-cab">
+      <div>
+        <p class="eyebrow"><span class="pnl-vivo" aria-hidden="true"></span>Panel de control · <span data-prov-nombre>Alicante</span></p>
+        <div class="pnl-titulo">
+          <h2 class="titulo-seccion" id="pnl-titulo">Así se ve tu empresa con IA</h2>
+          <span class="demo-tag">datos de demostración</span>
+        </div>
+      </div>
+      <button class="pnl-pausa" type="button">
+        <svg viewBox="0 0 12 12" aria-hidden="true"><g class="pnl-ico-pausa"><rect x="2" y="1.5" width="2.6" height="9" rx="1"/><rect x="7.4" y="1.5" width="2.6" height="9" rx="1"/></g><path class="pnl-ico-play" d="M3 1.9v8.2a.6.6 0 0 0 .9.5l6.6-4.1a.6.6 0 0 0 0-1L3.9 1.4a.6.6 0 0 0-.9.5Z"/></svg>
+        <span class="pnl-pausa-txt">Pausar demo</span>
+      </button>
+    </header>
+
+    <div class="pnl-bento">
+
+      <!-- Leads hoy -->
+      <article class="pnl-t pnl-leads" aria-labelledby="pnl-leads-t">
+        <header class="pnl-t-cab"><h3 class="pnl-t-tit" id="pnl-leads-t">Leads hoy</h3><span class="demo-tag">demo</span></header>
+        <p class="pnl-sr">Ejemplo: 27 leads hoy, 3 en la última hora, que llegan por la web, WhatsApp y email.</p>
+        <div class="pnl-fig" aria-hidden="true">
+          <p class="pnl-num"><span class="pnl-cifra" data-pnl-leads>27</span></p>
+          <p class="pnl-delta"><svg viewBox="0 0 12 12"><path d="M6 10.5v-9M2.3 5.1 6 1.5l3.7 3.6"/></svg><span>+<span data-pnl-hora>3</span> en la última hora</span></p>
+        </div>
+        <svg class="pnl-graf" aria-hidden="true" focusable="false">
+          <defs><linearGradient id="pnl-gr-leads" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A6AA6" stop-opacity=".22"/><stop offset="1" stop-color="#1A6AA6" stop-opacity="0"/></linearGradient></defs>
+          <path class="pnl-area" fill="url(#pnl-gr-leads)"/>
+          <path class="pnl-linea" pathLength="1"/>
+          <circle class="pnl-halo" r="10" cx="-40" cy="-40"/><circle class="pnl-punto" r="3.5" cx="-40" cy="-40"/>
+        </svg>
+        <p class="pnl-pie pnl-eje" aria-hidden="true"><span>8:00</span><span>ahora</span></p>
+      </article>
+
+      <!-- Horas ahorradas / mes -->
+      <article class="pnl-t pnl-horas" aria-labelledby="pnl-horas-t">
+        <header class="pnl-t-cab"><h3 class="pnl-t-tit" id="pnl-horas-t">Horas ahorradas / mes</h3><span class="demo-tag">demo</span></header>
+        <p class="pnl-sr">Ejemplo: 46 horas ahorradas este mes, 7 más que en agosto; unas 6 jornadas de trabajo.</p>
+        <div class="pnl-fig" aria-hidden="true">
+          <p class="pnl-num"><span class="pnl-cifra" data-pnl-horas>46</span><small>h</small></p>
+          <p class="pnl-delta"><svg viewBox="0 0 12 12"><path d="M6 10.5v-9M2.3 5.1 6 1.5l3.7 3.6"/></svg><span>+7 h frente a agosto</span></p>
+        </div>
+        <div class="pnl-barras" aria-hidden="true">
+          <span style="--v:.30;--n:0"><i></i><em>abr</em></span>
+          <span style="--v:.46;--n:1"><i></i><em>may</em></span>
+          <span style="--v:.59;--n:2"><i></i><em>jun</em></span>
+          <span style="--v:.70;--n:3"><i></i><em>jul</em></span>
+          <span style="--v:.85;--n:4"><i></i><em>ago</em></span>
+          <span style="--v:1;--n:5"><i></i><em>sep</em></span>
+        </div>
+        <p class="pnl-pie" aria-hidden="true">≈ 6 jornadas<span class="pnl-largo">de trabajo</span></p>
+      </article>
+
+      <!-- n8n · flujo de captación -->
+      <article class="pnl-t pnl-n8n" aria-labelledby="pnl-n8n-t">
+        <header class="pnl-t-cab">
+          <h3 class="pnl-t-tit pnl-n8n-tit" id="pnl-n8n-t"><span class="pnl-n8n-badge">n8n</span> <span class="pnl-n8n-sep">·</span> flujo de captación</h3>
+          <span class="pnl-activo" aria-hidden="true"><i class="pnl-sw"></i>Activo</span>
+          <span class="demo-tag">demo</span>
+        </header>
+        <p class="pnl-sr">Ejemplo de flujo en n8n: un webhook recibe cada nuevo lead, la IA (Claude) lo cualifica, el CRM crea la oportunidad y se envía un email al cliente y un aviso al comercial.</p>
+        <div class="pnl-n8n-cuerpo" aria-hidden="true">
+          <div class="pnl-n8n-izq">
+          <div class="pnl-lienzo">
+            <div class="pnl-nodos">
+              <div class="pnl-nodo pnl-nodo-trigger">
+                <span class="pnl-caja">
+                  <svg class="pnl-rayo" viewBox="0 0 12 16"><path d="M7.4 0 0 9.2h4.7L3.9 16 12 6.5H7.2Z"/></svg>
+                  <svg class="pnl-ico" viewBox="0 0 24 24"><circle cx="12" cy="6.3" r="2.6"/><circle cx="6" cy="17.2" r="2.6"/><circle cx="18" cy="17.2" r="2.6"/><path d="M10.7 8.6 7.3 14.8M8.7 17.2h6.6M13.3 8.6l3.4 6.2"/></svg>
+                  <i class="pnl-giro"></i><i class="pnl-check"><svg viewBox="0 0 12 12"><path d="m3 6.3 2.1 2.1L9.2 4"/></svg></i>
+                </span>
+                <span class="pnl-etq"><b>Webhook</b><em>nuevo lead</em></span>
+              </div>
+              <span class="pnl-arista"><span class="pnl-items">1 item</span></span>
+              <div class="pnl-nodo pnl-nodo-ia">
+                <span class="pnl-caja">
+                  <svg class="pnl-ico" viewBox="0 0 24 24"><path d="M10.5 3.5c.5 3.9 2.1 5.5 6 6-3.9.5-5.5 2.1-6 6-.5-3.9-2.1-5.5-6-6 3.9-.5 5.5-2.1 6-6Z"/><path d="M18 14.6c.2 1.6.9 2.3 2.5 2.5-1.6.2-2.3.9-2.5 2.5-.2-1.6-.9-2.3-2.5-2.5 1.6-.2 2.3-.9 2.5-2.5Z"/></svg>
+                  <span class="pnl-ia-txt"><b>IA (Claude)</b><em>agente<span class="pnl-largo"> · cualifica</span></em></span>
+                  <i class="pnl-giro"></i><i class="pnl-check"><svg viewBox="0 0 12 12"><path d="m3 6.3 2.1 2.1L9.2 4"/></svg></i>
+                </span>
+                <span class="pnl-etq"><b>IA (Claude)</b><em>cualifica el lead</em></span>
+                <span class="pnl-sub">
+                  <i class="pnl-sub-linea"></i>
+                  <span class="pnl-sub-circ"><svg class="pnl-ico" viewBox="0 0 24 24"><ellipse cx="12" cy="6.5" rx="6.5" ry="2.6"/><path d="M5.5 6.5v11c0 1.4 2.9 2.6 6.5 2.6s6.5-1.2 6.5-2.6v-11M5.5 12c0 1.4 2.9 2.6 6.5 2.6s6.5-1.2 6.5-2.6"/></svg></span>
+                  <span class="pnl-sub-etq"><b>Memoria</b><em>historial</em></span>
+                </span>
+              </div>
+              <span class="pnl-arista"><span class="pnl-items">1 item</span></span>
+              <div class="pnl-nodo">
+                <span class="pnl-caja">
+                  <svg class="pnl-ico" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M9.2 4.5v15M14.8 4.5v15M5.6 8h1.6M11.2 8h1.6M11.2 11h1.6M16.8 8h1.6"/></svg>
+                  <i class="pnl-giro"></i><i class="pnl-check"><svg viewBox="0 0 12 12"><path d="m3 6.3 2.1 2.1L9.2 4"/></svg></i>
+                </span>
+                <span class="pnl-etq"><b>CRM</b><em>crea la oportunidad</em></span>
+              </div>
+              <span class="pnl-arista"><span class="pnl-items">1 item</span></span>
+              <div class="pnl-nodo">
+                <span class="pnl-caja">
+                  <svg class="pnl-ico" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="m4.5 7.2 7.5 5.6 7.5-5.6"/></svg>
+                  <i class="pnl-giro"></i><i class="pnl-check"><svg viewBox="0 0 12 12"><path d="m3 6.3 2.1 2.1L9.2 4"/></svg></i>
+                </span>
+                <span class="pnl-etq"><b>Email / aviso</b><em>cliente y comercial</em></span>
+              </div>
+            </div>
+          </div>
+          <p class="pnl-estado" data-modo="espera"><i class="pnl-estado-ico"></i><span class="pnl-estado-txt">Esperando un nuevo lead…</span></p>
+          </div>
+          <div class="pnl-ejec">
+            <p class="pnl-ejec-cab"><span>Últimas ejecuciones</span><span>hoy</span></p>
+            <ol class="pnl-ejec-lista">
+              <li><i class="pnl-ejec-ok"><svg viewBox="0 0 12 12"><path d="m3 6.3 2.1 2.1L9.2 4"/></svg></i><span class="pnl-ejec-nom">Clínica dental</span><span class="pnl-ejec-seg">11 s</span><span class="pnl-ejec-hora">10:31</span></li>
+              <li><i class="pnl-ejec-ok"><svg viewBox="0 0 12 12"><path d="m3 6.3 2.1 2.1L9.2 4"/></svg></i><span class="pnl-ejec-nom">Mantenimiento</span><span class="pnl-ejec-seg">13 s</span><span class="pnl-ejec-hora">10:18</span></li>
+              <li><i class="pnl-ejec-ok"><svg viewBox="0 0 12 12"><path d="m3 6.3 2.1 2.1L9.2 4"/></svg></i><span class="pnl-ejec-nom">Seguro de hogar</span><span class="pnl-ejec-seg">10 s</span><span class="pnl-ejec-hora">10:05</span></li>
+              <li><i class="pnl-ejec-ok"><svg viewBox="0 0 12 12"><path d="m3 6.3 2.1 2.1L9.2 4"/></svg></i><span class="pnl-ejec-nom">Gestoría laboral</span><span class="pnl-ejec-seg">12 s</span><span class="pnl-ejec-hora">09:52</span></li>
+            </ol>
+            <p class="pnl-ejec-pie"><span>respuesta media <b>12 s</b></span><span>0 errores</span></p>
+          </div>
+        </div>
+      </article>
+
+      <!-- CRM -->
+      <article class="pnl-t pnl-crm" aria-labelledby="pnl-crm-t">
+        <header class="pnl-t-cab"><h3 class="pnl-t-tit" id="pnl-crm-t">CRM · oportunidades</h3><span class="demo-tag">demo</span></header>
+        <p class="pnl-sr">Ejemplo de CRM con cuatro etapas, Nuevo, Cualificado, Propuesta y Ganado: cada oportunidad avanza hasta cerrarse.</p>
+        <div class="pnl-tubo" aria-hidden="true">
+          <div class="pnl-col"><p class="pnl-col-cab">Nuevo<span>2</span></p><span class="pnl-tarj">Óptica<em>900 €</em></span><span class="pnl-tarj">Bodega<em>1.200 €</em></span></div>
+          <div class="pnl-col"><p class="pnl-col-cab">Cualificado<span>2</span></p><span class="pnl-tarj">Hogar<em>650 €</em></span><span class="pnl-tarj">Nóminas<em>2.100 €</em></span></div>
+          <div class="pnl-col"><p class="pnl-col-cab">Propuesta<span>1</span></p><span class="pnl-tarj">Tienda<em>3.400 €</em></span></div>
+          <div class="pnl-col"><p class="pnl-col-cab">Ganado<span>2</span></p><span class="pnl-lead pnl-ganado"><b>Seguro de flota</b><span class="pnl-lead-org"><span class="pnl-lead-canal">web · </span><span class="pnl-lead-valor">4.800 €</span></span><span class="pnl-lead-won">✓<span class="pnl-lead-largo"> ganado</span></span></span><span class="pnl-tarj">Taller<em>1.800 €</em></span></div>
+        </div>
+        <p class="pnl-pie" aria-hidden="true">seguimiento automático por WhatsApp o email</p>
+      </article>
+
+      <!-- Factura con OCR -->
+      <article class="pnl-t pnl-ocr" aria-labelledby="pnl-ocr-t">
+        <header class="pnl-t-cab"><h3 class="pnl-t-tit" id="pnl-ocr-t">Facturas · OCR + IA</h3><span class="demo-tag">demo</span></header>
+        <p class="pnl-sr">Ejemplo: la IA lee una factura de Suministros Levante S.L. y extrae proveedor, NIF B12345678, base imponible 1.240,00 €, IVA 260,40 € y total 1.500,40 €; después propone el asiento en la cuenta 600.</p>
+        <div class="pnl-ocr-cuerpo" aria-hidden="true">
+          <div class="pnl-papel">
+            <div class="pnl-papel-cab"><b>FACTURA</b><span>F-2026-0187</span></div>
+            <div class="pnl-papel-de">
+              <p class="pnl-papel-prov"><span class="pnl-c">Suministros Levante S.L.</span></p>
+              <p><span class="pnl-papel-k">NIF </span><span class="pnl-c">B12345678</span></p>
+              <i class="pnl-esq" style="width:70%"></i>
+              <i class="pnl-esq" style="width:48%"></i>
+            </div>
+            <div class="pnl-papel-lineas"><i class="pnl-esq"></i><i class="pnl-esq"></i><i class="pnl-esq" style="width:82%"></i><i class="pnl-esq"></i></div>
+            <div class="pnl-tot">
+              <p><span>Base imponible</span><span class="pnl-c">1.240,00 €</span></p>
+              <p><span>IVA 21 %</span><span class="pnl-c">260,40 €</span></p>
+              <p class="pnl-total"><span>Total</span><span class="pnl-c">1.500,40 €</span></p>
+            </div>
+            <i class="pnl-escaner"></i>
+          </div>
+          <div class="pnl-extr">
+            <p class="pnl-extr-cab">datos extraídos</p>
+            <ul>
+              <li><span>proveedor</span><b>Suministros Levante S.L.</b></li>
+              <li><span>nif</span><b>B12345678</b></li>
+              <li><span>base</span><b>1.240,00 €</b></li>
+              <li><span>iva</span><b>260,40 €</b></li>
+              <li><span>total</span><b>1.500,40 €</b></li>
+            </ul>
+            <p class="pnl-asiento"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5"/><path d="m5.2 8.2 1.9 1.9 3.8-4"/></svg>asiento propuesto · cuenta 600</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Informe mensual -->
+      <article class="pnl-t pnl-inf" aria-labelledby="pnl-inf-t">
+        <header class="pnl-t-cab"><h3 class="pnl-t-tit" id="pnl-inf-t">Informe mensual</h3><span class="demo-tag">demo</span></header>
+        <p class="pnl-sr">Ejemplo de informe de septiembre de 2026: ventas +8,4 %; el PDF llega a dirección el día 1 a las 7:00.</p>
+        <div class="pnl-fig" aria-hidden="true">
+          <p class="pnl-num"><span class="pnl-cifra" data-pnl-inf>+8,4</span><small>%</small></p>
+          <p class="pnl-fig-etq"><b>ventas</b><span>septiembre 2026</span></p>
+        </div>
+        <svg class="pnl-graf" aria-hidden="true" focusable="false">
+          <defs><linearGradient id="pnl-gr-inf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A6AA6" stop-opacity=".18"/><stop offset="1" stop-color="#1A6AA6" stop-opacity="0"/></linearGradient></defs>
+          <path class="pnl-ant"/>
+          <path class="pnl-area" fill="url(#pnl-gr-inf)"/>
+          <path class="pnl-linea" pathLength="1"/>
+          <circle class="pnl-halo" r="10" cx="-40" cy="-40"/><circle class="pnl-punto" r="3.5" cx="-40" cy="-40"/>
+        </svg>
+        <p class="pnl-pie pnl-pdf" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 1.5h5.5L13 5v9.5H4z"/><path d="M9.5 1.5V5H13M6.3 8.5h4.4M6.3 11h3"/></svg><b>informe-2026-09.pdf</b><span>día 1 · 7:00</span></p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="pruebas" aria-labelledby="pruebas-titulo">
+  <div class="contenedor">
+    <div class="pru-cab">
+      <p class="pru-eyebrow">Quién dirige tu proyecto</p>
+      <h2 class="pru-titulo" id="pruebas-titulo">Juan Luis Toboso, <em>el director de orquesta</em></h2>
+    </div>
+    <ul class="pru-lista">
+      <li class="pru-item"><p class="pru-kicker">Perfil</p><p class="pru-cifra">Economista</p><p class="pru-etq">Director financiero, asesor fiscal</p></li>
+      <li class="pru-item"><p class="pru-kicker">Gestión</p><p class="pru-cifra">+10 <small>años</small></p><p class="pru-etq">dirigiendo empresas</p></li>
+      <li class="pru-item"><p class="pru-kicker">Formación técnica · en curso</p><p class="pru-cifra">Máster IA</p><p class="pru-etq">IA Aplicada y Optimización de Procesos Productivos</p></li>
+      <li class="pru-item"><p class="pru-kicker">Experiencia técnica</p><p class="pru-cifra">+1.000 <small>PR</small></p><p class="pru-etq">fusionados en varios proyectos desarrollados</p></li>
+      <li class="pru-item"><p class="pru-kicker">Producto propio</p><p class="pru-cifra">SaaS</p><p class="pru-etq"><i class="pru-punto" aria-hidden="true"></i>en producción: <a href="https://agentiacontable.com" target="_blank" rel="noopener">agentiacontable.com</a></p></li>
+    </ul>
+  </div>
+</section>

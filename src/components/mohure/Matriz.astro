@@ -1,0 +1,46 @@
+---
+import { EVIDENCIAS, NIVELES, NOTA_AGENTIA } from "../../datos/evidencias";
+
+const grupos = [
+  { titulo: "Requisitos de la oferta", grupo: "requisito" },
+  { titulo: "Se valora", grupo: "valora" },
+] as const;
+---
+<section class="seccion matriz" id="matriz" aria-labelledby="matriz-titulo">
+  <div class="contenedor">
+    <h2 class="titulo-seccion" id="matriz-titulo">Requisito a requisito, con evidencias</h2>
+    <p class="entradilla">Cuatro niveles, sin adornos: {Object.values(NIVELES).map((n) => n.etiqueta).join(" · ")}. {NOTA_AGENTIA}</p>
+    {grupos.map((g) => (
+      <div class="mz-grupo">
+        <h3>{g.titulo}</h3>
+        <ul class="mz-lista" role="list">
+          {EVIDENCIAS.filter((e) => e.grupo === g.grupo).map((e) => (
+            <li class="mz-fila">
+              <span class="mz-req">{e.requisito}</span>
+              <span class={`mz-nivel mz-${e.nivel}`}>{NIVELES[e.nivel].etiqueta}</span>
+              <span class="mz-det">
+                {e.detalle}
+                {e.enlace && (<> <a class="enlace" href={e.enlace} target="_blank" rel="noopener">Ver</a></>)}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .matriz .mz-grupo{margin-top:36px}
+  .matriz h3{font:600 13px/1.3 var(--f-mono);margin:0 0 12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .matriz .mz-lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+  .matriz .mz-fila{display:grid;grid-template-columns:minmax(0,1.1fr) auto minmax(0,2fr);gap:8px 20px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)}
+  .matriz .mz-req{font-weight:600}
+  .matriz .mz-nivel{font:500 12px/1 var(--f-mono);border-radius:999px;padding:5px 9px;white-space:nowrap}
+  .matriz .mz-experiencia_real{background:#E3F4EA;color:var(--ok)}
+  .matriz .mz-formacion_y_proyecto{background:var(--sea-soft);color:var(--sea)}
+  .matriz .mz-aprendiendo{background:#FFF4D6;color:#7A5300}
+  .matriz .mz-sin_experiencia{background:var(--red-soft);color:var(--red)}
+  .matriz .mz-det{color:var(--muted);font-size:15px}
+  @media (max-width:760px){ .matriz .mz-fila{grid-template-columns:1fr} .matriz .mz-nivel{justify-self:start} }
+</style>

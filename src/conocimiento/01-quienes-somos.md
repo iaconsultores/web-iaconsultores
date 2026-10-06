@@ -1,0 +1,2 @@
+# Quiénes somos
+IA Consultores es la consultoría de inteligencia artificial y automatización de Juan Luis Toboso para pymes y autónomos de verdad. Lema: «Primero entendemos tu negocio, después desarrollamos la solución». Implantamos soluciones de IA personalizadas que mejoran los procesos y la cuenta de resultados. Juan Luis coordina una red de especialistas en inteligencia artificial según cada proyecto. Trabajamos desde la provincia de Alicante, en remoto o en persona, para empresas de toda España. La web es un proyecto de Agentia Codex S.L.
