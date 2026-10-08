@@ -2,7 +2,7 @@
 :root{
   --bg:#FFFFFF; --bg-2:#EEF5FB; --surface:#FFFFFF; --ink:#1B1F2A; --muted:#5E6370;
   /* Texto secundario legible: entradilla y descripciones de servicios (con --texto-2-tam) y las listas en gris
-     de «Qué hacemos», «Sobre mí», el contacto y /mohure; --muted queda para etiquetas y textos breves */
+     de «Qué hacemos», «Sobre mí», el contacto, /mohure y el menú; --muted queda para etiquetas y textos breves */
   --texto-2:#474C58; --texto-2-tam:16.2px;
   --line:#E1E9F0; --line-2:#CBD8E4;
   --sea:#1A6AA6; --sea-soft:#E4EEF6; --red:#A3312A; --red-soft:#F5E4E1;
@@ -54,7 +54,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:23px;white-space:nowrap}
 .logo svg{width:26px;height:26px;flex:none}
 .nav-links{display:flex;gap:26px;margin-left:auto}
-.nav-links a{text-decoration:none;font-size:15px;color:var(--muted);transition:color .2s}
+.nav-links a{text-decoration:none;font-size:15px;color:var(--texto-2);transition:color .2s}
 .nav-links a:hover{color:var(--ink)}
 .nav .btn{min-height:42px;padding:0 18px;font-size:15px}
 .nav-menu{display:none;margin-left:auto;background:none;border:1px solid var(--line-2);border-radius:999px;padding:8px 14px;font:500 14px/1 var(--f-body);cursor:pointer}

@@ -15,7 +15,7 @@
   y la banda baja unos 100 px a 1920 px; «¿Colaboramos?» compacto, con título y texto en la misma fila. Los
   párrafos secundarios con ese formato (entradilla de la portada y descripciones de servicios) pasan a 16,2 px y a un
   gris más oscuro (`--texto-2`, #474C58) para leerse mejor; ese gris se aplica también a las listas en gris de «Qué
-  hacemos», «Sobre mí», la casilla del contacto y las listas de /mohure (sin cambiar su tamaño).
+  hacemos», «Sobre mí», la casilla del contacto, las listas de /mohure y los enlaces del menú (sin cambiar su tamaño).
 - **Referencia visual:** maqueta aprobada `maquetas/11-r2-configurador.html` (fuente en `maquetas/r2/`). Las maquetas
   solo existen en local y no se publican.
 
