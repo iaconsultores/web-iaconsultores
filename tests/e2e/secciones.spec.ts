@@ -42,6 +42,14 @@ test("las listas en gris de la portada y de /mohure usan el mismo gris más oscu
   expect(await colores(mohure)).toEqual(Object.fromEntries(mohure.map((s) => [s, gris])));
 });
 
+test("los enlaces del menú usan el gris más oscuro, sin cambiar su tamaño", async ({ page }) => {
+  await page.goto("/");
+  const estilos = await page.locator(".nav-links a").evaluateAll((els) => [
+    ...new Set(els.map((el) => `${getComputedStyle(el).fontSize} ${getComputedStyle(el).color}`)),
+  ]);
+  expect(estilos).toEqual(["15px rgb(71, 76, 88)"]);
+});
+
 test("«Los informáticos no entienden mi negocio» va en una sola línea y sin hueco extra", async ({ page }) => {
   await page.goto("/");
   const frase = page.locator("#por-que .pq-frase");
