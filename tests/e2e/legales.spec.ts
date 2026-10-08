@@ -27,10 +27,9 @@ test("404 propia, sitemap, robots, imagen social y datos estructurados", async (
 
 test("la portada y el CV citan las más de 50 webs y el inglés C1-C2", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator("#sobre-mi")).toContainText("Más de 50 webs");
+  await expect(page.locator("#sobre-mi")).toContainText("+50 webs");
   await expect(page.locator("#sobre-mi")).toContainText("nivel muy alto (C1-C2)");
   await expect(page.locator("#sobre-mi")).toContainText("finalización prevista en octubre de 2026");
-  await expect(page.locator("#pruebas")).toContainText("Formación técnica · en curso");
   await page.goto("/mohure/cv");
   await expect(page.locator("main")).toContainText("Más de 50 webs");
   await expect(page.locator("main")).toContainText("Inglés: nivel muy alto (C1-C2)");

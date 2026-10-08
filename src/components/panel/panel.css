@@ -1,5 +1,5 @@
 /* =====================================================================
-   Fragmento «panel» · #panel (Así se ve tu empresa con IA) + #pruebas
+   Fragmento «panel» · #panel (Así se ve tu empresa con IA)
    Bento claro con piezas vivas: contadores, flujo n8n, CRM, factura con
    OCR e informe. Selectores con prefijo de sección; animaciones pnl-/pru-.
    ===================================================================== */
@@ -311,45 +311,4 @@
   #panel .pnl-cab{align-items:flex-start}
   #panel .pnl-bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"leads horas" "n8n n8n" "crm crm" "ocr ocr" "inf inf"}
   #panel .pnl-fig{margin-top:16px}
-}
-
-/* =====================================================================
-   #pruebas · «el director de orquesta»: cinco datos reales, sin cajas
-   ===================================================================== */
-#pruebas{padding:0 0 clamp(8px,2vw,24px)}
-#pruebas .pru-cab{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin:0 0 22px}
-#pruebas .pru-eyebrow{font:500 13px/1.3 var(--f-mono);letter-spacing:.03em;color:var(--muted);margin:0}
-#pruebas .pru-titulo{margin:0;font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:clamp(26px,2.5vw,36px);line-height:1.1}
-#pruebas .pru-titulo em{font-style:italic;color:var(--red)}
-#pruebas .pru-lista{position:relative;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-bottom:1px solid var(--line-2)}
-#pruebas .pru-item:nth-child(5){--pru-i:4}
-#pruebas .pru-kicker{margin:0;font:500 11.5px/1.2 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--red)}
-#pruebas .pru-etq a{color:var(--sea);font-weight:600;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
-#pruebas .pru-lista::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line-2);transform-origin:left;transition:transform 1.4s cubic-bezier(.65,0,.2,1)}
-#pruebas.pru-js .pru-lista:not(.pru-visto)::before{transform:scaleX(0)}
-#pruebas .pru-item>*{transition:opacity .8s ease var(--pru-d,0ms),transform 1s cubic-bezier(.2,.75,.2,1) var(--pru-d,0ms)}
-#pruebas .pru-item>.pru-etq{--pru-d:calc(var(--pru-i,0) * 120ms + 260ms)}
-#pruebas .pru-item>.pru-cifra{--pru-d:calc(var(--pru-i,0) * 120ms + 160ms)}
-#pruebas .pru-item:nth-child(2){--pru-i:1}
-#pruebas .pru-item:nth-child(3){--pru-i:2}
-#pruebas .pru-item:nth-child(4){--pru-i:3}
-#pruebas.pru-js .pru-lista:not(.pru-visto) .pru-item>*{opacity:0;transform:translateY(12px)}
-#pruebas .pru-item{display:flex;flex-direction:column;gap:12px;min-width:0;padding:31px 28px 28px;border-left:1px solid var(--line)}
-#pruebas .pru-item:first-child{border-left:0;padding-left:0}
-#pruebas .pru-cifra{margin:0;display:flex;align-items:baseline;gap:.16em;font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:clamp(30px,2.95vw,44px);line-height:.95;font-variant-numeric:lining-nums tabular-nums;white-space:nowrap;color:var(--ink)}
-#pruebas .pru-cifra small{font-size:.4em;letter-spacing:0;color:var(--muted)}
-#pruebas .pru-etq{margin:0;display:flex;align-items:center;gap:8px;font-size:15.5px;line-height:1.35;color:var(--muted)}
-#pruebas .pru-punto{flex:none;width:8px;height:8px;border-radius:50%;background:var(--ok-dot);box-shadow:0 0 0 3px rgba(18,183,106,.16)}
-@media (max-width:1100px){
-  #pruebas .pru-lista{grid-template-columns:repeat(2,minmax(0,1fr))}
-  #pruebas .pru-item{gap:8px;padding:22px 0 20px 18px}
-  #pruebas .pru-item:nth-child(odd){border-left:0;padding-left:0}
-  #pruebas .pru-item:nth-child(n+3){border-top:1px solid var(--line)}
-  #pruebas .pru-item:nth-child(5){grid-column:1/-1}
-  #pruebas .pru-etq{font-size:14.5px}
-}
-@media (max-width:420px){
-  #pruebas .pru-lista{grid-template-columns:1fr}
-  #pruebas .pru-item{border-left:0;padding-left:0}
-  #pruebas .pru-item:nth-child(n+2){border-top:1px solid var(--line)}
 }

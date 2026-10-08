@@ -1,7 +1,6 @@
 (() => {
   const IAC = window.IAC || {};
   const panel = document.getElementById("panel");
-  const pruebas = document.getElementById("pruebas");
   const reducido = !!IAC.reducido;
   const alVer = (el, cb, op) => { if (el) (IAC.alVer ? IAC.alVer(el, cb, op) : cb(el)); };
   const q = (s, c) => (c || panel).querySelector(s);
@@ -20,11 +19,6 @@
     requestAnimationFrame(paso);
   }
 
-  /* ===== #pruebas: cifras reales, siempre en el DOM; solo aparecen con calma al verse ===== */
-  if (pruebas && !reducido) {
-    pruebas.classList.add("pru-js");
-    alVer(pruebas.querySelector(".pru-lista"), (el) => el.classList.add("pru-visto"), { umbral: 0.35 });
-  }
   if (!panel) return;
 
   /* ===== Pausa y visibilidad: los bucles solo avanzan con el panel a la vista ===== */

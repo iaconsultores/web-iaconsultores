@@ -5,6 +5,10 @@
 - **Cambios posteriores (6-oct-2026, a petición del usuario):** la portada rota cada 3 s y no se pausa con el ratón;
   en `/mohure`, el CV se muestra en pantalla antes de la matriz, se retira «pega una oferta → encaje» (sección y
   `/api/encaje`), se actualiza el anexo A y se añade el flujo n8n de leads (`automatizaciones/n8n`).
+- **Cambios posteriores (8-oct-2026, a petición del usuario):** bandas de la portada un 50 % más lentas y un 30 %
+  transparentes; sin la firma bajo el titular; «el director de orquesta» (`#pruebas`) se une a `#sobre-mi` sin datos
+  repetidos; Agentia muestra seis beneficios (con «en validación») en lugar de los interruptores de módulos; la cita
+  «Los informáticos…» en una línea; contacto más compacto; «Así trabaja una automatización» un 40 % más lenta.
 - **Referencia visual:** maqueta aprobada `maquetas/11-r2-configurador.html` (fuente en `maquetas/r2/`). Las maquetas
   solo existen en local y no se publican.
 
@@ -157,7 +161,7 @@ La prueba mínima (§8.2) lo valida.
 
 ### 4.1 Portada `/`
 
-- Secciones, en el orden y con los ids de la maqueta: `portada`, `panel`, `pruebas`, `servicios`,
+- Secciones, en el orden y con los ids de la maqueta: `portada`, `panel`, `servicios`,
   `como-trabajamos`, `por-que`, `agentia`, `que-hacemos`, `colabora`, `sobre-mi`, `contacto`.
 - Textos, ilustraciones y animaciones: los de la maqueta aprobada. Si la maqueta y `maquetas/r2/_contrato.md` no
   coinciden, manda la maqueta.
