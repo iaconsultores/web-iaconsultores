@@ -9,6 +9,10 @@
   transparentes; sin la firma bajo el titular; «el director de orquesta» (`#pruebas`) se une a `#sobre-mi` sin datos
   repetidos; Agentia muestra seis beneficios (con «en validación») en lugar de los interruptores de módulos; la cita
   «Los informáticos…» en una línea; contacto más compacto; «Así trabaja una automatización» un 40 % más lenta.
+  Después, el mismo día: bandas tres veces más lentas que la maqueta, sin acelerones entre paradas y con un reloj
+  común (al cambiar de ciudad, el dato sigue su recorrido); cada provincia se ve 7,5 s; contenedor de 1312 px (65 %
+  del ancho a 1920 px; los textos legales conservan su columna de 820 px); a partir de 1440 px la portada gana aire
+  y la banda baja unos 100 px a 1920 px; «¿Colaboramos?» compacto, con título y texto en la misma fila.
 - **Referencia visual:** maqueta aprobada `maquetas/11-r2-configurador.html` (fuente en `maquetas/r2/`). Las maquetas
   solo existen en local y no se publican.
 
@@ -495,8 +499,8 @@ Sirve para la prueba mínima y para las comprobaciones tras el despliegue. No ex
 No hay detección por IP: la portada recorre las provincias por sí sola.
 
 - **Orden**: Alicante → Valencia → Murcia → Albacete → Madrid → toda España, y vuelta a empezar. Cada provincia se
-  ve unos 3 s (el usuario lo bajó de 6 a 3 s al verla publicada), con un fundido de unos 0,6 s; ambos valores son
-  constantes en `datos/provincias.ts`.
+  ve 7,5 s (el usuario lo bajó de 6 a 3 s al verla publicada y el 8-oct lo subió a 7,5 s), con un fundido corto;
+  la duración es una constante en `datos/provincias.ts`.
 - **Qué cambia**:
   - `html[data-provincia]`, que cambia la escena, la banda, las coordenadas y la curiosidad;
   - todos los `[data-prov-nombre]`, que cambian el H1 y el antetítulo.

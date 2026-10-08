@@ -4,7 +4,9 @@
    España llegan por los SLOT de frag-hero-2.html; aquí se definen su tamaño y su visibilidad. */
 #portada{position:relative;isolation:isolate;overflow:hidden;background:var(--bg)}
 #portada .sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-#portada .por-rejilla{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 340px 232px;column-gap:38px;align-items:start;padding-top:30px;padding-bottom:38px}
+/* En pantallas anchas la portada respira más y la banda baja unos 100 px a 1920 px (el texto, más ancho, ocupa
+   menos líneas: de ahí los 125 px de aire extra, 48 arriba y 77 abajo); hasta 1440 px no cambia nada */
+#portada .por-rejilla{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 340px 232px;column-gap:38px;align-items:start;padding-top:clamp(30px,calc(30px + (100vw - 1440px) * .1),78px);padding-bottom:clamp(38px,calc(38px + (100vw - 1440px) * .16),115px)}
 #portada .por-texto{padding-right:6px;min-width:0}
 
 /* --- Texto --- */
@@ -114,7 +116,7 @@ html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-p
 #portada.sin-banda .banda[data-prov="reserva"]{display:block}
 #portada .carril{fill:none;stroke:var(--ink);stroke-opacity:.32;stroke-width:1.2;stroke-dasharray:1 8;stroke-linecap:round}
 #portada .amb{fill:var(--bg);stroke:var(--ink);stroke-opacity:.45;stroke-width:1}
-#portada .mur-flujo{animation:por-flujo 2.1s linear infinite}
+#portada .mur-flujo{animation:por-flujo 4.2s linear infinite}
 @keyframes por-flujo{to{stroke-dashoffset:-26}}
 #portada .paradas{list-style:none;margin:0;padding:0}
 #portada .parada{position:absolute;z-index:2;left:50%;top:45%;transform:translate(-50%,-50%)}
@@ -128,7 +130,7 @@ html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-p
 #portada .medalla::after{content:"";position:absolute;inset:-5px;border:2px solid var(--red);border-radius:50%;opacity:0;pointer-events:none}
 #portada .parada.hecho .medalla{--m-fondo:var(--line)}
 #portada .parada.activo .medalla{--m-fondo:var(--red);--m-aro:var(--bg);color:#fff}
-#portada .parada.activo .medalla::after{animation:por-ping 2.4s ease-out infinite}
+#portada .parada.activo .medalla::after{animation:por-ping 4.8s ease-out infinite}
 @keyframes por-ping{from{transform:scale(1);opacity:.8}to{transform:scale(1.9);opacity:0}}
 #portada .m-nombre{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);padding:4px 8px 5px;border-radius:4px;background:var(--bg);box-shadow:0 1px 2px rgba(27,31,42,.14);font:500 13px/1 var(--f-body);color:var(--ink);white-space:nowrap;pointer-events:none}
 #portada .paso-texto{position:absolute;z-index:3;top:0;left:0;width:max-content;max-width:230px;margin:0;padding:8px 12px 9px;border-radius:8px;background:var(--surface);box-shadow:0 1px 2px rgba(27,31,42,.08),0 6px 16px rgba(27,31,42,.1);font-size:13.5px;line-height:1.38;color:var(--ink);opacity:0;transform:translateY(-3px);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
@@ -246,7 +248,7 @@ html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-p
 :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto.ver{opacity:1;transform:none}
 :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto b{display:block;margin:0 0 4px;font:500 11.5px/1 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--red)}
 @media (prefers-reduced-motion:no-preference){
-  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .parada.activo .medalla::after{animation:h2-ping 2.4s ease-out infinite}
+  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .parada.activo .medalla::after{animation:h2-ping 4.8s ease-out infinite}
 }
 @keyframes h2-ping{from{transform:scale(1);opacity:.8}to{transform:scale(1.9);opacity:0}}
 @media (max-width:1180px){

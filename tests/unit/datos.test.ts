@@ -9,7 +9,7 @@ describe("datos compartidos", () => {
   it("las provincias siguen el orden de la rotación y empiezan por Alicante", () => {
     expect(PROVINCIAS.map((p) => p.id)).toEqual(["alicante", "valencia", "murcia", "albacete", "madrid", "espana"]);
     expect(PROVINCIA_INICIAL).toBe("alicante");
-    expect(ROTACION_MS).toBe(3000);
+    expect(ROTACION_MS).toBe(7500);
     expect(esProvincia("murcia")).toBe(true);
     expect(esProvincia("cuenca")).toBe(false);
   });

@@ -10,7 +10,8 @@
   --display-weight:500; --display-tracking:-0.01em;
   --radius:14px; --radius-lg:22px;
   --shadow:0 1px 2px rgba(27,31,42,.04), 0 10px 28px rgba(27,31,42,.07);
-  --container:1240px; --gutter:32px; --section:120px; --nav-h:68px;
+  /* 1312 px: en una pantalla de 1920 px el contenido ocupa un 65 % del ancho (antes, 1240 px = 61 %) */
+  --container:1312px; --gutter:32px; --section:120px; --nav-h:68px;
 }
 @media (max-width:760px){ :root{ --gutter:16px; --section:76px; } }
 
