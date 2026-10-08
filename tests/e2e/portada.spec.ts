@@ -25,6 +25,15 @@ test("la portada carga sin errores ni desbordamiento con las 6 provincias", asyn
   expect(errores).toEqual([]);
 });
 
+test("la entradilla de la portada se lee mejor: medio punto más grande y un gris más oscuro", async ({ page }) => {
+  await page.goto("/");
+  const estilo = await page.locator("#portada .intro").evaluate((el) => {
+    const cs = getComputedStyle(el);
+    return { tam: cs.fontSize, color: cs.color };
+  });
+  expect(estilo).toEqual({ tam: "16.2px", color: "rgb(71, 76, 88)" });
+});
+
 test("el bloque del titular no cambia de alto entre provincias", async ({ page }) => {
   await page.goto("/");
   const altos = new Set<number>();

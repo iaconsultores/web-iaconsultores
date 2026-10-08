@@ -12,7 +12,9 @@
   Después, el mismo día: bandas tres veces más lentas que la maqueta, sin acelerones entre paradas y con un reloj
   común (al cambiar de ciudad, el dato sigue su recorrido); cada provincia se ve 7,5 s; contenedor de 1312 px (65 %
   del ancho a 1920 px; los textos legales conservan su columna de 820 px); a partir de 1440 px la portada gana aire
-  y la banda baja unos 100 px a 1920 px; «¿Colaboramos?» compacto, con título y texto en la misma fila.
+  y la banda baja unos 100 px a 1920 px; «¿Colaboramos?» compacto, con título y texto en la misma fila. Los
+  párrafos secundarios con ese formato (entradilla de la portada y descripciones de servicios) pasan a 16,2 px y a un
+  gris más oscuro (`--texto-2`, #474C58) para leerse mejor.
 - **Referencia visual:** maqueta aprobada `maquetas/11-r2-configurador.html` (fuente en `maquetas/r2/`). Las maquetas
   solo existen en local y no se publican.
 
