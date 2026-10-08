@@ -60,7 +60,7 @@
 #que-hacemos .qh-cab{margin:0 0 6px;font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:clamp(30px,2.8vw,40px);line-height:1.05}
 #que-hacemos .qh-sub{margin:0 0 clamp(14px,1.6vw,22px);font-size:16px;color:var(--muted)}
 #que-hacemos li b{display:block;font-weight:600;color:var(--ink)}
-#que-hacemos li small{display:block;margin-top:4px;font-size:15.5px;line-height:1.5;color:var(--muted)}
+#que-hacemos li small{display:block;margin-top:4px;font-size:15.5px;line-height:1.5;color:var(--texto-2)}
 #que-hacemos .qh-si .qh-cab{color:var(--sea)}
 #que-hacemos .qh-no .qh-cab{color:var(--red)}
 #que-hacemos .qh-oculto{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
@@ -125,7 +125,7 @@
 #sobre-mi .pru-kicker{margin:0;font:500 11.5px/1.2 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--red)}
 #sobre-mi .pru-cifra{margin:0;display:flex;align-items:baseline;gap:.16em;font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:clamp(30px,2.95vw,44px);line-height:.95;font-variant-numeric:lining-nums tabular-nums;white-space:nowrap;color:var(--ink)}
 #sobre-mi .pru-cifra small{font-size:.4em;letter-spacing:0;color:var(--muted)}
-#sobre-mi .pru-etq{margin:0;display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;font-size:15.5px;line-height:1.35;color:var(--muted)}
+#sobre-mi .pru-etq{margin:0;display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;font-size:15.5px;line-height:1.35;color:var(--texto-2)}
 #sobre-mi .pru-etq a{color:var(--sea);font-weight:600;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
 #sobre-mi .pru-punto{flex:none;width:8px;height:8px;border-radius:50%;background:var(--ok-dot);box-shadow:0 0 0 3px rgba(18,183,106,.16)}
 /* Ficha: formación y trayectoria */
@@ -135,7 +135,7 @@
 #sobre-mi .sm-grupo ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
 #sobre-mi .sm-grupo li{display:grid;gap:3px;padding:14px 0 15px;border-bottom:1px solid var(--line-2)}
 #sobre-mi .sm-grupo b{font-weight:600;font-size:17.5px;line-height:1.35}
-#sobre-mi .sm-grupo li span{font-size:15.5px;line-height:1.45;color:var(--muted)}
+#sobre-mi .sm-grupo li span{font-size:15.5px;line-height:1.45;color:var(--texto-2)}
 @media (max-width:1100px){
   #sobre-mi .pru-lista{grid-template-columns:repeat(2,minmax(0,1fr))}
   #sobre-mi .pru-item{gap:8px;padding:22px 0 20px 18px}
@@ -175,7 +175,7 @@
 #contacto .ct-opciones label:hover span{border-color:var(--ink)}
 #contacto .ct-opciones input:checked + span{background:var(--ink);border-color:var(--ink);color:#fff}
 #contacto .ct-opciones input:focus-visible + span{outline:2px solid var(--sea);outline-offset:3px}
-#contacto .ct-check{display:flex;align-items:flex-start;gap:12px;font-size:15.5px;line-height:1.45;color:var(--muted);cursor:pointer}
+#contacto .ct-check{display:flex;align-items:flex-start;gap:12px;font-size:15.5px;line-height:1.45;color:var(--texto-2);cursor:pointer}
 #contacto .ct-check input{flex:none;width:20px;height:20px;margin:1px 0 0;accent-color:var(--sea);cursor:pointer}
 #contacto .ct-check a{color:var(--ink);text-underline-offset:3px}
 #contacto .ct-check input[aria-invalid="true"]{outline:2px solid var(--red);outline-offset:2px}

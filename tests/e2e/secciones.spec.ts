@@ -27,6 +27,21 @@ test("las descripciones de los servicios tienen el mismo formato que la entradil
   expect(estilos).toEqual(["16.2px rgb(71, 76, 88)"]);
 });
 
+test("las listas en gris de la portada y de /mohure usan el mismo gris más oscuro que la entradilla", async ({ page }) => {
+  const colores = async (selectores: string[]) =>
+    page.evaluate((sel) => Object.fromEntries(sel.map((s) => {
+      const els = [...document.querySelectorAll(s)];
+      return [s, els.length ? [...new Set(els.map((el) => getComputedStyle(el).color))].join(" | ") : "sin elementos"];
+    })), selectores);
+  const gris = "rgb(71, 76, 88)";
+  await page.goto("/");
+  const portada = ["#que-hacemos li small", "#sobre-mi .pru-etq", "#sobre-mi .sm-grupo li span", "#contacto .ct-check"];
+  expect(await colores(portada)).toEqual(Object.fromEntries(portada.map((s) => [s, gris])));
+  await page.goto("/mohure");
+  const mohure = [".cv-pantalla li", ".mh-prueba-lista li"];
+  expect(await colores(mohure)).toEqual(Object.fromEntries(mohure.map((s) => [s, gris])));
+});
+
 test("«Los informáticos no entienden mi negocio» va en una sola línea y sin hueco extra", async ({ page }) => {
   await page.goto("/");
   const frase = page.locator("#por-que .pq-frase");

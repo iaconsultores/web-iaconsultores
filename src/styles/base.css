@@ -1,7 +1,8 @@
 /* ===== Base común: tokens, tipografía, menú y pie (trasladado de maquetas/r2/_shell.html) ===== */
 :root{
   --bg:#FFFFFF; --bg-2:#EEF5FB; --surface:#FFFFFF; --ink:#1B1F2A; --muted:#5E6370;
-  /* Párrafos secundarios (entradilla de la portada, descripciones de servicios): medio punto más y un gris más oscuro que --muted */
+  /* Texto secundario legible: entradilla y descripciones de servicios (con --texto-2-tam) y las listas en gris
+     de «Qué hacemos», «Sobre mí», el contacto y /mohure; --muted queda para etiquetas y textos breves */
   --texto-2:#474C58; --texto-2-tam:16.2px;
   --line:#E1E9F0; --line-2:#CBD8E4;
   --sea:#1A6AA6; --sea-soft:#E4EEF6; --red:#A3312A; --red-soft:#F5E4E1;
