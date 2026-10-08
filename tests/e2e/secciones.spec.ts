@@ -19,6 +19,14 @@ test("«Así trabaja una automatización» va más despacio: el paso 2 llega a l
   await expect(estado).toContainText("Paso 2 de");
 });
 
+test("las descripciones de los servicios tienen el mismo formato que la entradilla de la portada", async ({ page }) => {
+  await page.goto("/");
+  const estilos = await page.locator("#servicios .t-desc").evaluateAll((els) => [
+    ...new Set(els.map((el) => `${getComputedStyle(el).fontSize} ${getComputedStyle(el).color}`)),
+  ]);
+  expect(estilos).toEqual(["16.2px rgb(71, 76, 88)"]);
+});
+
 test("«Los informáticos no entienden mi negocio» va en una sola línea y sin hueco extra", async ({ page }) => {
   await page.goto("/");
   const frase = page.locator("#por-que .pq-frase");
