@@ -20,7 +20,7 @@ export const PROVINCIAS: readonly Provincia[] = [
 
 export const PROVINCIA_INICIAL: IdProvincia = "alicante";
 
-/** Cada provincia se ve unos 3 s. El fundido (0,6 s) está en portada.css. */
-export const ROTACION_MS = 3000;
+/** Cada provincia se ve 7,5 s (antes, 3 s: el cambio de ciudad resultaba muy rápido). El fundido está en portada.css. */
+export const ROTACION_MS = 7500;
 
 export const esProvincia = (v: string): v is IdProvincia => PROVINCIAS.some((p) => p.id === v);

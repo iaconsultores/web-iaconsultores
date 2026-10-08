@@ -53,6 +53,34 @@ test("«Quién dirige tu proyecto» y «Sobre mí» son un solo bloque, sin el n
   for (const dato of ["+10", "+1.000", "agentiacontable.com", "finalización prevista en octubre de 2026"]) await expect(bloque).toContainText(dato);
 });
 
+test.describe("en una pantalla de 1920×1080", () => {
+  test.use({ viewport: { width: 1920, height: 1080 } });
+  /* Los textos legales conservan su columna de lectura de 820 px (párrafos de 72 caracteres como máximo) */
+  test("el contenido ocupa en torno al 65 % del ancho, en la portada y en /mohure", async ({ page }) => {
+    for (const ruta of ["/", "/mohure"]) {
+      await page.goto(ruta);
+      const pct = await page.locator("main .contenedor").first().evaluate((c) => {
+        const cs = getComputedStyle(c);
+        return ((c.getBoundingClientRect().width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)) / innerWidth) * 100;
+      });
+      expect(pct, ruta).toBeGreaterThan(64);
+      expect(pct, ruta).toBeLessThan(66);
+    }
+  });
+});
+
+test("«¿Colaboramos?» es compacto: título y texto en la misma fila", async ({ page }) => {
+  await page.goto("/");
+  const colabora = page.locator("#colabora");
+  expect(await colabora.evaluate((el) => el.getBoundingClientRect().height)).toBeLessThan(440);
+  const desfase = await page.evaluate(() => {
+    const t = document.querySelector("#colabora .co-titulo")!.getBoundingClientRect();
+    const p = document.querySelector("#colabora .co-texto")!.getBoundingClientRect();
+    return Math.abs(p.top - t.top);
+  });
+  expect(desfase).toBeLessThan(40);
+});
+
 test("el bloque de la llamada gratuita es compacto", async ({ page }) => {
   await page.goto("/");
   const contacto = page.locator("#contacto");

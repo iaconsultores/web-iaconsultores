@@ -110,12 +110,16 @@
     ["Proceso", "Se registra solo en tu CRM o en tu ERP."],
     ["Resultado", "Respuesta al cliente y aviso a tu equipo."]
   ];
-  /* Ritmo de las bandas: 1,5 = un 50 % más despacio que la maqueta (el dato, los adornos y los fundidos) */
-  const LENTO = 1.5;
+  /* Ritmo de las bandas: 3 = tres veces más despacio que la maqueta (el dato, los adornos y los fundidos) */
+  const LENTO = 3;
   const SEG = [[0, 0, 900], [0, 1, 1700], [1, 1, 1100], [1, 2, 1700], [2, 2, 1100], [2, 3, 1700], [3, 3, 2400]];
   const OFF = []; SEG.reduce((a, s) => (OFF.push(a), a + s[2]), 0);
   const TOT = OFF[OFF.length - 1] + SEG[SEG.length - 1][2];
-  const suave = (u) => (u < .5 ? 2 * u * u : 1 - (2 - 2 * u) ** 2 / 2);
+  /* Un solo reloj para todas las bandas (las de portada.js y las de portada-2.js): al cambiar de ciudad,
+     el dato sigue su recorrido en vez de volver a la parada 1. Avanza una sola vez por fotograma. */
+  const RB = (IAC.relojBandas ||= { t: 0, now: -1 });
+  /* Arranque y frenada suaves sin acelerón a mitad de camino (punta 1,5× la media; antes, 2×) */
+  const suave = (u) => u * u * (3 - 2 * u);
   const rango = (a, b, p) => { const r = []; for (let x = a; x < b; x += p) r.push(x); r.push(b); return r; };
   const semilla = (n) => { let s = n * 9973 + 7; return () => (s = (s * 16807) % 2147483647) / 2147483647; };
   const fondo = (G, relleno) => `<rect x="${f1(G.vx0 - 2)}" y="${f1(G.vy0 - 2)}" width="${f1(G.visW + 4)}" height="${f1(G.visH + 4)}" fill="${relleno}"/>`;
@@ -127,7 +131,10 @@
     if (!W || !H) return null;
     const s = Math.max(W / 1440, H / 220), visW = W / s, visH = H / s;
     const vx0 = (1440 - visW) / 2, vy0 = (220 - visH) / 2, mob = W < 761, compacta = W < 1181;
-    const cont = Math.min(W, 1240) - 2 * (mob ? 16 : 32), cl = (W - cont) / 2;
+    /* Ancho útil de .contenedor (--container en base.css), medido en vez de repetir la cifra aquí */
+    const c = portada.querySelector(".contenedor"), cs = getComputedStyle(c), rc = c.getBoundingClientRect();
+    const cont = rc.width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    const cl = rc.left + parseFloat(cs.paddingLeft) - el.getBoundingClientRect().left;
     const nx = (mob ? [.1, .3667, .6333, .9] : [.12, .37, .62, .87]).map((f) => vx0 + (cl + cont * f) / s);
     return { W, H, s, visW, visH, vx0, vy0, mob, compacta, nx, mid: vy0 + visH * (compacta ? .4 : .45) };
   }
@@ -311,7 +318,7 @@
     el.append(lista, leyenda);
     const lis = Array.from(lista.children);
     let G = null, R = null, acc = [], Ls = [], pk = null, estG = null, est = [], hist = [];
-    let etapa = -1, reloj = 0, ultimo = 0, salto = null, lastI = 0, Lact = 0, sucio = true, foco = -1, tLey = 0;
+    let etapa = -1, ultimo = 0, salto = null, lastI = 0, Lact = 0, sucio = true, foco = -1, tLey = 0;
 
     function punto(L) {
       const c = R.carril, n = acc.length - 1;
@@ -357,7 +364,7 @@
       if (foco < 0) leyendaA(k);
     }
     function enReloj() {
-      let t = reloj, i = 0;
+      let t = RB.t, i = 0;
       while (i < SEG.length - 1 && t > SEG[i][2]) { t -= SEG[i][2]; i++; }
       const [a, b, d] = SEG[i];
       return { i, a, t, d, L: Ls[a] + (Ls[b] - Ls[a]) * suave(Math.min(1, t / d)) };
@@ -394,9 +401,9 @@
       if (salto) {
         const u = Math.min(1, (now - salto.t0) / salto.dur);
         L = salto.desde + (salto.hasta - salto.desde) * suave(u);
-        if (u >= 1) { reloj = OFF[2 * salto.k]; lastI = 2 * salto.k; salto = null; }
+        if (u >= 1) { RB.t = OFF[2 * salto.k]; lastI = 2 * salto.k; salto = null; }
       } else {
-        reloj = (reloj + dt / LENTO) % TOT;
+        if (RB.now !== now) { RB.now = now; RB.t = (RB.t + dt / LENTO) % TOT; }
         const e = enReloj();
         if (e.i < lastI) hist = [];
         lastI = e.i; L = e.L;
@@ -407,10 +414,17 @@
       colocar(L, alfa);
       if (R.ambiente) R.ambiente.tick(now / 1000 / LENTO);
     }
+    /* Al mostrarse (cambio de ciudad) recoge el punto del reloj común y borra la estela de la última vez */
+    function sincronizar() {
+      if (!G || !R || reducido || salto) return;
+      hist = [];
+      const e = enReloj();
+      lastI = e.i; colocar(e.L); setEtapa(e.a);
+    }
     function ir(k) {
       if (!G) return;
-      if (reducido || !animando()) { hist = []; colocar(Ls[k]); reloj = OFF[2 * k]; lastI = 2 * k; setEtapa(k, true); return; }
-      salto = { desde: Lact, hasta: Ls[k], t0: performance.now(), dur: 520 + Math.min(900, Math.abs(Ls[k] - Lact) * .9), k };
+      if (reducido || !animando()) { hist = []; colocar(Ls[k]); RB.t = OFF[2 * k]; lastI = 2 * k; setEtapa(k, true); return; }
+      salto = { desde: Lact, hasta: Ls[k], t0: performance.now(), dur: 800 + Math.min(1400, Math.abs(Ls[k] - Lact) * 1.4), k };
       setEtapa(k, true);
     }
     lis.forEach((li, i) => {
@@ -420,7 +434,7 @@
       b.addEventListener("mouseenter", ver); b.addEventListener("focus", ver);
       b.addEventListener("mouseleave", dejar); b.addEventListener("blur", dejar);
     });
-    return { paso, preparar, ensuciar: () => { sucio = true; }, reanudar: () => { ultimo = 0; } };
+    return { paso, preparar, sincronizar, ensuciar: () => { sucio = true; }, reanudar: () => { ultimo = 0; } };
   }
 
   const motores = new Map();
@@ -446,7 +460,7 @@
     const q = p in DATOS ? p : "alicante", propia = !!$(`.banda[data-prov="${q}"]`);
     portada.classList.toggle("sin-banda", !propia);
     activo = propia ? motores.get(q) || null : motores.get("reserva");
-    if (activo) { activo.preparar(); arrancar(); }
+    if (activo) { activo.preparar(); activo.sincronizar(); arrancar(); }
   }
 
   /* Pausa de todas las animaciones de la portada (WCAG 2.2.2) */
