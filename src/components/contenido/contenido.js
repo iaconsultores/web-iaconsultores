@@ -3,25 +3,11 @@
   const uno = (s, c = document) => c.querySelector(s);
   const todos = (s, c = document) => Array.from(c.querySelectorAll(s));
 
-  /* — Agentia: interruptores, contador «N de 10» y mosaico de piezas — */
-  const panel = uno("#agentia .ag-panel");
-  if (panel) {
-    const mods = todos('[role="switch"]', panel), teselas = todos(".ag-mosaico i", panel), n = uno(".ag-n", panel);
-    const pintar = () => {
-      let activos = 0;
-      mods.forEach((m, i) => {
-        const on = m.getAttribute("aria-checked") === "true";
-        if (on) activos++;
-        if (teselas[i]) teselas[i].classList.toggle("on", on);
-      });
-      n.textContent = String(activos);
-    };
-    mods.forEach(m => m.addEventListener("click", () => {
-      m.setAttribute("aria-checked", String(m.getAttribute("aria-checked") !== "true"));
-      pintar();
-      n.classList.remove("ag-tic"); void n.offsetWidth; n.classList.add("ag-tic");
-    }));
-    pintar();
+  /* — Sobre mí: cifras reales, siempre en el DOM; solo aparecen con calma al verse — */
+  const sobreMi = uno("#sobre-mi");
+  if (sobreMi && !IAC.reducido) {
+    sobreMi.classList.add("pru-js");
+    IAC.alVer(uno(".pru-lista", sobreMi), (el) => el.classList.add("pru-visto"), { umbral: 0.35 });
   }
 
   /* — Colabora: dos corrientes (vuestro equipo y el nuestro) que se unen y siguen trenzadas — */

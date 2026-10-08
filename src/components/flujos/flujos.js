@@ -195,6 +195,8 @@
 
   /* Tiempos de la secuencia (ms): A(k) = momento en que el paso k se activa */
   const T0 = 350;
+  /* Ritmo: 1,4 = un 40 % más despacio que la maqueta (el reloj de la secuencia y sus destellos) */
+  const LENTO = 1.4;
   function tiempos(tipo, n) {
     if (tipo === "nodos") { const D = 1150; const A = (k) => T0 + k * D; return { A, fin: A(n - 1) + 750 }; }
     const D = 1000; const A = (k) => T0 + 450 + k * D + 420; return { A, D, fin: A(n - 1) + 600 };
@@ -426,16 +428,16 @@
     if (G.tipo === "nodos") {
       const o = G.orbes[k];
       if (o && o.animate) o.animate([{ opacity: suaveVivo ? .5 : .8, transform: "scale(1)" }, { opacity: 0, transform: `scale(${suaveVivo ? 1.55 : 1.8})` }],
-        { duration: suaveVivo ? 1100 : 1000, easing: "cubic-bezier(.2,.7,.2,1)", pseudoElement: "::after" });
+        { duration: (suaveVivo ? 1100 : 1000) * LENTO, easing: "cubic-bezier(.2,.7,.2,1)", pseudoElement: "::after" });
     } else {
       const r = G.marcos[k];
-      if (r && r.animate) r.animate([{ fill: "rgba(163,49,42,.12)" }, { fill: "rgba(163,49,42,0)" }], { duration: 900, easing: "ease-out" });
+      if (r && r.animate) r.animate([{ fill: "rgba(163,49,42,.12)" }, { fill: "rgba(163,49,42,0)" }], { duration: 900 * LENTO, easing: "ease-out" });
     }
     if (suaveVivo) G.lineas.forEach((l) => {
       if (+l.dataset.s === k && l.animate) l.animate([
         { backgroundPosition: "0 0", backgroundSize: "0% 100%" },
         { backgroundPosition: "0 0", backgroundSize: "100% 100%", offset: .4 },
-        { backgroundPosition: "100% 0", backgroundSize: "0% 100%" }], { duration: 1100, easing: "ease-in-out" });
+        { backgroundPosition: "100% 0", backgroundSize: "0% 100%" }], { duration: 1100 * LENTO, easing: "ease-in-out" });
     });
   }
 
@@ -445,7 +447,7 @@
     if (!G || !visto) { ultimo = 0; return; }
     const dt = ultimo ? Math.min(ahora - ultimo, 50) : 0;
     ultimo = ahora;
-    if (!pausado) reloj += dt;
+    if (!pausado) reloj += dt / LENTO;
     pintar(reloj);
     if (!pausado && (visible || reloj < G.t.fin + 800)) raf = requestAnimationFrame(bucle);
     else ultimo = 0;

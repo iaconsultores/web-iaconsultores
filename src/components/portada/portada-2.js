@@ -13,6 +13,8 @@
     ["Proceso", "Se registra solo en tu CRM o en tu ERP."],
     ["Resultado", "Respuesta al cliente y aviso a tu equipo."]
   ];
+  /* Ritmo de las bandas: 1,5 = un 50 % más despacio que la maqueta (el dato, los adornos y los fundidos) */
+  const LENTO = 1.5;
   const SEG = [[0, 0, 900], [0, 1, 1700], [1, 1, 1100], [1, 2, 1700], [2, 2, 1100], [2, 3, 1700], [3, 3, 2400]];
   const OFF = []; SEG.reduce((a, s) => (OFF.push(a), a + s[2]), 0);
   const TOT = OFF[OFF.length - 1] + SEG[SEG.length - 1][2];
@@ -285,7 +287,7 @@
       R.paquete(gPk);
       lis.forEach((li, i) => { const [X, Y] = R.rt.en(R.Ls[i]); li.style.left = f1((X - G.vx0) * G.s) + "px"; li.style.top = f1((Y - G.vy0) * G.s) + "px"; });
       hist = []; salto = null;
-      R.ambiente(performance.now() / 1000);
+      R.ambiente(performance.now() / 1000 / LENTO);
       if (reducido) { colocar(R.Ls[3]); gEst.style.opacity = 0; setEtapa(3, true); }
       else { const e = enReloj(); colocar(e.L); setEtapa(e.a, true); }
       return true;
@@ -301,7 +303,7 @@
         L = salto.desde + (salto.hasta - salto.desde) * suave(u);
         if (u >= 1) { reloj = OFF[2 * salto.k]; lastI = 2 * salto.k; salto = null; }
       } else {
-        reloj = (reloj + dt) % TOT;
+        reloj = (reloj + dt / LENTO) % TOT;
         const e = enReloj();
         if (e.i < lastI) hist = [];
         lastI = e.i; L = e.L;
@@ -310,7 +312,7 @@
         else if (e.i === 0) alfa = Math.min(1, e.t / 380);
       }
       colocar(L, alfa);
-      R.ambiente(now / 1000);
+      R.ambiente(now / 1000 / LENTO);
     }
     function ir(k) {
       if (!G) return;

@@ -33,9 +33,6 @@
 #portada .btn-chat{display:inline-flex;align-items:center;gap:10px;padding:8px 0 7px;border:0;border-bottom:1.5px solid currentColor;border-radius:0;background:none;color:var(--sea);font:600 16px/1 var(--f-body);cursor:pointer;transition:color .2s}
 #portada .btn-chat:hover{color:var(--ink)}
 #portada .btn-chat svg{flex:none;width:20px;height:20px}
-#portada .firma{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:18px 0 0;font-size:14.5px;color:var(--muted)}
-#portada .firma::before{content:"";align-self:center;width:28px;height:1.5px;background:var(--red)}
-#portada .firma b{font:italic 500 19px/1 var(--f-display);color:var(--ink)}
 
 /* --- Arco con la escena de la provincia --- */
 #portada .por-arco{position:relative;z-index:2;margin:14px 0 0}
@@ -104,7 +101,8 @@ html[data-provincia="valencia"] #portada .sombra-naranjo{display:block}
 /* --- Bandas interactivas a todo el ancho --- */
 #portada .bandas{position:relative;z-index:1;height:clamp(196px,15.28vw,252px);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);background:var(--bg)}
 #portada .banda{display:none;position:absolute;inset:0;overflow:hidden;animation:por-funde .7s ease both}
-#portada .banda > svg{position:absolute;inset:0;display:block;width:100%;height:100%}
+/* 30 % transparente: el dibujo acompaña sin quitar protagonismo (al 20 % apenas se notaba); las paradas y la leyenda siguen opacas */
+#portada .banda > svg{position:absolute;inset:0;display:block;width:100%;height:100%;opacity:.7}
 @keyframes por-funde{from{opacity:0}}
 html[data-provincia="alicante"] #portada .banda[data-prov="alicante"],
 html[data-provincia="valencia"] #portada .banda[data-prov="valencia"],
@@ -116,7 +114,7 @@ html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-p
 #portada.sin-banda .banda[data-prov="reserva"]{display:block}
 #portada .carril{fill:none;stroke:var(--ink);stroke-opacity:.32;stroke-width:1.2;stroke-dasharray:1 8;stroke-linecap:round}
 #portada .amb{fill:var(--bg);stroke:var(--ink);stroke-opacity:.45;stroke-width:1}
-#portada .mur-flujo{animation:por-flujo 1.4s linear infinite}
+#portada .mur-flujo{animation:por-flujo 2.1s linear infinite}
 @keyframes por-flujo{to{stroke-dashoffset:-26}}
 #portada .paradas{list-style:none;margin:0;padding:0}
 #portada .parada{position:absolute;z-index:2;left:50%;top:45%;transform:translate(-50%,-50%)}
@@ -130,7 +128,7 @@ html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-p
 #portada .medalla::after{content:"";position:absolute;inset:-5px;border:2px solid var(--red);border-radius:50%;opacity:0;pointer-events:none}
 #portada .parada.hecho .medalla{--m-fondo:var(--line)}
 #portada .parada.activo .medalla{--m-fondo:var(--red);--m-aro:var(--bg);color:#fff}
-#portada .parada.activo .medalla::after{animation:por-ping 1.6s ease-out infinite}
+#portada .parada.activo .medalla::after{animation:por-ping 2.4s ease-out infinite}
 @keyframes por-ping{from{transform:scale(1);opacity:.8}to{transform:scale(1.9);opacity:0}}
 #portada .m-nombre{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);padding:4px 8px 5px;border-radius:4px;background:var(--bg);box-shadow:0 1px 2px rgba(27,31,42,.14);font:500 13px/1 var(--f-body);color:var(--ink);white-space:nowrap;pointer-events:none}
 #portada .paso-texto{position:absolute;z-index:3;top:0;left:0;width:max-content;max-width:230px;margin:0;padding:8px 12px 9px;border-radius:8px;background:var(--surface);box-shadow:0 1px 2px rgba(27,31,42,.08),0 6px 16px rgba(27,31,42,.1);font-size:13.5px;line-height:1.38;color:var(--ink);opacity:0;transform:translateY(-3px);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
@@ -166,8 +164,6 @@ html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-p
 @media (max-width:900px){
   #portada .geo{grid-template-columns:auto minmax(0,1fr);gap:22px 28px}
   #portada .geo-cabeza{grid-row:span 2}
-  #portada .firma .firma-sep{display:none}
-  #portada .firma .firma-rol{flex-basis:100%;padding-left:38px}
 }
 
 /* --- Móvil --- */
@@ -250,7 +246,7 @@ html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-p
 :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto.ver{opacity:1;transform:none}
 :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto b{display:block;margin:0 0 4px;font:500 11.5px/1 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--red)}
 @media (prefers-reduced-motion:no-preference){
-  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .parada.activo .medalla::after{animation:h2-ping 1.6s ease-out infinite}
+  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .parada.activo .medalla::after{animation:h2-ping 2.4s ease-out infinite}
 }
 @keyframes h2-ping{from{transform:scale(1);opacity:.8}to{transform:scale(1.9);opacity:0}}
 @media (max-width:1180px){

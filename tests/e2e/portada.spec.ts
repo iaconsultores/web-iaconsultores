@@ -71,6 +71,30 @@ test("al elegir una provincia la portada se queda fija", async ({ page }) => {
   await expect(page.locator('.prov-chip[data-p="madrid"]')).toHaveAttribute("aria-pressed", "true");
 });
 
+test("la primera pantalla no lleva la firma con el nombre", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("#portada .firma")).toHaveCount(0);
+  await expect(page.locator("#portada")).not.toContainText("Juan Luis Toboso");
+});
+
+test("las bandas son un 30 % transparentes, con las paradas opacas", async ({ page }) => {
+  await page.goto("/");
+  const opacidad = (sel: string) => page.locator(sel).first().evaluate((el) => Number(getComputedStyle(el).opacity));
+  expect(await opacidad('#portada .banda[data-prov="alicante"] > svg')).toBeCloseTo(0.7, 2);
+  expect(await opacidad('#portada .banda[data-prov="alicante"] .paradas')).toBe(1);
+});
+
+test("el dato de la banda va un 50 % más despacio: la parada 2 se activa a los 3,9 s y no a los 2,6 s", async ({ page }) => {
+  await relojParado(page);
+  await page.goto("/");
+  await page.locator('.prov-chip[data-p="alicante"]').dispatchEvent("click");
+  const paradas = page.locator('#portada .banda[data-prov="alicante"] .parada');
+  await page.clock.runFor(3000);
+  await expect(paradas.nth(0)).toHaveClass(/activo/);
+  await page.clock.runFor(1200);
+  await expect(paradas.nth(1)).toHaveClass(/activo/);
+});
+
 test.describe("con movimiento reducido", () => {
   test.use({ reducedMotion: "reduce" });
   test("no rota", async ({ page }) => {
