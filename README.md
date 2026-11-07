@@ -20,6 +20,12 @@ Astro 7 (HTML estático) + Express 5 (`servidor.mjs`) + `@astrojs/node` en modo 
 ## Variables de entorno (producción)
 `ANTHROPIC_API_KEY`, `RESEND_API_KEY`, `LEAD_EMAIL_TO`, `LEAD_EMAIL_FROM` y, opcionales, `N8N_WEBHOOK_URL` y `N8N_WEBHOOK_SECRET` (lista completa en `.env.example`). Nunca se versionan.
 
+## Publicación
+Se publica desde `main` en Hostinger: se sube un `web.zip` con la fuente (sin `node_modules`, `dist` ni `.env`) y
+Hostinger lo construye con Node 24 y npm, tipo express, entrada `servidor.mjs`, script `build` y salida `.`. Las
+variables de entorno viven en el alojamiento, nunca en el zip. Tras cada publicación se comprueban `/`, `/aviso-legal`
+y `/api/salud`.
+
 ## Diseño y plan
 - Spec: `docs/superpowers/specs/2026-10-05-iaconsultores-web-design.md`
 - Plan: `docs/superpowers/plans/2026-10-05-iaconsultores-web-fase1.md`
