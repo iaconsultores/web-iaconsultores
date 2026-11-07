@@ -5,7 +5,6 @@
   const alVer = (el, cb, op) => { if (el) (IAC.alVer ? IAC.alVer(el, cb, op) : cb(el)); };
   const q = (s, c) => (c || panel).querySelector(s);
   const qa = (s, c) => Array.from((c || panel).querySelectorAll(s));
-  const coma = (n) => n.toFixed(1).replace(".", ",");
   const r1 = (n) => Math.round(n * 10) / 10;
 
   /* Contador con desaceleración; «hasta» puede ser una función (objetivo vivo) */
@@ -84,18 +83,9 @@
       this.dibujar();
     },
   };
-  const informe = {
-    tile: q(".pnl-inf"), num: q("[data-pnl-inf]"), svg: q(".pnl-inf .pnl-graf"),
-    actual: [60, 59, 64, 68, 67, 74, 78, 83.2], anterior: [58, 56, 60, 63, 64, 68, 71, 76.75],
-    dibujar() {
-      const m = medida(this.svg); if (!m) return;
-      pintar(this.svg, puntos(this.actual, m[0], m[1], 52, 86), m[1]);
-      this.svg.querySelector(".pnl-ant").setAttribute("d", curva(puntos(this.anterior, m[0], m[1], 52, 86)));
-    },
-  };
-  const redibujar = () => { leads.dibujar(); informe.dibujar(); };
+  const redibujar = () => leads.dibujar();
   redibujar();
-  if ("ResizeObserver" in window) { const ro = new ResizeObserver(redibujar); ro.observe(leads.svg); ro.observe(informe.svg); }
+  if ("ResizeObserver" in window) { const ro = new ResizeObserver(redibujar); ro.observe(leads.svg); }
 
   /* ===== n8n · flujo de captación ===== */
   const LEADS = [
@@ -204,12 +194,11 @@
   /* Entrada escalonada: cada pieza aparece y arranca solo cuando se ve */
   panel.classList.add("pnl-js");
   const horasNum = q("[data-pnl-horas]");
-  leads.num.textContent = "0"; horasNum.textContent = "0"; informe.num.textContent = "+0,0";
+  leads.num.textContent = "0"; horasNum.textContent = "0";
   crm.rellenar(LEADS[LEADS.length - 1]); // la última oportunidad del ciclo espera en «Ganado»
   const arranque = new Map([
     [leads.tile, () => contar(leads.num, () => leads.total, 1600, (v) => String(Math.round(v)))],
     [q(".pnl-horas"), () => contar(horasNum, 46, 1800, (v) => String(Math.round(v)))],
-    [informe.tile, () => contar(informe.num, 8.4, 1700, (v) => "+" + coma(v))],
     [n8n.tile, bucleN8n],
   ]);
   qa(".pnl-t").forEach((t, i) => {

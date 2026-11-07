@@ -21,7 +21,7 @@ describe("la web y el asistente dicen lo mismo", () => {
       "src/datos/sitio.ts",
       "src/datos/servicios.ts",
     ].map(leer).join("\n") + CONOCIMIENTO;
-    for (const prohibido of [/Agentia Contable/i, /agentiacontable\.com/i, /facturación y contabilidad con IA/i, /\bOCR\b/, /CRM a medida/i, /Verifactu/i]) {
+    for (const prohibido of [/Agentia Contable/i, /agentiacontable\.com/i, /facturación y contabilidad con IA/i, /\bOCR\b/, /CRM a medida/i, /Verifactu/i, /Informe mensual/i]) {
       expect(publico).not.toMatch(prohibido);
     }
   });

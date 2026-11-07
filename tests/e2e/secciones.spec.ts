@@ -73,7 +73,8 @@ test("los servicios son cuatro fichas, «Tu web» la primera y a todo el ancho, 
   expect(anchos[0]).toBeGreaterThan(anchos[1] * 1.5);
   await expect(page.locator("#servicios")).toContainText("cursos de IA adaptados a tu empresa y a tus empleados");
   await expect(page.locator("#como-trabajamos .ct-tab")).toHaveCount(2);
-  await expect(page.locator("#panel .pnl-t")).toHaveCount(5);
+  await expect(page.locator("#panel .pnl-t")).toHaveCount(4);
+  await expect(page.locator("#panel .pnl-inf")).toHaveCount(0);
   const texto = await page.locator("main").innerText();
   for (const prohibido of ["Agentia Contable", "agentiacontable.com", "Facturación y contabilidad con IA", "OCR", "CRM a medida", "Verifactu"])
     expect(texto, prohibido).not.toContain(prohibido);
