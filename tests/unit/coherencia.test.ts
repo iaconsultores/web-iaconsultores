@@ -1,8 +1,8 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { BENEFICIOS_AGENTIA, MODULOS_AGENTIA } from "../../src/datos/agentia";
 import { PROVINCIAS } from "../../src/datos/provincias";
 import { SERVICIOS } from "../../src/datos/servicios";
+import { CONOCIMIENTO } from "../../src/lib/conocimiento";
 
 const leer = (ruta: string) => readFileSync(ruta, "utf8");
 
@@ -11,21 +11,19 @@ describe("la web y el asistente dicen lo mismo", () => {
     const html = leer("src/components/servicios/servicios.html");
     for (const s of SERVICIOS) expect(html).toContain(s.titulo);
   });
-  it("los beneficios de Agentia Contable cubren todos sus módulos y aparecen en #agentia", () => {
-    const html = leer("src/components/contenido/contenido.html");
-    const cubiertos = BENEFICIOS_AGENTIA.flatMap((b) => b.modulos);
-    for (const m of MODULOS_AGENTIA) expect(cubiertos).toContain(m.nombre);
-    for (const b of BENEFICIOS_AGENTIA) {
-      expect(html).toContain(b.titulo);
-      for (const nombre of b.modulos) expect(MODULOS_AGENTIA.map((m) => m.nombre)).toContain(nombre);
+  it("la web pública y el asistente no ofrecen el producto anterior ni los servicios retirados", () => {
+    const publico = [
+      ...["portada", "panel", "servicios", "flujos", "contenido"].flatMap((s) => [`${s}.html`, `${s}.js`].map((f) => `src/components/${s}/${f}`)),
+      "src/components/portada/portada-2.js",
+      "src/components/Nav.astro",
+      "src/components/Pie.astro",
+      "src/pages/index.astro",
+      "src/datos/sitio.ts",
+      "src/datos/servicios.ts",
+    ].map(leer).join("\n") + CONOCIMIENTO;
+    for (const prohibido of [/Agentia Contable/i, /agentiacontable\.com/i, /facturación y contabilidad con IA/i, /\bOCR\b/, /CRM a medida/i, /Verifactu/i, /Informe mensual/i]) {
+      expect(publico).not.toMatch(prohibido);
     }
-  });
-  it("un beneficio va «en validación» si y solo si usa un módulo en validación, y la web lo muestra", () => {
-    const html = leer("src/components/contenido/contenido.html");
-    const validando = (b: (typeof BENEFICIOS_AGENTIA)[number]) => MODULOS_AGENTIA.some((m) => m.enValidacion && b.modulos.includes(m.nombre));
-    for (const b of BENEFICIOS_AGENTIA) expect(b.enValidacion, b.titulo).toBe(validando(b));
-    const seccion = html.slice(html.indexOf('id="agentia"'), html.indexOf("<!-- ===================== 3"));
-    expect((seccion.match(/class="ag-valid"/g) ?? []).length).toBe(BENEFICIOS_AGENTIA.filter((b) => b.enValidacion).length);
   });
   it("cada provincia tiene su botón y su escena", () => {
     const html = leer("src/components/portada/portada.html");

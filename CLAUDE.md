@@ -7,8 +7,10 @@ Web de IA Consultores (consultoría de IA y automatización para pymes) en Hosti
 - Fase 1 implementada según `docs/superpowers/plans/2026-10-05-iaconsultores-web-fase1.md` (spec en
   `docs/superpowers/specs/2026-10-05-iaconsultores-web-design.md`) y publicada en https://iaconsultores.com. La
   maqueta aprobada vive solo en local (`maquetas/`, fuera de git).
-- Desplegar cambios: ver los resultados de las tareas 18 y 20 del plan (ajustes de build en Hostinger) y
-  `docs/privado/HANDOFF.md`. El repositorio público recibe solo la rama `publicacion`, regenerada desde `main`.
+- Desplegar cambios: se publica desde `main`. Se sube a Hostinger un `web.zip` con la fuente (sin `node_modules`,
+  `dist` ni `.env`) y se construye allí con estos ajustes: Node 24, npm, tipo express, entrada `servidor.mjs`, script
+  `build` y salida `.`. Después se comprueban `/`, `/aviso-legal` y `/api/salud` en vivo. Más detalle en las tareas 18
+  y 20 del plan y en `docs/privado/HANDOFF.md`.
 - `docs/privado/` es privado y no se publica (está en `.gitignore`).
 - DNS en Cloudflare con correo de Microsoft 365: nunca cambiar nameservers ni registros MX/TXT.
 - Nunca escribir claves en el código ni pedirlas por el chat; van en variables de entorno de Hostinger.

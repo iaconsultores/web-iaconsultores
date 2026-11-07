@@ -8,30 +8,19 @@
   };
   const QUIETO = !!IAC.reducido;
 
-  /* ===== Datos de los cuatro procesos (contrato §4 · todo de demostración) =====
+  /* ===== Datos de los procesos (contrato §4 · todo de demostración) =====
      json: [clave, valor JSON ya formateado, paso que lo produce, ¿línea destacada?] */
   const PROCESOS = [
-    { id: "leads", titulo: "Leads → CRM a medida", archivo: "lead.json",
+    { id: "leads", titulo: "Leads → tu CRM", archivo: "lead.json",
       resultado: ["Respuesta en ", "12 s", ""], cota: "tiempo_respuesta = 12 s",
       pasos: [
         { tit: "Entrada", sub: "webhook n8n · WhatsApp · web · email", ico: "mensaje", n8n: true, txt: "Un cliente escribe por WhatsApp, la web o el email y un webhook de n8n lo recoge:", cita: "«Hola, ¿me pasáis presupuesto para un seguro de flota?»" },
         { tit: "La IA cualifica", sub: "intención · sector · prioridad", ico: "ia", chips: ["intención = presupuesto", "sector = seguros", "prioridad = alta"] },
-        { tit: "CRM a medida", sub: "«Nuevos leads» + tarea", ico: "crm", txt: "Oportunidad creada en «Nuevos leads» con tarea para el comercial." },
+        { tit: "Tu CRM", sub: "«Nuevos leads» + tarea", ico: "crm", txt: "Oportunidad creada en «Nuevos leads» con tarea para el comercial." },
         { tit: "Respuesta y aviso", sub: "cliente · comercial", ico: "enviar", txt: "Respuesta automática al cliente y aviso al comercial." }
       ],
       json: [["canal", '"whatsapp"', 0], ["intencion", '"presupuesto"', 1], ["sector", '"seguros"', 1], ["prioridad", '"alta"', 1],
              ["crm", '"oportunidad_creada"', 2], ["tiempo_respuesta", '"12 s"', 3, true]] },
-    { id: "facturas", titulo: "Facturas → contabilidad", archivo: "factura.json",
-      resultado: ["De 4 min a ", "20 s", " por factura"], cota: "de 4 min a 20 s por factura",
-      pasos: [
-        { tit: "Entrada", sub: "n8n recoge email · foto", ico: "factura", n8n: true, txt: "Llega una factura por email o la fotografías con el móvil; n8n la recoge al momento." },
-        { tit: "La IA extrae", sub: "OCR + IA", ico: "escaner", txt: "Proveedor, NIF, base, IVA y total, con OCR + IA." },
-        { tit: "Asiento propuesto", sub: "cuenta · IVA · vencimiento", ico: "libro", txt: "Propone la cuenta, el IVA y el vencimiento." },
-        { tit: "Aprobación", sub: "revisión humana · 1 clic", ico: "aprobar", txt: "Una persona revisa y aprueba con un clic." },
-        { tit: "Contabilizada", sub: "y archivada", ico: "archivo", txt: "La factura queda contabilizada y archivada." }
-      ],
-      json: [["proveedor", '"Suministros Levante S.L."', 1], ["nif", '"B12345678"', 1], ["base", "1240.00", 1], ["iva", "260.40", 1],
-             ["total", "1500.40", 1], ["cuenta", '"600"', 2], ["estado", '"pendiente_aprobacion"', 3, true]] },
     { id: "rag", titulo: "RAG: pregunta a tus documentos", archivo: "consulta.json",
       resultado: ["Respuesta en ", "3 s", ", con su fuente"], cota: "respuesta en 3 s, con su fuente",
       pasos: [
@@ -41,17 +30,7 @@
         { tit: "Registro", sub: "mejora la base documental", ico: "registro", txt: "La consulta se registra para mejorar la base documental." }
       ],
       json: [["pregunta", '"dias_vacaciones"', 0], ["fuentes", '["convenio.pdf#art32"]', 1, true], ["respuesta", '"30 días naturales"', 2],
-             ["confianza", '"alta"', 2]] },
-    { id: "informe", titulo: "Informe mensual automático", archivo: "informe.json",
-      resultado: ["Informe listo ", "antes del café", " del día 1"], cota: "día 1, 7:00 · informe a dirección",
-      pasos: [
-        { tit: "Datos", sub: "ventas · banco · ERP", ico: "datos", txt: "Ventas, banco y ERP, el día 1 a las 7:00." },
-        { tit: "Consolidación", sub: "consolida y limpia", ico: "n8n", n8n: true, txt: "n8n consolida y limpia los datos." },
-        { tit: "La IA resume", sub: "compara · detecta alertas", ico: "ia", txt: "Resume el mes, lo compara y detecta alertas." },
-        { tit: "Informe a dirección", sub: "PDF + email", ico: "informe", txt: "PDF + email con 3 conclusiones y 2 alertas." }
-      ],
-      json: [["periodo", '"2026-09"', 0], ["ventas", '"+8,4 %"', 1], ["margen", '"31,2 %"', 1],
-             ["alertas", '["cobros_vencidos","stock_bajo"]', 2, true], ["enviado_a", '"direccion"', 3]] }
+             ["confianza", '"alta"', 2]] }
   ];
 
   /* Iconos de trazo (24×24), sin logotipos */
@@ -60,18 +39,10 @@
     ia: "M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9-1.9 5.1-1.9-5.1-5.1-1.9 5.1-1.9zM18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z",
     crm: "M6 4.5h12A2.5 2.5 0 0 1 20.5 7v10a2.5 2.5 0 0 1-2.5 2.5H6A2.5 2.5 0 0 1 3.5 17V7A2.5 2.5 0 0 1 6 4.5zM9.5 4.5v15M14.5 4.5v15",
     enviar: "M20.5 3.5 10 14M20.5 3.5l-6.5 17-4-6.5-6.5-4z",
-    factura: "M6.5 3.5h7.5l4.5 4.5v12.5h-12zM14 3.5V8h4.5M9.5 12.5h5M9.5 16h5",
-    escaner: "M4 8.5V6a2 2 0 0 1 2-2h2.5M15.5 4H18a2 2 0 0 1 2 2v2.5M20 15.5V18a2 2 0 0 1-2 2h-2.5M8.5 20H6a2 2 0 0 1-2-2v-2.5M3.5 12h17",
-    libro: "M5 5.5A1.5 1.5 0 0 1 6.5 4H19v13H6.5A1.5 1.5 0 0 0 5 18.5zM5 18.5A1.5 1.5 0 0 0 6.5 20H19v-3M9 8h6M9 11h4",
-    aprobar: "M12 3.5a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17zM8.3 12.2l2.5 2.5 4.9-5",
-    archivo: "M3.5 5h17v4h-17zM5 9v10h14V9M10 13h4",
     pregunta: "M4 19.5v-13a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2V15a2 2 0 0 1-2 2H8.5zM10.2 8.7a1.9 1.9 0 1 1 2.6 1.8c-.5.2-.8.6-.8 1.1v.3M12 14h.01",
     buscar: "M10.5 4a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13zM15.3 15.3 20 20",
     fuente: "M6.5 3.5h7.5l4.5 4.5v12.5h-12zM14 3.5V8h4.5M9.5 14l1.8 1.8 3.4-3.6",
     registro: "M9 6.5h11M9 12h11M9 17.5h11M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01",
-    datos: "M12 4c3.9 0 7 1.1 7 2.5S15.9 9 12 9 5 7.9 5 6.5 8.1 4 12 4zM5 6.5v11C5 18.9 8.1 20 12 20s7-1.1 7-2.5v-11M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5",
-    n8n: "M5.5 9.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM18.5 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM18.5 15.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM8 12h2.5c1.8 0 2.4-1 3-2.6.4-1 1-2.4 2.6-3.2M10.5 12c1.8 0 2.4 1 3 2.6.4 1 1 2.4 2.6 3.2",
-    informe: "M6.5 3.5h7.5l4.5 4.5v12.5h-12zM14 3.5V8h4.5M9.5 17v-2.5M12.5 17v-5M15.5 17v-3.5"
   };
   const SVG_FLECHA = '<svg class="ct-flecha" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const SVG_LIBRO = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.5H7A1.5 1.5 0 0 1 8 4v9a1.3 1.3 0 0 0-1.2-1H2.5zM13.5 3.5H9A1.5 1.5 0 0 0 8 4v9a1.3 1.3 0 0 1 1.2-1h4.3z"/></svg>';
@@ -168,7 +139,7 @@
 
   const tablist = sec.querySelector(".ct-pestanas");
   const contenedor = sec.querySelector(".ct-paneles");
-  const ICONO_TAB = { leads: "mensaje", facturas: "factura", rag: "pregunta", informe: "informe" };
+  const ICONO_TAB = { leads: "mensaje", rag: "pregunta" };
   tablist.innerHTML = PROCESOS.map((p, i) =>
     `<button type="button" role="tab" class="ct-tab" id="ct-tab-${p.id}" aria-controls="ct-panel-${p.id}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">`
     + `<span class="ct-tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="${ICONOS[ICONO_TAB[p.id]]}"/></svg></span>`

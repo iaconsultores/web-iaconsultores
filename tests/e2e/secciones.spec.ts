@@ -63,13 +63,22 @@ test("«Los informáticos no entienden mi negocio» va en una sola línea y sin 
   expect(hueco).toBeLessThan(60);
 });
 
-test("Agentia Contable muestra beneficios en vez de interruptores de módulos", async ({ page }) => {
+test("los servicios son cuatro fichas, «Tu web» la primera y a todo el ancho, sin el producto anterior", async ({ page }) => {
   await page.goto("/");
-  const agentia = page.locator("#agentia");
-  await expect(agentia.locator('[role="switch"]')).toHaveCount(0);
-  await expect(agentia.locator(".ag-beneficios li")).toHaveCount(6);
-  await expect(agentia.locator(".ag-beneficios")).toContainText("Facturas que se registran solas");
-  await expect(agentia.locator(".ag-valid")).toHaveCount(2);
+  await expect(page.locator("#agentia")).toHaveCount(0);
+  await expect(page.locator('.nav-links a[href="/#agentia"]')).toHaveCount(0);
+  const titulos = page.locator("#servicios .t-tit");
+  await expect(titulos).toHaveText(["Tu web", "Tu asistente de IA", "Automatiza tu empresa", "IA en tu equipo"]);
+  const anchos = await page.locator("#servicios .tarjeta").evaluateAll((els) => els.map((el) => el.getBoundingClientRect().width));
+  expect(anchos[0]).toBeGreaterThan(anchos[1] * 1.5);
+  await expect(page.locator("#servicios")).toContainText("cursos de IA adaptados a tu empresa y a tus empleados");
+  await expect(page.locator("#como-trabajamos .ct-tab")).toHaveCount(2);
+  await expect(page.locator("#panel .pnl-t")).toHaveCount(4);
+  await expect(page.locator("#panel .pnl-inf")).toHaveCount(0);
+  const texto = await page.locator("main").innerText();
+  for (const prohibido of ["Agentia Contable", "agentiacontable.com", "Facturación y contabilidad con IA", "OCR", "CRM a medida", "Verifactu"])
+    expect(texto, prohibido).not.toContain(prohibido);
+  await expect(page.locator("#que-hacemos .qh-no")).toContainText("No somos una agencia de marketing");
 });
 
 test("«Quién dirige tu proyecto» y «Sobre mí» son un solo bloque, sin el nombre ni datos repetidos", async ({ page }) => {
@@ -81,7 +90,9 @@ test("«Quién dirige tu proyecto» y «Sobre mí» son un solo bloque, sin el n
   const texto = (await bloque.innerText()).replace(/\s+/g, " ");
   for (const frase of ["Juan Luis Toboso", "Máster", "Director financiero", "Economista", "50 webs", "asesor fiscal"])
     expect(texto.split(frase).length - 1, frase).toBe(1);
-  for (const dato of ["+10", "+1.000", "agentiacontable.com", "finalización prevista en octubre de 2026"]) await expect(bloque).toContainText(dato);
+  for (const dato of ["+10", "+1.000", "+50", "finalización prevista en octubre de 2026"]) await expect(bloque).toContainText(dato);
+  await expect(bloque.locator(".pru-item")).toHaveCount(3);
+  expect(texto).not.toContain("agentiacontable.com");
 });
 
 test.describe("en una pantalla de 1920×1080", () => {
