@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { MODULOS_AGENTIA } from "../../src/datos/agentia";
 import { EVIDENCIAS, NIVELES, NOTA_AGENTIA } from "../../src/datos/evidencias";
 import { PROVINCIAS, PROVINCIA_INICIAL, ROTACION_MS, esProvincia } from "../../src/datos/provincias";
 import { SERVICIOS } from "../../src/datos/servicios";
@@ -14,20 +13,12 @@ describe("datos compartidos", () => {
     expect(esProvincia("cuenca")).toBe(false);
   });
 
-  it("hay 10 servicios completos", () => {
-    expect(SERVICIOS).toHaveLength(10);
+  it("hay 4 fichas de servicios completas, con «Tu web» la primera", () => {
+    expect(SERVICIOS.map((s) => s.titulo)).toEqual(["Tu web", "Tu asistente de IA", "Automatiza tu empresa", "IA en tu equipo"]);
     for (const s of SERVICIOS) {
       expect(s.titulo && s.descripcion && s.beneficio).toBeTruthy();
       expect(s.herramientas.length).toBeGreaterThan(0);
     }
-  });
-
-  it("Agentia Contable tiene 10 módulos y solo dos en validación", () => {
-    expect(MODULOS_AGENTIA).toHaveLength(10);
-    expect(MODULOS_AGENTIA.filter((m) => m.enValidacion).map((m) => m.nombre)).toEqual([
-      "Facturación y Verifactu",
-      "Bancos y tesorería",
-    ]);
   });
 
   it("las evidencias tienen id único y un nivel válido", () => {

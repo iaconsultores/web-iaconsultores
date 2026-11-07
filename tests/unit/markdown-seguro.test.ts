@@ -2,9 +2,10 @@ import { describe, expect, it } from "vitest";
 import { analizarLinea, analizarMarkdown, enlacePermitido } from "../../src/scripts/markdown-seguro";
 
 describe("markdown seguro", () => {
-  it("solo permite enlaces propios, de contacto y de Agentia Contable", () => {
+  it("solo permite enlaces propios y de contacto", () => {
     expect(enlacePermitido("https://iaconsultores.com/#contacto")).toBe(true);
-    expect(enlacePermitido("https://agentiacontable.com")).toBe(true);
+    expect(enlacePermitido("https://wa.me/34678310660")).toBe(true);
+    expect(enlacePermitido("https://agentiacontable.com")).toBe(false);
     expect(enlacePermitido("tel:+34678310660")).toBe(true);
     expect(enlacePermitido("https://malicioso.com")).toBe(false);
     expect(enlacePermitido("javascript:alert(1)")).toBe(false);
@@ -21,9 +22,9 @@ describe("markdown seguro", () => {
     ]);
   });
   it("separa la puntuación final de una URL suelta", () => {
-    expect(analizarLinea("Mira https://agentiacontable.com.")).toEqual([
+    expect(analizarLinea("Mira https://iaconsultores.com.")).toEqual([
       { tipo: "texto", valor: "Mira " },
-      { tipo: "enlace", valor: "https://agentiacontable.com", href: "https://agentiacontable.com" },
+      { tipo: "enlace", valor: "https://iaconsultores.com", href: "https://iaconsultores.com" },
       { tipo: "texto", valor: "." },
     ]);
   });
