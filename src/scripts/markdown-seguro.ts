@@ -6,7 +6,7 @@ export type Segmento =
 
 export type Bloque = { tipo: "parrafo"; segmentos: Segmento[] } | { tipo: "lista"; elementos: Segmento[][] };
 
-const PERMITIDOS = /^(https:\/\/(www\.)?(iaconsultores\.com|agentiacontable\.com|wa\.me|linkedin\.com)(\/|$|#|\?)|tel:|mailto:|\/(?!\/)|#)/;
+const PERMITIDOS = /^(https:\/\/(www\.)?(iaconsultores\.com|wa\.me|linkedin\.com)(\/|$|#|\?)|tel:|mailto:|\/(?!\/)|#)/;
 
 export function enlacePermitido(href: string): boolean {
   return PERMITIDOS.test(href);

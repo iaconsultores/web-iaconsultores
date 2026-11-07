@@ -7,7 +7,6 @@ export const SITIO = {
   email: "juanluis@iaconsultores.com",
   whatsapp: "https://wa.me/34678310660",
   linkedin: "https://www.linkedin.com/in/juanluistoboso",
-  agentia: "https://agentiacontable.com",
   /** Código público de esta web */
   repositorio: "https://github.com/iaconsultores/web-iaconsultores",
   titular: "Agentia Codex S.L.",
