@@ -1,7 +1,7 @@
 /* =========================================================================
    Fragmento «contenido» (ronda 2)
-   #por-que · #agentia · #que-hacemos · #colabora · #sobre-mi · #contacto
-   Todo claro: crema y bandas de arena. Pocas cajas (solo el panel de Agentia):
+   #por-que · #que-hacemos · #colabora · #sobre-mi · #contacto
+   Todo claro: crema y bandas de arena. Pocas cajas:
    líneas finas, aire y tipografía.
    ========================================================================= */
 
@@ -27,30 +27,6 @@
   #por-que .pq-abre{position:absolute;transform:translateX(-100%)}
 }
 @media (max-width:899px){ #por-que .pq-respuesta{grid-template-columns:minmax(0,1fr)} }
-
-/* ——— 2 · Agentia: módulos con interruptor ——— */
-#agentia{background:var(--bg-2)}
-#agentia .ag-rejilla{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px 80px;align-items:center}
-#agentia .titulo-seccion{max-width:13ch;text-wrap:balance}
-#agentia .entradilla{max-width:34em}
-#agentia .ag-enlace{display:inline-block;margin-top:32px;padding-bottom:4px;font-size:clamp(18px,1.45vw,20px);line-height:1.3;text-decoration:none;border-bottom:2px solid currentColor;transition:color .2s ease}
-#agentia .ag-enlace:hover{color:var(--ink)}
-#agentia .ag-flecha{display:inline-block;transition:transform .25s ease}
-#agentia .ag-enlace:hover .ag-flecha{transform:translateX(5px)}
-#agentia .ag-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:clamp(22px,2.4vw,34px) clamp(20px,2.6vw,38px) clamp(8px,1vw,14px)}
-#agentia .ag-panel-titulo{margin:0 0 6px;font:500 13px/1.3 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
-#agentia .ag-beneficios{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:36px}
-#agentia .ag-beneficios li{position:relative;display:grid;gap:5px;align-content:start;padding:14px 0 14px 30px;border-top:1px solid var(--line)}
-#agentia .ag-beneficios li:nth-child(-n+2){border-top:0}
-#agentia .ag-beneficios li::before{content:"";position:absolute;left:0;top:17px;width:18px;height:18px;border-radius:50%;background:var(--sea-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.4l2.6 2.6L13 6.6' fill='none' stroke='%231A6AA6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
-#agentia .ag-beneficios b{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:16.5px;font-weight:600;line-height:1.3;color:var(--ink)}
-#agentia .ag-beneficios li > span{font-size:15px;line-height:1.5;color:var(--muted)}
-#agentia .ag-valid{font:500 11px/1 var(--f-mono);letter-spacing:.02em;color:var(--red);border:1px dashed currentColor;border-radius:999px;padding:4px 8px 3px}
-@media (max-width:1100px){ #agentia .ag-rejilla{grid-template-columns:minmax(0,1fr)} #agentia .titulo-seccion{max-width:18ch} }
-@media (max-width:560px){
-  #agentia .ag-beneficios{grid-template-columns:minmax(0,1fr)}
-  #agentia .ag-beneficios li:nth-child(2){border-top:1px solid var(--line)}
-}
 
 /* ——— 3 · Qué hacemos (y qué no) ——— */
 #que-hacemos .qh-rejilla{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);margin-top:clamp(36px,4.6vw,60px);border-top:1px solid var(--ink)}
@@ -110,7 +86,7 @@
 #sobre-mi .sm-rol{display:flex;align-items:center;gap:14px;margin:16px 0 0;font-size:17px;color:var(--muted)}
 #sobre-mi .sm-rol::before{content:"";flex:none;width:44px;height:2px;background:var(--red)}
 /* Cifras: cuatro datos reales, sin cajas; aparecen con calma al verse */
-#sobre-mi .pru-lista{position:relative;list-style:none;margin:clamp(28px,3vw,40px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--line-2)}
+#sobre-mi .pru-lista{position:relative;list-style:none;margin:clamp(28px,3vw,40px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--line-2)}
 #sobre-mi .pru-lista::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line-2);transform-origin:left;transition:transform 1.4s cubic-bezier(.65,0,.2,1)}
 #sobre-mi.pru-js .pru-lista:not(.pru-visto)::before{transform:scaleX(0)}
 #sobre-mi .pru-item{display:flex;flex-direction:column;gap:12px;min-width:0;padding:28px 28px 26px;border-left:1px solid var(--line)}
