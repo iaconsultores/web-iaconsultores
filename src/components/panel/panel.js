@@ -173,30 +173,10 @@
     },
   };
 
-  /* ===== Factura: las cajas OCR recorren los campos uno a uno ===== */
-  const ocr = {
-    tile: q(".pnl-ocr"), escaner: q(".pnl-escaner"), campos: qa(".pnl-c"), filas: qa(".pnl-extr li"), asiento: q(".pnl-asiento"),
-    mover(i) {
-      const c = this.campos[i], alto = this.escaner.offsetHeight;
-      this.escaner.style.setProperty("--y", (c ? c.offsetTop + c.offsetHeight - alto + 3 : -alto - 2) + "px");
-    },
-    limpiar() {
-      this.campos.forEach((c) => c.classList.remove("pnl-on", "pnl-ok"));
-      this.filas.forEach((f) => f.classList.remove("pnl-on", "pnl-ok"));
-      this.asiento.classList.remove("pnl-ok");
-    },
-    final() {
-      this.campos.forEach((c) => c.classList.add("pnl-ok"));
-      this.filas.forEach((f) => f.classList.add("pnl-ok"));
-      this.asiento.classList.add("pnl-ok");
-    },
-  };
-
   /* Movimiento reducido: estado final, quieto */
   if (reducido) {
     n8n.final(LEADS[0]);
     crm.rellenar(LEADS[0]); crm.colocar(3, false);
-    ocr.final();
     return;
   }
 
@@ -221,25 +201,6 @@
       await dormir(3800);
     }
   }
-  async function bucleOcr() {
-    for (;;) {
-      ocr.limpiar();
-      ocr.mover(-1);
-      ocr.tile.classList.add("pnl-escaneando");
-      await dormir(700);
-      for (let i = 0; i < ocr.campos.length; i++) {
-        ocr.campos[i].classList.add("pnl-on"); ocr.filas[i].classList.add("pnl-on"); ocr.mover(i);
-        await dormir(450);
-        ocr.filas[i].classList.add("pnl-ok");
-        await dormir(600);
-        ocr.campos[i].classList.remove("pnl-on"); ocr.campos[i].classList.add("pnl-ok"); ocr.filas[i].classList.remove("pnl-on");
-      }
-      ocr.tile.classList.remove("pnl-escaneando");
-      ocr.asiento.classList.add("pnl-ok");
-      await dormir(3400);
-    }
-  }
-
   /* Entrada escalonada: cada pieza aparece y arranca solo cuando se ve */
   panel.classList.add("pnl-js");
   const horasNum = q("[data-pnl-horas]");
@@ -250,7 +211,6 @@
     [q(".pnl-horas"), () => contar(horasNum, 46, 1800, (v) => String(Math.round(v)))],
     [informe.tile, () => contar(informe.num, 8.4, 1700, (v) => "+" + coma(v))],
     [n8n.tile, bucleN8n],
-    [ocr.tile, bucleOcr],
   ]);
   qa(".pnl-t").forEach((t, i) => {
     t.style.setProperty("--d", (i % 3) * 90 + "ms");
