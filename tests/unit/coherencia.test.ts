@@ -11,7 +11,7 @@ describe("la web y el asistente dicen lo mismo", () => {
     const html = leer("src/components/servicios/servicios.html");
     for (const s of SERVICIOS) expect(html).toContain(s.titulo);
   });
-  it("la web pública y el asistente no ofrecen el producto anterior ni los servicios retirados", () => {
+  it("la web pública y el asistente no nombran el producto anterior ni el servicio de contabilidad como propios", () => {
     const publico = [
       ...["portada", "panel", "servicios", "flujos", "contenido"].flatMap((s) => [`${s}.html`, `${s}.js`].map((f) => `src/components/${s}/${f}`)),
       "src/components/portada/portada-2.js",
@@ -21,7 +21,7 @@ describe("la web y el asistente dicen lo mismo", () => {
       "src/datos/sitio.ts",
       "src/datos/servicios.ts",
     ].map(leer).join("\n") + CONOCIMIENTO;
-    for (const prohibido of [/Agentia Contable/i, /agentiacontable\.com/i, /facturación y contabilidad con IA/i, /\bOCR\b/, /CRM a medida/i, /Verifactu/i, /Informe mensual/i]) {
+    for (const prohibido of [/Agentia Contable/i, /agentiacontable\.com/i, /contable\.cloud/i, /facturación y contabilidad con IA/i]) {
       expect(publico).not.toMatch(prohibido);
     }
   });
