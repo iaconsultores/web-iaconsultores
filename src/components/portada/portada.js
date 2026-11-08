@@ -105,7 +105,7 @@
 
   /* ---------- Bandas interactivas: un dato viaja por ① Datos ② IA ③ Proceso ④ Resultado ---------- */
   const PASOS = [
-    ["Datos", "Entra un email, un pedido o un formulario."],
+    ["Datos", "Entra un email, un formulario o una factura."],
     ["IA", "La IA lo lee, lo entiende y lo clasifica."],
     ["Proceso", "Se registra solo en tu CRM o en tu ERP."],
     ["Resultado", "Respuesta al cliente y aviso a tu equipo."]

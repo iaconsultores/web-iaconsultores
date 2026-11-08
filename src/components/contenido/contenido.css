@@ -86,7 +86,7 @@
 #sobre-mi .sm-rol{display:flex;align-items:center;gap:14px;margin:16px 0 0;font-size:17px;color:var(--muted)}
 #sobre-mi .sm-rol::before{content:"";flex:none;width:44px;height:2px;background:var(--red)}
 /* Cifras: cuatro datos reales, sin cajas; aparecen con calma al verse */
-#sobre-mi .pru-lista{position:relative;list-style:none;margin:clamp(28px,3vw,40px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--line-2)}
+#sobre-mi .pru-lista{position:relative;list-style:none;margin:clamp(28px,3vw,40px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--line-2)}
 #sobre-mi .pru-lista::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line-2);transform-origin:left;transition:transform 1.4s cubic-bezier(.65,0,.2,1)}
 #sobre-mi.pru-js .pru-lista:not(.pru-visto)::before{transform:scaleX(0)}
 #sobre-mi .pru-item{display:flex;flex-direction:column;gap:12px;min-width:0;padding:28px 28px 26px;border-left:1px solid var(--line)}

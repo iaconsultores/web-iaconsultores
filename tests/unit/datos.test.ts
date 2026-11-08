@@ -13,8 +13,8 @@ describe("datos compartidos", () => {
     expect(esProvincia("cuenca")).toBe(false);
   });
 
-  it("hay 4 fichas de servicios completas, con «Tu web» la primera", () => {
-    expect(SERVICIOS.map((s) => s.titulo)).toEqual(["Tu web", "Tu asistente de IA", "Automatiza tu empresa", "IA en tu equipo"]);
+  it("hay 5 fichas de servicios completas, con las soluciones a medida la primera", () => {
+    expect(SERVICIOS.map((s) => s.titulo)).toEqual(["Soluciones a medida para tus procesos", "Automatiza tu empresa", "Tu asistente de IA", "Tu web", "IA en tu equipo"]);
     for (const s of SERVICIOS) {
       expect(s.titulo && s.descripcion && s.beneficio).toBeTruthy();
       expect(s.herramientas.length).toBeGreaterThan(0);

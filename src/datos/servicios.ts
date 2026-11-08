@@ -5,13 +5,19 @@ export interface Servicio {
   herramientas: string[];
 }
 
-/** Las cuatro fichas de la sección de servicios (sin precios: todo se presupuesta tras la llamada de diagnóstico) */
+/** Las fichas de la sección de servicios (sin precios: todo se presupuesta tras la llamada de diagnóstico) */
 export const SERVICIOS: readonly Servicio[] = [
   {
-    titulo: "Tu web",
-    descripcion: "Webs a medida pensadas para captar clientes: claras, rápidas y enfocadas a tu negocio. Con un asistente de IA que atiende a tus visitas a cualquier hora y les propone una llamada, formularios conectados a tus herramientas y medición de lo que pasa en la web. Como esta.",
-    beneficio: "Una web que trabaja para tu negocio, no solo una web bonita.",
-    herramientas: ["Web a medida", "Asistente de IA", "Formularios conectados", "Medición"],
+    titulo: "Soluciones a medida para tus procesos",
+    descripcion: "Analizamos cómo trabaja tu empresa, medimos dónde se pierden tiempo y dinero y diseñamos la solución que encaja, aunque no exista una herramienta que lo haga: un CRM a tu medida, la lectura de facturas y documentos con IA hacia tu programa, la facturación automatizada con el programa que ya usas o informes y cuadros de mando que la IA te explica. Lo implantamos, formamos a tu equipo y medimos el resultado.",
+    beneficio: "Una solución pensada para tu negocio, no tu negocio adaptado a una herramienta.",
+    herramientas: ["Diagnóstico del proceso", "CRM a medida", "Documentos con IA", "Facturación automatizada", "Informes y cuadros de mando"],
+  },
+  {
+    titulo: "Automatiza tu empresa",
+    descripcion: "Conectamos tus aplicaciones para que los datos viajen solos, sin copiar y pegar, y dejamos tus sistemas conectados, seguros y con copias de seguridad.",
+    beneficio: "Recuperas horas cada semana, cometes menos errores y todo queda bajo control.",
+    herramientas: ["n8n", "Make", "Tus aplicaciones"],
   },
   {
     titulo: "Tu asistente de IA",
@@ -20,10 +26,10 @@ export const SERVICIOS: readonly Servicio[] = [
     herramientas: ["Claude", "ChatGPT", "Gemini", "Tus documentos"],
   },
   {
-    titulo: "Automatiza tu empresa",
-    descripcion: "Conectamos tus aplicaciones para que los datos viajen solos, sin copiar y pegar, y dejamos tus sistemas conectados, seguros y con copias de seguridad.",
-    beneficio: "Recuperas horas cada semana, cometes menos errores y todo queda bajo control.",
-    herramientas: ["n8n", "Make", "Tus aplicaciones"],
+    titulo: "Tu web",
+    descripcion: "Webs a medida pensadas para captar clientes: claras, rápidas y enfocadas a tu negocio. Con un asistente de IA que atiende a tus visitas a cualquier hora y les propone una llamada, formularios conectados a tus herramientas y medición de lo que pasa en la web. Como esta.",
+    beneficio: "Una web que trabaja para tu negocio, no solo una web bonita.",
+    herramientas: ["Web a medida", "Asistente de IA", "Formularios conectados", "Medición"],
   },
   {
     titulo: "IA en tu equipo",
