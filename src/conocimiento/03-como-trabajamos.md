@@ -4,4 +4,4 @@
 3. Implantación: configuración, pruebas y puesta en marcha, con supervisión humana donde haga falta.
 4. Acompañamiento: formación del equipo (cursos de IA adaptados a la empresa y a sus empleados), documentación y mejoras.
 
-En la web se muestran dos procesos de ejemplo, con datos de demostración: leads que entran por WhatsApp, la web o el email y llegan solos a tu CRM con n8n, y preguntas a los documentos de la empresa con la cita de la fuente (RAG).
+En la web se muestran cuatro procesos de ejemplo, con datos de demostración: leads → CRM a medida, facturas → contabilidad (la IA lee la factura y una persona aprueba), preguntas a los documentos de la empresa con la cita de la fuente (RAG) e informe mensual automático con n8n.
