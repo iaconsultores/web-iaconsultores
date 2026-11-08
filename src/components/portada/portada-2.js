@@ -8,7 +8,7 @@
   const portada = document.getElementById("portada");
   const f1 = (n) => String(Math.round(n * 10) / 10);
   const PASOS = [
-    ["Datos", "Entra un email, un pedido o un formulario."],
+    ["Datos", "Entra un email, un formulario o una factura."],
     ["IA", "La IA lo lee, lo entiende y lo clasifica."],
     ["Proceso", "Se registra solo en tu CRM o en tu ERP."],
     ["Resultado", "Respuesta al cliente y aviso a tu equipo."]
