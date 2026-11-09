@@ -20,6 +20,7 @@ describe("EsquemaLead", () => {
     expect(r.franja).toBe("indiferente");
     expect(r.motivo).toBe("llamada");
     expect(r.empresa).toBe("");
+    expect(r.localidad).toBe("");
   });
   it("rechaza un teléfono imposible", () => {
     expect(EsquemaLead.safeParse({ ...BASE, telefono: "123" }).success).toBe(false);

@@ -1,0 +1,64 @@
+---
+/* Artículo de soluciones: qué se puede automatizar en un sector de una zona. Estructura en datos/soluciones.ts. */
+import { getCollection, render } from "astro:content";
+import Local from "../../layouts/Local.astro";
+import TarjetaSolucion from "../../components/local/TarjetaSolucion.astro";
+import { SOLUCIONES, rutaSolucion, solucion } from "../../datos/soluciones";
+import { capitalizar, rutaZona, zona, type Zona } from "../../datos/zonas";
+import { FECHA_SOLUCIONES, jsonArticulo, migasSolucion, minutosLectura, nombreConAlt } from "../../lib/paginas-locales";
+
+export async function getStaticPaths() {
+  const textos = await getCollection("soluciones");
+  return textos.map((texto) => {
+    if (!SOLUCIONES.some((s) => s.slug === texto.id)) throw new Error(`src/textos/soluciones/${texto.id}.md no está en datos/soluciones.ts`);
+    return { params: { slug: texto.id }, props: { texto } };
+  });
+}
+
+const { texto } = Astro.props;
+const s = solucion(texto.id)!;
+const { Content } = await render(texto);
+const zonas = s.zonas.map((slug) => zona(slug)).filter((z): z is Zona => !!z);
+const principal = zonas[0];
+const conTexto = new Set((await getCollection("zonas")).map((t) => t.id));
+const textos = await getCollection("soluciones");
+const otras = SOLUCIONES.filter((x) => x.sector === s.sector && x.slug !== s.slug)
+  .map((x) => ({ x, d: textos.find((t) => t.id === x.slug)?.data }))
+  .filter((o): o is { x: (typeof o)["x"]; d: NonNullable<(typeof o)["d"]> } => !!o.d)
+  .slice(0, 3);
+const fecha = new Date(`${FECHA_SOLUCIONES}T12:00:00Z`).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+---
+<Local titulo={`${texto.data.titulo} | IA Consultores`} descripcion={texto.data.descripcion} ruta={rutaSolucion(s.slug)} migas={migasSolucion(s, texto.data.titulo)} json={[jsonArticulo(s, texto.data, FECHA_SOLUCIONES)]} en={principal?.en}>
+  <article class="articulo">
+    <header class="local-cabecera">
+      <p class="eyebrow">{s.sector} · {zonas.map((z) => capitalizar(nombreConAlt(z))).join(" · ")}</p>
+      <h1 class="titulo-local">{texto.data.titulo}</h1>
+      <p class="entradilla">{texto.data.resumen}</p>
+      <p class="articulo-firma">Juan Luis Toboso, economista y consultor de IA · <time datetime={FECHA_SOLUCIONES}>{fecha}</time> · {minutosLectura(texto.body ?? "")} min de lectura</p>
+    </header>
+    <div class="local-rejilla">
+      <div class="prosa">
+        <p class="nota-ejemplos">Son ejemplos de lo que se puede hacer, no casos de clientes. Cada empresa es distinta: lo vemos juntos en una llamada gratuita de 30 minutos.</p>
+        <Content />
+      </div>
+      <aside class="ficha" aria-label="Dónde lo hacemos">
+        <dl>
+          <div><dt>Dónde</dt><dd><ul class="chips chips-enlace">{zonas.map((z) => <li>{conTexto.has(z.slug) ? <a href={rutaZona(z.slug)}>{capitalizar(nombreConAlt(z))}</a> : capitalizar(nombreConAlt(z))}</li>)}</ul></dd></div>
+          {principal && <div><dt>Desde Alicante</dt><dd>{capitalizar(principal.distancia)}</dd></div>}
+          <div><dt>Cómo empezamos</dt><dd>Llamada gratuita de 30 minutos y, si encaja, visita a tu empresa</dd></div>
+        </dl>
+        <a class="btn btn-primario" href="/#contacto">Llamada gratuita de 30 min</a>
+      </aside>
+    </div>
+  </article>
+
+  {otras.length > 0 && (
+    <section class="local-bloque" aria-labelledby="otras-titulo">
+      <h2 class="local-bloque-titulo" id="otras-titulo">Otras soluciones: {s.sector.toLowerCase()}</h2>
+      <div class="tarjetas-sol">
+        {otras.map(({ x, d }) => <TarjetaSolucion slug={x.slug} titulo={d.titulo} resumen={d.resumen} sector={x.sector} />)}
+      </div>
+      <p class="local-mas"><a class="enlace" href="/soluciones">Todas las soluciones por sector</a></p>
+    </section>
+  )}
+</Local>

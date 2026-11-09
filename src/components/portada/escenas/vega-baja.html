@@ -1,0 +1,50 @@
+<!-- Vega Baja: la sierra de fondo, una fila de naranjos, el Segura y un campo de alcachofas en primer plano -->
+<div class="escena" data-prov="vega-baja" role="img" aria-label="Ilustración: un huerto de naranjos y un campo de alcachofas junto al río Segura, con la sierra al fondo, en la Vega Baja">
+  <svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="vb-cielo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E4EEF6"/><stop offset=".6" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F9E7D9"/></linearGradient>
+      <linearGradient id="vb-rio" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A79B4"/><stop offset="1" stop-color="#1A6AA6"/></linearGradient>
+      <pattern id="vb-surco" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 5H10" stroke="#5B4A26" stroke-opacity=".22" stroke-width="1.4"/></pattern>
+      <path id="vb-rizo" d="M-120 0q20-3 40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0"/>
+      <g id="vb-naranjo">
+        <path d="M-2 0V-16H2V0Z" fill="#5B4A33"/>
+        <circle cx="0" cy="-30" r="20" fill="#3E6B45"/><circle cx="-13" cy="-22" r="13" fill="#52834F"/><circle cx="13" cy="-24" r="14" fill="#46774A"/><circle cx="2" cy="-44" r="12" fill="#52834F"/>
+        <g fill="#E07B2A"><circle cx="-10" cy="-30" r="3"/><circle cx="8" cy="-38" r="3"/><circle cx="14" cy="-20" r="3"/><circle cx="-4" cy="-16" r="2.8"/><circle cx="2" cy="-28" r="2.8"/><circle cx="-16" cy="-18" r="2.6"/></g>
+      </g>
+      <g id="vb-alcachofa">
+        <g fill="#7E9A86"><path d="M0 0Q-22-4-34-18Q-16-10 0-4Z"/><path d="M0 0Q22-4 34-18Q16-10 0-4Z"/><path d="M0 0Q-14-14-18-34Q-6-16 2-2Z"/><path d="M0 0Q14-14 18-34Q6-16-2-2Z"/><path d="M0 0Q-26 6-36 0Q-18 2 0 2Z"/><path d="M0 0Q26 6 36 0Q18 2 0 2Z"/></g>
+        <path d="M0-2V-30" stroke="#6B8A72" stroke-width="2.4"/>
+        <ellipse cx="0" cy="-38" rx="8" ry="10" fill="#5E7A57"/>
+        <path d="M-6-34Q0-30 6-34M-7-40Q0-36 7-40M-5-45Q0-42 5-45" fill="none" stroke="#7B4F6E" stroke-width="1.6" stroke-linecap="round"/>
+      </g>
+    </defs>
+    <rect width="400" height="300" fill="url(#vb-cielo)"/>
+    <g class="ali-sol"><circle cx="96" cy="150" r="40" fill="#F2CC93" opacity=".7"/></g>
+    <!-- Sierra de fondo -->
+    <path d="M0 262L30 246L52 252L80 220L104 232L130 196L150 214L172 186L196 208L222 200L250 226L282 216L314 236L350 230L400 246V300H0Z" fill="#9AA7B2"/>
+    <path d="M0 282L60 270L120 276L190 264L260 272L330 262L400 270V300H0Z" fill="#B7C1C9"/>
+    <!-- Palmera junto a la sierra -->
+    <path d="M330 300Q334 262 326 236" fill="none" stroke="#3A3227" stroke-width="3.5" stroke-linecap="round"/>
+    <g fill="#2F5A3E"><path d="M326 236Q312 230 300 238Q314 232 326 238Z"/><path d="M326 236Q318 220 304 218Q318 226 326 238Z"/><path d="M326 236Q338 220 352 220Q338 228 327 238Z"/><path d="M326 236Q342 236 350 246Q338 238 326 238Z"/><path d="M326 236Q324 222 330 212Q328 226 327 237Z"/></g>
+    <!-- Huerto de naranjos -->
+    <rect y="296" width="400" height="44" fill="#CDBB8E"/>
+    <g>
+      <use href="#vb-naranjo" transform="translate(22 336) scale(.8)"/><use href="#vb-naranjo" transform="translate(70 334) scale(.85)"/><use href="#vb-naranjo" transform="translate(120 336) scale(.8)"/>
+      <use href="#vb-naranjo" transform="translate(170 334) scale(.88)"/><use href="#vb-naranjo" transform="translate(222 336) scale(.8)"/><use href="#vb-naranjo" transform="translate(272 334) scale(.86)"/>
+      <use href="#vb-naranjo" transform="translate(322 336) scale(.82)"/><use href="#vb-naranjo" transform="translate(372 334) scale(.86)"/>
+    </g>
+    <!-- El Segura -->
+    <rect y="340" width="400" height="5" fill="#E3D3B8"/>
+    <rect y="345" width="400" height="26" fill="url(#vb-rio)"/>
+    <g class="rizos" fill="none" stroke="#FAF6EE" stroke-opacity=".35" stroke-width="1.1" stroke-dasharray="22 14"><use href="#vb-rizo" y="353"/><use href="#vb-rizo" x="-14" y="362"/></g>
+    <rect y="371" width="400" height="5" fill="#E3D3B8"/>
+    <!-- Campo de alcachofas -->
+    <rect y="376" width="400" height="144" fill="#B79C6E"/>
+    <rect y="376" width="400" height="144" fill="url(#vb-surco)"/>
+    <g>
+      <use href="#vb-alcachofa" transform="translate(30 410) scale(.6)"/><use href="#vb-alcachofa" transform="translate(96 410) scale(.6)"/><use href="#vb-alcachofa" transform="translate(162 410) scale(.6)"/><use href="#vb-alcachofa" transform="translate(228 410) scale(.6)"/><use href="#vb-alcachofa" transform="translate(294 410) scale(.6)"/><use href="#vb-alcachofa" transform="translate(360 410) scale(.6)"/>
+      <use href="#vb-alcachofa" transform="translate(0 456) scale(.85)"/><use href="#vb-alcachofa" transform="translate(84 458) scale(.85)"/><use href="#vb-alcachofa" transform="translate(168 456) scale(.85)"/><use href="#vb-alcachofa" transform="translate(252 458) scale(.85)"/><use href="#vb-alcachofa" transform="translate(336 456) scale(.85)"/>
+      <use href="#vb-alcachofa" transform="translate(44 520) scale(1.15)"/><use href="#vb-alcachofa" transform="translate(150 522) scale(1.15)"/><use href="#vb-alcachofa" transform="translate(256 520) scale(1.15)"/><use href="#vb-alcachofa" transform="translate(362 522) scale(1.15)"/>
+    </g>
+  </svg>
+</div>

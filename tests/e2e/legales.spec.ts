@@ -20,7 +20,7 @@ test("404 propia, sitemap, robots, imagen social y datos estructurados", async (
   expect((await request.get("/robots.txt")).ok()).toBe(true);
   expect((await request.get("/og.png")).headers()["content-type"]).toContain("image/png");
   await page.goto("/");
-  await expect(page).toHaveTitle("Inteligencia artificial para empresas reales | IA Consultores");
+  await expect(page).toHaveTitle("IA y automatización para empresas en Alicante | IA Consultores");
   const ld = await page.locator('script[type="application/ld+json"]').textContent();
   expect(JSON.parse(ld ?? "{}")["@type"]).toBe("ProfessionalService");
 });

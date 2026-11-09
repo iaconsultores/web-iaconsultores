@@ -1,8 +1,57 @@
 ---
+/* Portada: el HTML de la maqueta (portada.html) con huecos que se rellenan desde datos/provincias.ts:
+   antetítulo y titular rotatorios, escenas (escenas/<id>.html), botones de zona y bandas. */
 import html from "./portada.html?raw";
 import "./portada.css";
+import { PROVINCIAS, PROVINCIA_INICIAL } from "../../datos/provincias";
+import { rutaZona, zona } from "../../datos/zonas";
+
+const escenas = import.meta.glob<string>("./escenas/*.html", { query: "?raw", import: "default", eager: true });
+const bandasPropias = import.meta.glob<string>("./bandas/*.html", { query: "?raw", import: "default", eager: true });
+
+const escapar = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const inicial = PROVINCIAS.find((p) => p.id === PROVINCIA_INICIAL)!;
+const enlaceZona = (slug: string) => `IA para empresas ${zona(slug)?.de ?? ""}\u00a0→`;
+const lista = (nombres: string[]) => `${nombres.slice(0, -1).join(", ")} y ${nombres[nombres.length - 1]}`;
+const alicantinas = PROVINCIAS.filter((p) => !["valencia", "murcia", "albacete"].includes(p.id));
+const vecinas = PROVINCIAS.filter((p) => ["valencia", "murcia", "albacete"].includes(p.id));
+
+const pila = (texto: (p: (typeof PROVINCIAS)[number]) => string) =>
+  PROVINCIAS.map((p) => `<span data-p="${p.id}">${escapar(texto(p))}</span>`).join("");
+
+const huecos: Record<string, string> = {
+  "<!--PILA-ANTE-->": `<span class="pila-prov" aria-hidden="true">${pila((p) => p.ante)}</span><span class="sr">provincia de Alicante y alrededores</span>`,
+  "<!--TITULAR-->":
+    `<span class="sr">Inteligencia artificial para empresas reales en ${escapar(lista(alicantinas.map((p) => p.nombre)))}, y en ${escapar(lista(vecinas.map((p) => p.nombre)))}.</span>` +
+    `<span class="tv" data-v="1" aria-hidden="true">Inteligencia artificial para empresas reales en <em class="pila-prov">${pila((p) => `${p.nombre}.`)}</em></span>`,
+  "<!--ESCENAS-->": PROVINCIAS.map((p) => {
+    const e = escenas[`./escenas/${p.id}.html`];
+    if (!e) throw new Error(`Falta la escena de la portada: escenas/${p.id}.html`);
+    return e;
+  }).join("\n"),
+  "<!--LUGAR-->": escapar(inicial.lugar),
+  "<!--COORDS-->": inicial.c,
+  "<!--ECONOMIA-->": escapar(inicial.economia),
+  "<!--ZONA-RUTA-->": rutaZona(inicial.zona),
+  "<!--ZONA-ENLACE-->": escapar(enlaceZona(inicial.zona)),
+  "<!--CHIPS-->": PROVINCIAS.map((p) => `<button type="button" class="prov-chip" data-p="${p.id}" aria-pressed="${p.id === inicial.id}">${escapar(p.etiqueta)}</button>`).join(""),
+  /* Las bandas con dibujo propio en HTML (bandas/<id>.html) se copian; el resto las pinta portada.js en un SVG vacío */
+  "<!--BANDAS-->": PROVINCIAS.map((p) =>
+    bandasPropias[`./bandas/${p.id}.html`] ??
+    `<div class="banda" data-prov="${p.id}"><svg viewBox="0 0 1440 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect width="1440" height="220" fill="#FFFFFF"/></svg></div>`,
+  ).join("\n    "),
+};
+
+let completo = html;
+for (const [hueco, valor] of Object.entries(huecos)) {
+  if (!completo.includes(hueco)) throw new Error(`portada.html sin el hueco ${hueco}`);
+  completo = completo.replaceAll(hueco, valor);
+}
+/* Enlaces de cada zona para el script (la columna geo cambia el enlace con la rotación) */
+const enlaces = Object.fromEntries(PROVINCIAS.map((p) => [p.id, { ruta: rutaZona(p.zona), texto: enlaceZona(p.zona) }]));
 ---
-<Fragment set:html={html} />
+<Fragment set:html={completo} />
+<script type="application/json" id="portada-enlaces" set:html={JSON.stringify(enlaces)} />
 <script>
   import "../../scripts/iac";
   import "./portada.js";

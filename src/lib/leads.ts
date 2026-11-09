@@ -50,6 +50,7 @@ export function componerEmailLead(lead: Lead, fecha: Date, para: string, de: str
     ["Nombre", lead.nombre],
     ["Teléfono", lead.telefono],
     ["Empresa", lead.empresa || "—"],
+    ["Municipio", lead.localidad || "—"],
     ["Proceso o propuesta", lead.proceso],
     ["Franja", FRANJAS[lead.franja]],
     ["Origen", lead.origen === "chat" ? "Asistente IA de la web" : "Formulario de la web"],
@@ -77,7 +78,7 @@ export async function avisarN8n(url: string, secreto: string, lead: Lead, ahora:
   const cuerpo = JSON.stringify({
     evento: "lead.creado",
     fecha: ahora.toISOString(),
-    lead: { nombre: lead.nombre, telefono: lead.telefono, empresa: lead.empresa, proceso: lead.proceso, franja: lead.franja, motivo: lead.motivo, origen: lead.origen },
+    lead: { nombre: lead.nombre, telefono: lead.telefono, empresa: lead.empresa, localidad: lead.localidad, proceso: lead.proceso, franja: lead.franja, motivo: lead.motivo, origen: lead.origen },
   });
   try {
     await fetchImpl(url, {

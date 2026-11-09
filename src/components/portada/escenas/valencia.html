@@ -1,0 +1,46 @@
+<!-- Valencia: grúas del puerto con contenedores y un buque, y una fila de naranjos en primer plano -->
+<div class="escena" data-prov="valencia" role="img" aria-label="Ilustración: grúas de contenedores y un buque en el puerto de Valencia, con una fila de naranjos en primer plano">
+  <svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="val-cielo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCE8F1"/><stop offset=".62" stop-color="#FBFBFA"/><stop offset="1" stop-color="#F8EBE0"/></linearGradient>
+      <linearGradient id="val-agua" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2E7FBA"/><stop offset="1" stop-color="#175C92"/></linearGradient>
+      <path id="val-rizo" d="M-120 0q20-4 40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0"/>
+      <g id="val-grua">
+        <path d="M-22 0V-150M22 0V-150" stroke="#A3312A" stroke-width="5"/>
+        <path d="M-22-40H22M-22-100H22M-22-40L22-100M22-40L-22-100" stroke="#A3312A" stroke-width="2.4"/>
+        <path d="M-60-150H88V-140H-60Z" fill="#A3312A"/>
+        <path d="M-60-150L0-186L60-150" fill="none" stroke="#A3312A" stroke-width="2.4"/><path d="M0-186V-150" stroke="#A3312A" stroke-width="3"/>
+        <rect x="28" y="-140" width="16" height="12" fill="#1B1F2A"/><path d="M36-128V-96" stroke="#1B1F2A" stroke-width="1.2"/><rect x="26" y="-96" width="20" height="5" fill="#1B1F2A"/>
+      </g>
+      <g id="val-naranjo">
+        <path d="M-3 0V-22H3V0Z" fill="#5B4A33"/>
+        <circle cx="0" cy="-42" r="26" fill="#3E6B45"/><circle cx="-18" cy="-30" r="17" fill="#52834F"/><circle cx="18" cy="-32" r="18" fill="#46774A"/><circle cx="3" cy="-60" r="15" fill="#52834F"/>
+        <g fill="#E07B2A"><circle cx="-14" cy="-42" r="4"/><circle cx="10" cy="-52" r="4"/><circle cx="20" cy="-28" r="4"/><circle cx="-4" cy="-24" r="3.6"/><circle cx="4" cy="-38" r="3.6"/><circle cx="-22" cy="-24" r="3.4"/><circle cx="-6" cy="-62" r="3.4"/></g>
+      </g>
+    </defs>
+    <rect width="400" height="330" fill="url(#val-cielo)"/>
+    <g class="ali-sol"><circle cx="330" cy="120" r="34" fill="#F2CC93" opacity=".8"/></g>
+    <!-- Grúas y pilas de contenedores -->
+    <use href="#val-grua" transform="translate(110 300)"/>
+    <use href="#val-grua" transform="translate(236 300) scale(.86)"/>
+    <g stroke="#FAF6EE" stroke-width="1">
+      <rect x="0" y="276" width="44" height="12" fill="#1A6AA6"/><rect x="0" y="264" width="44" height="12" fill="#E0A82E"/><rect x="44" y="276" width="44" height="12" fill="#A3312A"/><rect x="44" y="264" width="44" height="12" fill="#3F8B5E"/><rect x="22" y="252" width="44" height="12" fill="#5FA4D3"/>
+      <rect x="150" y="276" width="44" height="12" fill="#3F8B5E"/><rect x="150" y="264" width="44" height="12" fill="#1A6AA6"/><rect x="194" y="276" width="44" height="12" fill="#E0A82E"/><rect x="172" y="252" width="44" height="12" fill="#A3312A"/>
+      <rect x="296" y="276" width="44" height="12" fill="#A3312A"/><rect x="340" y="276" width="44" height="12" fill="#1A6AA6"/><rect x="318" y="264" width="44" height="12" fill="#5FA4D3"/><rect x="340" y="252" width="44" height="12" fill="#3F8B5E"/>
+    </g>
+    <rect y="288" width="400" height="12" fill="#B7AE9E"/>
+    <!-- Agua del puerto y buque -->
+    <rect y="300" width="400" height="90" fill="url(#val-agua)"/>
+    <g class="esc-flota">
+      <path d="M150 318H392L380 344H164Z" fill="#1B1F2A"/><path d="M164 338H382" stroke="#A3312A" stroke-width="4"/>
+      <g stroke="#FAF6EE" stroke-width=".8"><rect x="190" y="306" width="30" height="12" fill="#E0A82E"/><rect x="220" y="306" width="30" height="12" fill="#1A6AA6"/><rect x="250" y="306" width="30" height="12" fill="#A3312A"/><rect x="280" y="306" width="30" height="12" fill="#3F8B5E"/><rect x="220" y="294" width="30" height="12" fill="#5FA4D3"/><rect x="250" y="294" width="30" height="12" fill="#E0A82E"/></g>
+      <path d="M340 318V290H372V318Z" fill="#FAF6EE"/><path d="M344 298h24M344 306h24" stroke="#1B1F2A" stroke-opacity=".5" stroke-width="2"/>
+    </g>
+    <g class="rizos" fill="none" stroke="#FAF6EE" stroke-opacity=".3" stroke-width="1.1" stroke-dasharray="22 14"><use href="#val-rizo" y="356"/><use href="#val-rizo" x="-14" y="370"/><use href="#val-rizo" x="-6" y="382"/></g>
+    <!-- Huerta con naranjos -->
+    <rect y="390" width="400" height="130" fill="#D9C49B"/>
+    <path d="M0 390.5H400" stroke="#1B1F2A" stroke-opacity=".3"/>
+    <g fill="none" stroke="#8C6B3A" stroke-opacity=".25"><path d="M0 410H400M0 430H400M0 452H400M0 476H400M0 502H400"/></g>
+    <use href="#val-naranjo" transform="translate(40 470) scale(.9)"/><use href="#val-naranjo" transform="translate(140 474)"/><use href="#val-naranjo" transform="translate(250 470) scale(.92)"/><use href="#val-naranjo" transform="translate(356 476) scale(1.05)"/>
+  </svg>
+</div>

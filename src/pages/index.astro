@@ -6,8 +6,9 @@ import Servicios from "../components/servicios/Servicios.astro";
 import Flujos from "../components/flujos/Flujos.astro";
 import Contenido from "../components/contenido/Contenido.astro";
 import Chat from "../components/chat/Chat.astro";
+import ZonasPortada from "../components/zonas/ZonasPortada.astro";
 ---
-<Base titulo="Inteligencia artificial para empresas reales | IA Consultores" descripcion="Implantamos IA y automatización en pymes y autónomos: primero entendemos tu negocio. Llamada de diagnóstico gratuita de 30 minutos." ruta="/">
+<Base titulo="IA y automatización para empresas en Alicante | IA Consultores" descripcion="Consultoría de IA y automatización para pymes de Alicante y su provincia. Primero entendemos tu negocio: llamada gratuita de 30 minutos y visita a tu empresa." ruta="/">
   <script type="application/ld+json" slot="head" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -15,14 +16,22 @@ import Chat from "../components/chat/Chat.astro";
     url: "https://iaconsultores.com",
     telephone: "+34678310660",
     email: "juanluis@iaconsultores.com",
-    description: "Consultoría de inteligencia artificial y automatización para pymes y autónomos.",
-    areaServed: { "@type": "Country", name: "España" },
+    description: "Consultoría de inteligencia artificial y automatización para pymes y autónomos de la provincia de Alicante: en persona en la provincia y alrededores, en remoto en el resto de España.",
+    address: { "@type": "PostalAddress", addressLocality: "Alicante", addressRegion: "Alicante", addressCountry: "ES" },
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "Provincia de Alicante" },
+      { "@type": "AdministrativeArea", name: "Provincia de Valencia" },
+      { "@type": "AdministrativeArea", name: "Región de Murcia" },
+      { "@type": "AdministrativeArea", name: "Provincia de Albacete" },
+      { "@type": "Country", name: "España" },
+    ],
     founder: { "@type": "Person", name: "Juan Luis Toboso", sameAs: ["https://www.linkedin.com/in/juanluistoboso"] },
   })} />
   <Portada />
   <Panel />
   <Servicios />
   <Flujos />
+  <ZonasPortada />
   <Contenido />
   <Chat slot="final" />
 </Base>

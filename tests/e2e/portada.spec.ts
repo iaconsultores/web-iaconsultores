@@ -1,6 +1,8 @@
 import { expect, test, type Page } from "@playwright/test";
 
-const PROVINCIAS = ["alicante", "valencia", "murcia", "albacete", "madrid", "espana"];
+import { PROVINCIAS as ZONAS } from "../../src/datos/provincias";
+
+const PROVINCIAS = ZONAS.map((z) => z.id);
 
 /* Reloj parado antes de cargar: la rotación (cada 3 s) solo avanza con runFor, tarde lo que tarde cada paso de la prueba */
 async function relojParado(page: Page) {
@@ -8,7 +10,7 @@ async function relojParado(page: Page) {
   await page.clock.pauseAt(new Date("2026-10-06T10:00:01"));
 }
 
-test("la portada carga sin errores ni desbordamiento con las 6 provincias", async ({ page }) => {
+test("la portada carga sin errores ni desbordamiento con las 10 zonas", async ({ page }) => {
   const errores: string[] = [];
   page.on("pageerror", (e) => errores.push(e.message));
   page.on("console", (m) => {
@@ -53,13 +55,13 @@ test("la portada rota sola cada 7,5 s y se pausa con el botón", async ({ page }
   await page.clock.runFor(7000);
   await expect(page.locator("html")).toHaveAttribute("data-provincia", "alicante");
   await page.clock.runFor(600);
-  await expect(page.locator("html")).toHaveAttribute("data-provincia", "valencia");
+  await expect(page.locator("html")).toHaveAttribute("data-provincia", "elche");
   await page.locator("#portada .pausa").dispatchEvent("click");
   await page.clock.runFor(13_000);
-  await expect(page.locator("html")).toHaveAttribute("data-provincia", "valencia");
+  await expect(page.locator("html")).toHaveAttribute("data-provincia", "elche");
   await page.locator("#portada .pausa").dispatchEvent("click");
   await page.clock.runFor(7600);
-  await expect(page.locator("html")).toHaveAttribute("data-provincia", "murcia");
+  await expect(page.locator("html")).toHaveAttribute("data-provincia", "vega-baja");
 });
 
 test("sigue rotando con el ratón encima de la portada", async ({ page }) => {
@@ -70,16 +72,16 @@ test("sigue rotando con el ratón encima de la portada", async ({ page }) => {
   if (!titular) throw new Error("sin titular");
   await page.mouse.move(titular.x + titular.width / 2, titular.y + titular.height / 2);
   await page.clock.runFor(7600);
-  await expect(page.locator("html")).toHaveAttribute("data-provincia", "valencia");
+  await expect(page.locator("html")).toHaveAttribute("data-provincia", "elche");
 });
 
 test("al elegir una provincia la portada se queda fija", async ({ page }) => {
   await relojParado(page);
   await page.goto("/");
-  await page.locator('.prov-chip[data-p="madrid"]').dispatchEvent("click");
+  await page.locator('.prov-chip[data-p="marina-alta"]').dispatchEvent("click");
   await page.clock.runFor(20_000);
-  await expect(page.locator("html")).toHaveAttribute("data-provincia", "madrid");
-  await expect(page.locator('.prov-chip[data-p="madrid"]')).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("html")).toHaveAttribute("data-provincia", "marina-alta");
+  await expect(page.locator('.prov-chip[data-p="marina-alta"]')).toHaveAttribute("aria-pressed", "true");
 });
 
 test("la primera pantalla no lleva la firma con el nombre", async ({ page }) => {
@@ -110,9 +112,9 @@ test("el recorrido de la banda sigue al cambiar de ciudad, sin volver a empezar"
   await relojParado(page);
   await page.goto("/");
   await page.clock.runFor(7600);
-  await expect(page.locator("html")).toHaveAttribute("data-provincia", "valencia");
+  await expect(page.locator("html")).toHaveAttribute("data-provincia", "elche");
   await page.clock.runFor(600);
-  await expect(page.locator('#portada .banda[data-prov="valencia"] .parada').nth(1)).toHaveClass(/activo/);
+  await expect(page.locator('#portada .banda[data-prov="elche"] .parada').nth(1)).toHaveClass(/activo/);
 });
 
 test.describe("en una pantalla de 1920×1080", () => {
@@ -140,4 +142,16 @@ test.describe("con movimiento reducido", () => {
     await page.clock.runFor(20_000);
     await expect(page.locator("html")).toHaveAttribute("data-provincia", "alicante");
   });
+});
+
+test("el titular habla de Alicante y sus comarcas, en valenciano donde toca, y la columna geo enseña su economía", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("#portada h1 .sr")).toHaveText("Inteligencia artificial para empresas reales en Alicante, Elche, la Vega Baja, el Vinalopó, l'Alcoià, la Marina Baixa y la Marina Alta, y en Valencia, Murcia y Albacete.");
+  await expect(page.locator("#portada .cercania")).toContainText("en persona en toda la provincia");
+  await expect(page.locator("#portada .dato-etq")).toHaveText("Su economía");
+  await page.locator('.prov-chip[data-p="alcoia"]').click();
+  await expect(page.locator("#portada .tv")).toContainText("l'Alcoià.");
+  await expect(page.locator("#portada .lugar")).toHaveText("Fábricas textiles al pie de la sierra, Alcoi");
+  await expect(page.locator("#portada .dato-texto")).toContainText("juguete en Ibi");
+  await expect(page.locator("#portada .coords-num")).toHaveText("38.70°N 0.47°W");
 });

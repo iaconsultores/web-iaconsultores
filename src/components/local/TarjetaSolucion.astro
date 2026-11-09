@@ -1,0 +1,22 @@
+---
+/* Tarjeta de un artículo de soluciones para los listados */
+import { rutaSolucion } from "../../datos/soluciones";
+
+interface Props {
+  slug: string;
+  titulo: string;
+  resumen: string;
+  sector: string;
+  /** Nivel del título de la tarjeta: h3 en listados con h2 por encima */
+  nivel?: "h2" | "h3";
+}
+
+const { slug, titulo, resumen, sector, nivel = "h3" } = Astro.props;
+const Titulo = nivel;
+---
+<article class="tarjeta-sol">
+  <p class="tarjeta-sol-sector">{sector}</p>
+  <Titulo class="tarjeta-sol-titulo"><a href={rutaSolucion(slug)}>{titulo}</a></Titulo>
+  <p class="tarjeta-sol-resumen">{resumen}</p>
+  <span class="tarjeta-sol-mas" aria-hidden="true">Leer la solución →</span>
+</article>

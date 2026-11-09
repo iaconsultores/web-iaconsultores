@@ -1,0 +1,69 @@
+---
+/* «Dónde trabajamos» en la portada: comarcas de la provincia de Alicante con sus municipios y las zonas vecinas,
+   con enlaces a cada página local (/consultoria-ia) y a las soluciones por sector (/soluciones) */
+import { getCollection } from "astro:content";
+import { ZONAS, capitalizar, hijas, rutaZona } from "../../datos/zonas";
+import { SOLUCIONES } from "../../datos/soluciones";
+import { nombreConAlt } from "../../lib/paginas-locales";
+
+const conTexto = new Set((await getCollection("zonas")).map((t) => t.id));
+const comarcas = hijas("provincia-de-alicante").filter((c) => conTexto.has(c.slug));
+const vecinas = ZONAS.filter((z) => z.tipo === "provincia" && z.slug !== "provincia-de-alicante" && conTexto.has(z.slug));
+const cercanas = vecinas.flatMap((p) => hijas(p.slug)).filter((m) => conTexto.has(m.slug));
+---
+<section id="zonas" class="seccion zonas-portada" aria-labelledby="zonas-titulo">
+  <div class="contenedor">
+    <header class="zp-cabecera">
+      <p class="eyebrow">Dónde trabajamos</p>
+      <h2 class="titulo-seccion" id="zonas-titulo">Cerca de tu empresa, en toda la provincia de Alicante</h2>
+      <p class="entradilla">Trabajamos desde Alicante. Primero hablamos por teléfono y, si encaja, vamos a conocer tu empresa en persona: en cualquier comarca de la provincia y hasta hora y media de distancia. Con el resto de España, en remoto.</p>
+    </header>
+    <div class="zp-rejilla">
+      {comarcas.map((c) => (
+        <div class="zp-comarca">
+          <h3><a href={rutaZona(c.slug)}>{capitalizar(c.nombre)}</a></h3>
+          <p class="zp-sectores">{c.sectores.slice(0, 3).join(" · ")}</p>
+          <ul>
+            {hijas(c.slug).filter((m) => conTexto.has(m.slug)).map((m) => <li><a href={rutaZona(m.slug)}>{nombreConAlt(m)}</a></li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <p class="zp-vecinas">
+      <span>También en persona:</span>
+      {cercanas.map((m, i) => <>{i > 0 && " · "}<a href={rutaZona(m.slug)}>{nombreConAlt(m)}</a></>)}
+      <span class="zp-sep">·</span>
+      <span>Provincias:</span>
+      {vecinas.map((p, i) => <>{i > 0 && " · "}<a href={rutaZona(p.slug)}>{capitalizar(p.nombre.replace(/^la /, ""))}</a></>)}
+    </p>
+    <div class="zp-acciones">
+      <a class="btn btn-secundario" href="/consultoria-ia">Ver todas las zonas</a>
+      <a class="enlace" href="/soluciones">{SOLUCIONES.length} soluciones por sector y zona</a>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .zonas-portada{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .zp-cabecera{max-width:780px;margin:0 0 40px}
+  .zp-cabecera .eyebrow{margin:0 0 14px}
+  .zp-cabecera .eyebrow::before{content:"";width:28px;height:1.5px;background:var(--red)}
+  .zp-cabecera .entradilla{color:var(--texto-2)}
+  .zp-rejilla{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  @media (max-width:1060px){ .zp-rejilla{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width:560px){ .zp-rejilla{grid-template-columns:1fr} }
+  .zp-comarca{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 20px 18px}
+  .zp-comarca h3{margin:0 0 4px;font-family:var(--f-display);font-weight:var(--display-weight);font-size:24px;line-height:1.1}
+  .zp-comarca h3 a{text-decoration:none}
+  .zp-comarca h3 a:hover{color:var(--sea)}
+  .zp-sectores{margin:0 0 12px;font-size:13.5px;line-height:1.4;color:var(--muted)}
+  .zp-comarca ul{display:flex;flex-wrap:wrap;gap:6px 14px;list-style:none;margin:0;padding:0}
+  .zp-comarca li a{font-size:15px;color:var(--texto-2);text-decoration:underline;text-decoration-color:var(--line-2);text-underline-offset:4px}
+  .zp-comarca li a:hover{color:var(--sea);text-decoration-color:currentColor}
+  .zp-vecinas{margin:26px 0 0;font-size:15px;line-height:1.8;color:var(--texto-2)}
+  .zp-vecinas span{color:var(--muted)}
+  .zp-vecinas .zp-sep{margin:0 8px}
+  .zp-vecinas a{color:var(--texto-2);text-underline-offset:4px}
+  .zp-vecinas a:hover{color:var(--sea)}
+  .zp-acciones{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:30px}
+</style>

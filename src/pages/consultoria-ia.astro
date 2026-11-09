@@ -1,0 +1,52 @@
+---
+/* Índice de zonas: dónde trabajamos en persona (hora y media desde Alicante) y el resto en remoto */
+import { getCollection } from "astro:content";
+import Local from "../layouts/Local.astro";
+import { ZONAS, capitalizar, hijas, rutaZona, type Zona } from "../datos/zonas";
+import { nombreConAlt } from "../lib/paginas-locales";
+
+const conTexto = new Set((await getCollection("zonas")).map((t) => t.id));
+const enlace = (z: Zona) => (conTexto.has(z.slug) ? rutaZona(z.slug) : null);
+const alicante = ZONAS.find((z) => z.slug === "provincia-de-alicante")!;
+const comarcas = hijas(alicante.slug);
+const vecinas = ZONAS.filter((z) => z.tipo === "provincia" && z.slug !== alicante.slug);
+const descripcion = "Consultoría de IA y automatización desde Alicante: en persona en toda la provincia y a hora y media, en remoto en el resto de España.";
+---
+<Local titulo="Consultoría de IA y automatización en Alicante y alrededores | IA Consultores" descripcion={descripcion} ruta="/consultoria-ia" migas={[{ nombre: "Inicio", ruta: "/" }, { nombre: "Zonas", ruta: "/consultoria-ia" }]}>
+  <header class="local-cabecera">
+    <p class="eyebrow">Dónde trabajamos</p>
+    <h1 class="titulo-local">IA y automatización para empresas de Alicante y alrededores</h1>
+    <p class="entradilla">Trabajamos desde Alicante. Primero hablamos por teléfono y, si encaja, vamos a conocer tu empresa en persona: en toda la provincia y hasta hora y media de distancia. Con el resto de España trabajamos en remoto.</p>
+  </header>
+
+  <section class="local-bloque" aria-labelledby="prov-ali">
+    <h2 class="local-bloque-titulo" id="prov-ali"><a href={rutaZona(alicante.slug)}>Provincia de Alicante</a></h2>
+    <div class="rejilla-zonas">
+      {comarcas.map((c) => (
+        <div class="grupo-zona">
+          <h3>{enlace(c) ? <a href={enlace(c)!}>{capitalizar(c.nombre)}</a> : capitalizar(c.nombre)}</h3>
+          <p class="grupo-zona-sectores">{c.sectores.slice(0, 4).join(" · ")}</p>
+          <ul class="lista-zonas">
+            {hijas(c.slug).map((m) => <li>{enlace(m) ? <a href={enlace(m)!}>{nombreConAlt(m)}</a> : nombreConAlt(m)}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="local-bloque" aria-labelledby="prov-vecinas">
+    <h2 class="local-bloque-titulo" id="prov-vecinas">Provincias vecinas</h2>
+    <div class="rejilla-zonas">
+      {vecinas.map((p) => (
+        <div class="grupo-zona">
+          <h3>{enlace(p) ? <a href={enlace(p)!}>{capitalizar(p.nombre)}</a> : capitalizar(p.nombre)}</h3>
+          <p class="grupo-zona-sectores">{capitalizar(p.distancia)}</p>
+          <ul class="lista-zonas">
+            {hijas(p.slug).map((m) => <li>{enlace(m) ? <a href={enlace(m)!}>{nombreConAlt(m)}</a> : nombreConAlt(m)}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <p class="local-mas">¿Tu empresa está en otra provincia? Trabajamos en remoto con toda España. <a class="enlace" href="/soluciones">Mira las soluciones por sector</a>.</p>
+  </section>
+</Local>

@@ -3,14 +3,28 @@ import { EVIDENCIAS, NIVELES, NOTA_AGENTIA } from "../../src/datos/evidencias";
 import { PROVINCIAS, PROVINCIA_INICIAL, ROTACION_MS, esProvincia } from "../../src/datos/provincias";
 import { SERVICIOS } from "../../src/datos/servicios";
 import { CV } from "../../src/datos/cv";
+import { ZONAS } from "../../src/datos/zonas";
 
 describe("datos compartidos", () => {
-  it("las provincias siguen el orden de la rotación y empiezan por Alicante", () => {
-    expect(PROVINCIAS.map((p) => p.id)).toEqual(["alicante", "valencia", "murcia", "albacete", "madrid", "espana"]);
+  it("la portada rota por las comarcas de Alicante y termina en las provincias vecinas, sin Madrid ni «toda España»", () => {
+    expect(PROVINCIAS.map((p) => p.id)).toEqual(["alicante", "elche", "vega-baja", "vinalopo", "alcoia", "marina-baixa", "marina-alta", "valencia", "murcia", "albacete"]);
     expect(PROVINCIA_INICIAL).toBe("alicante");
     expect(ROTACION_MS).toBe(7500);
     expect(esProvincia("murcia")).toBe(true);
-    expect(esProvincia("cuenca")).toBe(false);
+    expect(esProvincia("madrid")).toBe(false);
+    expect(esProvincia("espana")).toBe(false);
+  });
+
+  it("cada zona de la portada enlaza a una página de zona, con coordenadas válidas y su economía sin cifras", () => {
+    for (const p of PROVINCIAS) {
+      expect(ZONAS.map((z) => z.slug), p.id).toContain(p.zona);
+      expect(p.c).toMatch(/^\d+\.\d+°N \d+\.\d+°[EW]$/);
+      expect(p.economia).not.toMatch(/\d/);
+      expect(p.lugar && p.etiqueta && p.ante).toBeTruthy();
+    }
+    /* Nombres en valenciano donde se usan así */
+    expect(PROVINCIAS.find((p) => p.id === "alcoia")?.nombre).toBe("l'Alcoià");
+    expect(PROVINCIAS.find((p) => p.id === "marina-baixa")?.nombre).toBe("la Marina Baixa");
   });
 
   it("hay 5 fichas de servicios completas, con las soluciones a medida la primera", () => {

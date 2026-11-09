@@ -136,6 +136,7 @@
 #contacto .ct-ancho{grid-column:1/-1}
 #contacto .ct-campo{display:grid;gap:2px;min-width:0}
 #contacto .ct-campo label,#contacto .ct-franja legend{font-size:15px;font-weight:500;color:var(--ink)}
+#contacto .ct-opcional{font-weight:400;color:var(--muted)}
 #contacto .ct-campo input,#contacto .ct-campo textarea{width:100%;min-width:0;padding:4px 0 8px;border:0;border-bottom:1.5px solid var(--ct-control);border-radius:0;background:transparent;font-size:17px;line-height:1.4;color:var(--ink);transition:border-color .2s ease,box-shadow .2s ease}
 #contacto .ct-campo textarea{min-height:64px;resize:vertical}
 #contacto .ct-campo ::placeholder{color:var(--muted);opacity:1}

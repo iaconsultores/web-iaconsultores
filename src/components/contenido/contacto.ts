@@ -57,6 +57,7 @@ if (form) {
       nombre: campo("nombre").value,
       telefono: campo("telefono").value,
       empresa: campo("empresa").value,
+      localidad: campo("localidad").value,
       proceso: campo("proceso").value,
       franja: form.querySelector<HTMLInputElement>('input[name="franja"]:checked')?.value ?? "indiferente",
       motivo: motivo?.value ?? "llamada",
