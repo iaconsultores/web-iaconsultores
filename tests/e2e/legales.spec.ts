@@ -5,6 +5,7 @@ test("las páginas legales identifican al titular", async ({ page }) => {
   await expect(page.locator("main")).toContainText("Agentia Codex S.L.");
   await expect(page.locator("main")).toContainText("NIF: B05723184");
   await expect(page.locator("main")).toContainText("Última actualización: 9 de noviembre de 2026");
+  await expect(page.locator("main")).not.toContainText("pendiente de asignación");
   await expect(page.locator("main")).toContainText("Avda. Teodomiro 30, Entlo. B, 03300 Orihuela (Alicante)");
   await expect(page.locator("main")).toContainText("constituida ante notario");
   await page.goto("/privacidad");

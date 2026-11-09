@@ -15,7 +15,7 @@ export const PAGINAS_FIJAS: readonly EntradaSitemap[] = [
   { ruta: "/consultoria-ia", lastmod: "2026-11-09" },
   { ruta: "/soluciones", lastmod: "2026-11-09" },
   { ruta: "/aviso-legal", lastmod: "2026-11-09" },
-  { ruta: "/privacidad", lastmod: "2026-10-05" },
+  { ruta: "/privacidad", lastmod: "2026-11-09" },
   { ruta: "/cookies", lastmod: "2026-10-05" },
 ];
 

@@ -10,7 +10,7 @@ export const SITIO = {
   /** Código público de esta web */
   repositorio: "https://github.com/iaconsultores/web-iaconsultores",
   titular: "Agentia Codex S.L.",
-  /** NIF de la sociedad (comunicado por la AEAT el 6-oct-2026) */
+  /** NIF de la sociedad (comunicación de la AEAT del 6-oct-2026; el definitivo conserva el número) */
   nif: "B05723184",
   /** Domicilio social y fiscal: el de los datos estructurados y el aviso legal */
   domicilio: { calle: "Avda. Teodomiro 30, Entlo. B", cp: "03300", localidad: "Orihuela", provincia: "Alicante" },
