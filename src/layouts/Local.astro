@@ -1,0 +1,40 @@
+---
+/* Marco de las páginas locales (zonas, soluciones y sus índices): migas de pan, datos estructurados y llamada final */
+import Base from "./Base.astro";
+import CtaLocal from "../components/local/CtaLocal.astro";
+import DatosSeguros from "../components/local/DatosSeguros.astro";
+import type { Miga } from "../lib/paginas-locales";
+import { jsonMigas } from "../lib/paginas-locales";
+import "../styles/local.css";
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+  ruta: string;
+  migas: Miga[];
+  /** Datos estructurados además de las migas */
+  json?: object[];
+  /** «en Elche»: para la llamada final */
+  en?: string;
+}
+
+const { titulo, descripcion, ruta, migas, json = [], en } = Astro.props;
+const datos = [jsonMigas(migas), ...json];
+---
+<Base titulo={titulo} descripcion={descripcion} ruta={ruta}>
+  {datos.map((d) => <script type="application/ld+json" slot="head" set:html={JSON.stringify(d)} />)}
+  <div class="local">
+    <div class="contenedor">
+      <nav class="migas" aria-label="Estás en">
+        <ol>
+          {migas.map((m, i) => (
+            <li>{i === migas.length - 1 ? <span aria-current="page">{m.nombre}</span> : <a href={m.ruta}>{m.nombre}</a>}</li>
+          ))}
+        </ol>
+      </nav>
+      <slot />
+    </div>
+    <DatosSeguros />
+    <CtaLocal en={en} />
+  </div>
+</Base>

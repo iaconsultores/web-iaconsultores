@@ -112,14 +112,15 @@
   <div class="contenedor ct-rejilla">
     <div class="ct-intro">
       <h2 class="titulo-seccion" id="contacto-titulo">Pide tu llamada gratuita de 30 minutos</h2>
-      <p class="entradilla">Cuéntanos qué proceso te quita más tiempo y te llamamos para un diagnóstico sin compromiso. Cada proyecto es único: después te enviamos un presupuesto personalizado.</p>
+      <p class="entradilla">Cuéntanos qué proceso te quita más tiempo y te llamamos para un diagnóstico sin compromiso. Si tu empresa está en la provincia de Alicante o alrededores y encaja, vamos a conocerla en persona. Cada proyecto es único: después te enviamos un presupuesto personalizado.</p>
     </div>
     <form class="ct-form" novalidate aria-labelledby="contacto-titulo">
       <div class="ct-trampa" aria-hidden="true"><label>Web <input name="web" type="text" tabindex="-1" autocomplete="off"></label></div>
       <input type="hidden" name="motivo" value="llamada">
       <div class="ct-campo"><label for="ct-nombre">Nombre</label><input id="ct-nombre" name="nombre" type="text" autocomplete="name" required maxlength="80"></div>
       <div class="ct-campo"><label for="ct-telefono">Teléfono</label><input id="ct-telefono" name="telefono" type="tel" autocomplete="tel" required maxlength="20" inputmode="tel"></div>
-      <div class="ct-campo ct-ancho"><label for="ct-empresa">Empresa</label><input id="ct-empresa" name="empresa" type="text" autocomplete="organization" maxlength="120"></div>
+      <div class="ct-campo"><label for="ct-empresa">Empresa</label><input id="ct-empresa" name="empresa" type="text" autocomplete="organization" maxlength="120"></div>
+      <div class="ct-campo"><label for="ct-localidad">Municipio <span class="ct-opcional">(opcional)</span></label><input id="ct-localidad" name="localidad" type="text" autocomplete="address-level2" maxlength="80" placeholder="Por ejemplo: Elche"></div>
       <div class="ct-campo ct-ancho"><label for="ct-proceso">¿Qué proceso quieres mejorar?</label><textarea id="ct-proceso" name="proceso" rows="3" required maxlength="1000" placeholder="Por ejemplo: registrar facturas o responder a los clientes que escriben por WhatsApp"></textarea></div>
       <fieldset class="ct-franja ct-ancho">
         <legend>Franja horaria</legend>

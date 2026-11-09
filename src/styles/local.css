@@ -1,0 +1,93 @@
+/* ===== Páginas locales: zonas (/consultoria-ia), soluciones (/soluciones) y sus índices ===== */
+.local{padding:28px 0 0}
+.migas ol{display:flex;flex-wrap:wrap;gap:4px 0;list-style:none;margin:0 0 28px;padding:0;font:500 13px/1.4 var(--f-mono);color:var(--muted)}
+.migas li:not(:last-child)::after{content:"›";margin:0 9px;color:var(--line-2)}
+.migas a{text-decoration:none;color:var(--texto-2)}
+.migas a:hover{color:var(--sea);text-decoration:underline;text-underline-offset:4px}
+.migas [aria-current]{color:var(--muted)}
+
+.local-cabecera{max-width:860px;margin:0 0 40px}
+.local-cabecera .eyebrow{margin:0 0 14px;color:var(--red)}
+.titulo-local{font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:clamp(34px,4.4vw,58px);line-height:1.04;margin:0 0 20px;text-wrap:balance}
+.local-cabecera .entradilla{color:var(--texto-2);font-size:clamp(17px,1.5vw,20px);max-width:66ch}
+.articulo-firma{margin:18px 0 0;font:500 13px/1.5 var(--f-mono);color:var(--muted)}
+
+/* Texto y ficha lateral */
+.local-rejilla{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:64px;align-items:start}
+@media (max-width:1060px){ .local-rejilla{grid-template-columns:1fr;gap:28px} .local-rejilla .ficha{order:-1;position:static} }
+.prosa{max-width:72ch;font-size:17.5px;line-height:1.72;color:var(--ink)}
+.prosa > :first-child{margin-top:0}
+.prosa h2{font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:clamp(27px,2.6vw,34px);line-height:1.12;margin:52px 0 14px;text-wrap:balance}
+.prosa h3{font:600 19px/1.35 var(--f-body);margin:32px 0 8px}
+.prosa p{margin:0 0 16px}
+.prosa ul,.prosa ol{padding-left:22px;margin:0 0 18px}
+.prosa li{margin:0 0 8px}
+.prosa li::marker{color:var(--red)}
+.prosa strong{font-weight:600}
+.prosa a{color:var(--sea);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
+.prosa a:hover{color:var(--ink)}
+.prosa table{border-collapse:collapse;width:100%;margin:0 0 20px;font-size:15.5px}
+.prosa th,.prosa td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+.nota-ejemplos{background:var(--bg-2);border-left:3px solid var(--sea);border-radius:0 10px 10px 0;padding:12px 16px;font-size:15.5px;color:var(--texto-2)}
+
+.ficha{position:sticky;top:calc(var(--nav-h) + 24px);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;background:var(--surface);box-shadow:var(--shadow)}
+.ficha dl{margin:0 0 20px;display:grid;gap:16px}
+.ficha dt{font:500 12px/1.3 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+.ficha dd{margin:0;font-size:15.5px;line-height:1.5;color:var(--ink)}
+.ficha .btn{width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:2px 0 0;padding:0}
+.chips li{font-size:13.5px;line-height:1;padding:7px 10px;border-radius:999px;background:var(--sea-soft);color:#134F7D}
+.chips-enlace a{color:inherit;text-decoration:none}
+.chips-enlace a:hover{text-decoration:underline}
+
+/* Bloques al pie: soluciones relacionadas y zonas */
+.local-bloque{margin:72px 0 0}
+.local-bloque-titulo{font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:clamp(26px,2.6vw,36px);line-height:1.1;margin:0 0 22px}
+.local-bloque-titulo a{text-decoration:none}
+.local-bloque-titulo a:hover{color:var(--sea)}
+.local-mas{margin:22px 0 0;color:var(--texto-2)}
+.tarjetas-sol{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:18px}
+.tarjeta-sol{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px 20px;background:var(--surface);transition:border-color .2s,box-shadow .2s,transform .2s}
+.tarjeta-sol:hover{border-color:var(--line-2);box-shadow:var(--shadow);transform:translateY(-2px)}
+.tarjeta-sol:focus-within{outline:2px solid var(--sea);outline-offset:3px}
+.tarjeta-sol-sector{margin:0 0 10px;font:500 12px/1.3 var(--f-mono);letter-spacing:.04em;color:var(--red)}
+.tarjeta-sol-titulo{margin:0 0 10px;font:600 18px/1.35 var(--f-body)}
+.tarjeta-sol-titulo a{text-decoration:none}
+.tarjeta-sol-titulo a::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.tarjeta-sol-titulo a:focus-visible{outline:none}
+.tarjeta-sol-resumen{margin:0 0 16px;font-size:15.5px;line-height:1.55;color:var(--texto-2);flex:1}
+.tarjeta-sol-mas{font-size:14.5px;font-weight:600;color:var(--sea)}
+
+.lista-zonas{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.lista-zonas a{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--line-2);border-radius:999px;text-decoration:none;font-size:15px;transition:border-color .2s,color .2s}
+.lista-zonas a:hover{border-color:var(--sea);color:var(--sea)}
+.lista-zonas li:not(:has(a)){display:inline-flex;align-items:center;min-height:40px;padding:0 14px;font-size:15px;color:var(--muted)}
+.rejilla-zonas{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:18px}
+.grupo-zona{border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.grupo-zona h3{margin:0 0 6px;font-family:var(--f-display);font-weight:var(--display-weight);font-size:26px;line-height:1.1}
+.grupo-zona h3 a{text-decoration:none}
+.grupo-zona h3 a:hover{color:var(--sea)}
+.grupo-zona-sectores{margin:0 0 14px;font-size:14px;color:var(--muted)}
+.grupo-zona .lista-zonas a{min-height:34px;padding:0 12px;font-size:14px}
+
+/* Llamada final */
+.cta-local{margin:88px 0 0;padding:72px 0;background:var(--bg-2);border-top:1px solid var(--line)}
+.cta-local-caja{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:center}
+@media (max-width:860px){ .cta-local-caja{grid-template-columns:1fr;gap:24px} }
+.cta-local-titulo{font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:clamp(28px,3vw,40px);line-height:1.08;margin:0 0 12px}
+.cta-local-caja p{margin:0;color:var(--texto-2);max-width:60ch}
+.cta-local-acciones{display:grid;gap:14px;justify-items:start}
+.cta-local-otros{font-size:15px}
+.cta-local-otros a{color:var(--sea);font-weight:600}
+
+/* Tus datos, bajo control */
+.datos-seguros{margin:80px 0 0}
+.datos-seguros .contenedor{border-top:1px solid var(--line);padding-top:40px}
+.datos-seguros-titulo{font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:clamp(24px,2.2vw,30px);line-height:1.1;margin:0 0 20px}
+.datos-seguros ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 28px;list-style:none;margin:0;padding:0}
+@media (max-width:1060px){ .datos-seguros ul{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .datos-seguros ul{grid-template-columns:1fr} }
+.datos-seguros li{position:relative;padding-left:18px;font-size:15.5px;line-height:1.55;color:var(--texto-2)}
+.datos-seguros li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--sea)}
+.datos-seguros b{color:var(--ink);font-weight:600}
+.datos-seguros + .cta-local{margin-top:56px}

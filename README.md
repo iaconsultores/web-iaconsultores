@@ -3,7 +3,11 @@
 Web de IA Consultores, la consultoría de inteligencia artificial y automatización para pymes y autónomos de Juan Luis Toboso.
 
 ## Qué incluye
-- Portada que rota por provincias (Alicante, Valencia, Murcia, Albacete, Madrid y toda España).
+- Portada que rota por las comarcas de la provincia de Alicante y su economía (Alicante, Elche, la Vega Baja, el
+  Vinalopó, l'Alcoià, la Marina Baixa y la Marina Alta) y termina en Valencia, Murcia y Albacete.
+- Páginas locales: `/consultoria-ia` (provincias, comarcas y municipios a menos de hora y media de Alicante) y
+  `/soluciones` (artículos por sector y zona). Estructura en `src/datos/zonas.ts` y `src/datos/soluciones.ts`;
+  textos y guía de redacción en `src/textos/`.
 - Asistente con Claude Opus 5.5 (streaming, propuesta de llamada con confirmación humana; nombre y teléfono nunca pasan por la IA).
 - Formulario de llamada con aviso por email (Resend) y webhook firmado opcional para n8n.
 - Página privada de candidatura con el CV en pantalla (y en PDF) y la matriz de evidencias requisito a requisito.
@@ -29,6 +33,7 @@ y `/api/salud`.
 ## Diseño y plan
 - Spec: `docs/superpowers/specs/2026-10-05-iaconsultores-web-design.md`
 - Plan: `docs/superpowers/plans/2026-10-05-iaconsultores-web-fase1.md`
+- Enfoque local (9-nov-2026): `docs/superpowers/specs/2026-11-09-enfoque-local-alicante.md`
 
 © 2026 Agentia Codex S.L. Todos los derechos reservados. Repositorio público solo para consulta: no se concede
 licencia para copiar ni reutilizar su contenido (ver [LICENSE](LICENSE)).

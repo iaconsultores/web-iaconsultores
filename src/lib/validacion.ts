@@ -15,6 +15,8 @@ export const EsquemaLead = z.object({
   nombre: z.string().trim().min(2, "Escribe tu nombre.").max(80, "El nombre es demasiado largo."),
   telefono: z.string().transform(normalizarTelefono).pipe(z.string().regex(/^\+?\d{9,15}$/, "Escribe un teléfono válido.")),
   empresa: z.string().trim().max(120).default(""),
+  /** Municipio de la empresa (opcional): para preparar la visita */
+  localidad: z.string().trim().max(80).default(""),
   proceso: z.string().trim().min(1, "Cuéntanos qué proceso quieres mejorar.").max(1000, "Máximo 1.000 caracteres."),
   franja: z.enum(["manana", "tarde", "indiferente"]).default("indiferente"),
   motivo: z.enum(["llamada", "colaboracion"]).default("llamada"),

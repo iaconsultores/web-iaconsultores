@@ -1,0 +1,25 @@
+---
+/* Llamada a la acción al final de cada página local: llamada de 30 min, teléfono y WhatsApp */
+import { SITIO } from "../../datos/sitio";
+
+interface Props {
+  /** «en Elche»: si se da, la visita se nombra con el lugar */
+  en?: string;
+}
+
+const { en } = Astro.props;
+---
+<section class="cta-local" aria-labelledby="cta-local-titulo">
+  <div class="contenedor">
+    <div class="cta-local-caja">
+      <div>
+        <h2 class="cta-local-titulo" id="cta-local-titulo">¿Qué proceso te quita más tiempo?</h2>
+        <p>Cuéntanoslo en una llamada de diagnóstico gratuita de 30 minutos. Si encaja, vamos a conocer tu empresa {en ? en : "en persona"} y después te enviamos una propuesta y un presupuesto personalizado.</p>
+      </div>
+      <div class="cta-local-acciones">
+        <a class="btn btn-primario" href="/#contacto">Pide tu llamada gratuita de 30 min</a>
+        <p class="cta-local-otros">o llámanos al <a href={SITIO.telefonoEnlace}>{SITIO.telefono}</a> · <a href={SITIO.whatsapp} target="_blank" rel="noopener">WhatsApp</a></p>
+      </div>
+    </div>
+  </div>
+</section>

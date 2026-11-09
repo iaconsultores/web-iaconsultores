@@ -1,7 +1,7 @@
 /* ===== Portada (#portada) · frag-hero.html =====
-   Texto + arco con la escena de la provincia + columna geo (coordenadas, rosa, curiosidad, selector)
-   y, bajo la portada, la banda interactiva de la provincia. Las escenas y bandas de Albacete, Madrid y
-   España llegan por los SLOT de frag-hero-2.html; aquí se definen su tamaño y su visibilidad. */
+   Texto + arco con la escena de la zona + columna geo (coordenadas, rosa, economía, selector)
+   y, bajo la portada, la banda interactiva de la zona. Las zonas están en datos/provincias.ts; las escenas,
+   en escenas/<zona>.html, y Portada.astro rellena los huecos de portada.html. */
 #portada{position:relative;isolation:isolate;overflow:hidden;background:var(--bg)}
 #portada .sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 /* En pantallas anchas la portada respira más y la banda baja unos 100 px a 1920 px (el texto, más ancho, ocupa
@@ -35,6 +35,8 @@
 #portada .btn-chat{display:inline-flex;align-items:center;gap:10px;padding:8px 0 7px;border:0;border-bottom:1.5px solid currentColor;border-radius:0;background:none;color:var(--sea);font:600 16px/1 var(--f-body);cursor:pointer;transition:color .2s}
 #portada .btn-chat:hover{color:var(--ink)}
 #portada .btn-chat svg{flex:none;width:20px;height:20px}
+#portada .cercania{display:flex;align-items:flex-start;gap:8px;max-width:37em;margin:20px 0 0;font:500 13px/1.45 var(--f-mono);letter-spacing:.01em;color:var(--texto-2)}
+#portada .cercania svg{flex:none;width:14px;height:14px;margin-top:1px;color:var(--red)}
 
 /* --- Arco con la escena de la provincia --- */
 #portada .por-arco{position:relative;z-index:2;margin:14px 0 0}
@@ -45,13 +47,17 @@
 #portada .escena{display:none;position:absolute;inset:0;animation:por-entra .8s cubic-bezier(.2,.7,.2,1) both}
 #portada .escena > svg{display:block;width:100%;height:100%}
 @keyframes por-entra{from{opacity:0;transform:scale(1.04)}}
+/* Una regla por zona (datos/provincias.ts); sin JS se queda la de Alicante, que es el valor inicial de <html> */
 html[data-provincia="alicante"] #portada .escena[data-prov="alicante"],
+html[data-provincia="elche"] #portada .escena[data-prov="elche"],
+html[data-provincia="vega-baja"] #portada .escena[data-prov="vega-baja"],
+html[data-provincia="vinalopo"] #portada .escena[data-prov="vinalopo"],
+html[data-provincia="alcoia"] #portada .escena[data-prov="alcoia"],
+html[data-provincia="marina-baixa"] #portada .escena[data-prov="marina-baixa"],
+html[data-provincia="marina-alta"] #portada .escena[data-prov="marina-alta"],
 html[data-provincia="valencia"] #portada .escena[data-prov="valencia"],
 html[data-provincia="murcia"] #portada .escena[data-prov="murcia"],
-html[data-provincia="albacete"] #portada .escena[data-prov="albacete"],
-html[data-provincia="madrid"] #portada .escena[data-prov="madrid"],
-html[data-provincia="espana"] #portada .escena[data-prov="espana"],
-html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-provincia="albacete"]):not([data-provincia="madrid"]):not([data-provincia="espana"]) #portada .escena[data-prov="alicante"]{display:block}
+html[data-provincia="albacete"] #portada .escena[data-prov="albacete"]{display:block}
 #portada .lugar{margin:24px 0 0;text-align:center;font:italic 400 18px/1.3 var(--f-display);color:var(--ink);transition:opacity .22s}
 #portada .lugar.cambiando{opacity:0}
 
@@ -69,6 +75,21 @@ html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-p
 #portada .brillos line:nth-child(2n){animation-delay:-1.2s}
 #portada .brillos line:nth-child(3n){animation-delay:-2.3s}
 @keyframes por-brillo{50%{opacity:.2}}
+/* Escenas de las comarcas: aspas que giran, barcos que se mecen, humo, un helicóptero y una peonza */
+#portada .esc-giro{transform-box:view-box;animation:por-giro 14s linear infinite}
+#portada .esc-giro-2{animation-duration:17s;animation-delay:-5s}
+#portada .esc-giro-3{animation-duration:21s;animation-delay:-9s}
+@keyframes por-giro{to{transform:rotate(360deg)}}
+#portada .esc-flota{animation:por-flota 4.5s ease-in-out infinite alternate}
+@keyframes por-flota{to{transform:translateY(3px)}}
+#portada .esc-deriva{animation:por-deriva 26s ease-in-out infinite alternate}
+@keyframes por-deriva{from{transform:translateX(-46px)}to{transform:translateX(34px)}}
+#portada .esc-humo circle{transform-box:fill-box;transform-origin:center;animation:por-humo 6s ease-out infinite}
+#portada .esc-humo circle:nth-child(2){animation-delay:-2s}
+#portada .esc-humo circle:nth-child(3){animation-delay:-4s}
+@keyframes por-humo{from{transform:translateY(8px) scale(.6);opacity:0}30%{opacity:.8}to{transform:translateY(-10px) scale(1.3);opacity:0}}
+#portada .esc-peonza{transform-box:view-box;transform-origin:96px 500px;animation:por-peonza 1.8s ease-in-out infinite alternate}
+@keyframes por-peonza{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
 #portada .mur-noria{transform-box:view-box;transform-origin:330px 446px;animation:por-noria 32s linear infinite}
 @keyframes por-noria{to{transform:rotate(360deg)}}
 
@@ -79,7 +100,9 @@ html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-p
 #portada .sombra .sw:nth-child(3n){animation-duration:13s;animation-delay:-6s}
 @keyframes por-vaiven{from{transform:rotate(-1.8deg)}to{transform:rotate(2deg)}}
 html[data-provincia="alicante"] #portada .sombra-palmera,
+html[data-provincia="elche"] #portada .sombra-palmera,
 html[data-provincia="murcia"] #portada .sombra-palmera,
+html[data-provincia="vega-baja"] #portada .sombra-naranjo,
 html[data-provincia="valencia"] #portada .sombra-naranjo{display:block}
 
 /* --- Columna geo: rosa, coordenadas, curiosidad y selector --- */
@@ -98,6 +121,9 @@ html[data-provincia="valencia"] #portada .sombra-naranjo{display:block}
 #portada .dato-texto p{margin:0;font-size:14.5px;line-height:1.5;color:var(--ink);text-wrap:pretty}
 #portada .dato-texto p + p{margin-top:9px}
 #portada .dato.cambiando .dato-texto{opacity:0}
+#portada .dato-enlace{display:inline-block;margin-top:10px;font-size:14px;font-weight:600;line-height:1.35;color:var(--sea);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;transition:opacity .22s,color .2s}
+#portada .dato-enlace:hover{color:var(--ink)}
+#portada .dato.cambiando .dato-enlace{opacity:0}
 #portada .selector{padding-top:22px}
 
 /* --- Bandas interactivas a todo el ancho --- */
@@ -107,12 +133,15 @@ html[data-provincia="valencia"] #portada .sombra-naranjo{display:block}
 #portada .banda > svg{position:absolute;inset:0;display:block;width:100%;height:100%;opacity:.7}
 @keyframes por-funde{from{opacity:0}}
 html[data-provincia="alicante"] #portada .banda[data-prov="alicante"],
+html[data-provincia="elche"] #portada .banda[data-prov="elche"],
+html[data-provincia="vega-baja"] #portada .banda[data-prov="vega-baja"],
+html[data-provincia="vinalopo"] #portada .banda[data-prov="vinalopo"],
+html[data-provincia="alcoia"] #portada .banda[data-prov="alcoia"],
+html[data-provincia="marina-baixa"] #portada .banda[data-prov="marina-baixa"],
+html[data-provincia="marina-alta"] #portada .banda[data-prov="marina-alta"],
 html[data-provincia="valencia"] #portada .banda[data-prov="valencia"],
 html[data-provincia="murcia"] #portada .banda[data-prov="murcia"],
-html[data-provincia="albacete"] #portada .banda[data-prov="albacete"],
-html[data-provincia="madrid"] #portada .banda[data-prov="madrid"],
-html[data-provincia="espana"] #portada .banda[data-prov="espana"],
-html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-provincia="albacete"]):not([data-provincia="madrid"]):not([data-provincia="espana"]) #portada .banda[data-prov="alicante"]{display:block}
+html[data-provincia="albacete"] #portada .banda[data-prov="albacete"]{display:block}
 #portada.sin-banda .banda[data-prov="reserva"]{display:block}
 #portada .carril{fill:none;stroke:var(--ink);stroke-opacity:.32;stroke-width:1.2;stroke-dasharray:1 8;stroke-linecap:round}
 #portada .amb{fill:var(--bg);stroke:var(--ink);stroke-opacity:.45;stroke-width:1}
@@ -189,85 +218,55 @@ html:not([data-provincia="valencia"]):not([data-provincia="murcia"]):not([data-p
   #portada .paso-texto{font-size:13px}
   #portada .pausa{top:10px;right:10px;width:32px;height:32px}
 }
-/* ===== Provincias 2 (Albacete · Madrid · España): escenas del arco y bandas animadas ===== */
-#portada :is(.escena,.banda):is([data-prov="albacete"],[data-prov="madrid"],[data-prov="espana"]) > .h2-svg{display:block;width:100%;height:100%}
-
-/* --- Escenas: un movimiento sutil en cada una --- */
-#portada .escena[data-prov="albacete"] .h2a-aspas{transform-box:view-box}
-#portada .escena[data-prov="madrid"] .h2m-aro{transform-box:view-box;transform-origin:262px 128px;opacity:0}
-#portada .escena[data-prov="espana"] .h2e-ropa > g{transform-box:view-box}
-@media (prefers-reduced-motion:no-preference){
-  /* Albacete: las aspas del molino giran despacio al fondo del pasaje */
-  #portada .escena[data-prov="albacete"] .h2a-aspas{animation:h2-giro 18s linear infinite}
-  /* Madrid: el sol late tras la Victoria (como el de la 07), el estanque se mueve, balizas de las torres */
-  #portada .escena[data-prov="madrid"] .h2m-aro{animation:h2-aro 7s ease-out infinite}
-  #portada .escena[data-prov="madrid"] .h2m-aro2{animation-delay:-3.5s}
-  #portada .escena[data-prov="madrid"] .h2m-ondas use{animation:h2-onda 9s ease-in-out infinite alternate}
-  #portada .escena[data-prov="madrid"] .h2m-ondas use:nth-child(2n){animation-duration:11s;animation-delay:-4s}
-  #portada .escena[data-prov="madrid"] .h2m-ondas use:nth-child(3n){animation-duration:13s;animation-delay:-7s}
-  #portada .escena[data-prov="madrid"] .h2m-balizas circle{animation:h2-baliza 2.8s ease-in-out infinite}
-  #portada .escena[data-prov="madrid"] .h2m-balizas circle:nth-child(2n){animation-delay:-1.4s}
-  /* España: la ropa tendida se mece con la brisa; la cruz de la farmacia respira; el café humea */
-  #portada .escena[data-prov="espana"] .h2e-ropa > g{animation:h2-vaiven 3.6s ease-in-out infinite alternate}
-  #portada .escena[data-prov="espana"] .h2e-ropa > g:nth-child(2){animation-duration:4.4s;animation-delay:-1.2s}
-  #portada .escena[data-prov="espana"] .h2e-ropa > g:nth-child(3){animation-duration:3.1s;animation-delay:-.6s}
-  #portada .escena[data-prov="espana"] .h2e-ropa > g:nth-child(4){animation-duration:3.4s;animation-delay:-2s}
-  #portada .escena[data-prov="espana"] .h2e-halo{animation:h2-halo 3.2s ease-in-out infinite}
-  #portada .escena[data-prov="espana"] .h2e-vapor{animation:h2-vapor 4s ease-in-out infinite}
-}
-@media (prefers-reduced-motion:reduce){ #portada .escena[data-prov="madrid"] .h2m-aro:not(.h2m-aro2){opacity:.35;transform:scale(1.2)} }
-@keyframes h2-giro{to{transform:rotate(360deg)}}
-@keyframes h2-aro{from{transform:scale(1);opacity:.55}to{transform:scale(1.85);opacity:0}}
-@keyframes h2-onda{to{transform:translateX(24px)}}
-@keyframes h2-baliza{50%{opacity:.25}}
-@keyframes h2-vaiven{from{transform:rotate(-2.6deg)}to{transform:rotate(3deg)}}
-@keyframes h2-halo{50%{opacity:.35}}
-@keyframes h2-vapor{0%{opacity:0;transform:translateY(4px)}40%{opacity:1}100%{opacity:0;transform:translateY(-6px)}}
+/* ===== Banda de Albacete (portada-2.js) ===== */
+#portada .banda[data-prov="albacete"] > .h2-svg{display:block;width:100%;height:100%}
 
 /* --- Bandas: elementos propios del SVG --- */
-#portada .banda:is([data-prov="albacete"],[data-prov="madrid"],[data-prov="espana"]) .h2-pk{stroke:#A3312A;stroke-width:2.4}
-#portada .banda:is([data-prov="albacete"],[data-prov="madrid"],[data-prov="espana"]) .h2-amb{stroke:#1B1F2A;stroke-opacity:.5;stroke-width:1.2}
-#portada .banda:is([data-prov="albacete"],[data-prov="madrid"],[data-prov="espana"]) .h2-carril{fill:none;stroke:#1B1F2A;stroke-opacity:.35;stroke-width:1.2;stroke-dasharray:1 8;stroke-linecap:round}
-#portada .banda[data-prov="madrid"] .h2-km{font:500 13px var(--f-mono,monospace);letter-spacing:.04em;text-anchor:middle;fill:#1B1F2A}
-@media (max-width:760px){ #portada .banda[data-prov="madrid"] .h2-km{font-size:11px} }
+#portada .banda[data-prov="albacete"] .h2-pk{stroke:#A3312A;stroke-width:2.4}
+#portada .banda[data-prov="albacete"] .h2-amb{stroke:#1B1F2A;stroke-opacity:.5;stroke-width:1.2}
+#portada .banda[data-prov="albacete"] .h2-carril{fill:none;stroke:#1B1F2A;stroke-opacity:.35;stroke-width:1.2;stroke-dasharray:1 8;stroke-linecap:round}
 
 /* --- Medallas, nombres y leyenda: mismas clases y aspecto que las bandas de la portada (frag-hero.html).
    Reglas de especificidad cero (:where) para que, montadas en la portada, manden las de la portada. --- */
-:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]){position:relative}
-:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paradas{list-style:none;margin:0;padding:0}
-:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .parada{position:absolute;z-index:2;transform:translate(-50%,-50%)}
-:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .medalla{--m-fondo:var(--bg);--m-aro:var(--red);--a1:4px;--a2:5.5px;position:relative;display:grid;place-items:center;width:54px;height:54px;padding:0;border:2px solid var(--ink);border-radius:50%;background:var(--m-fondo);box-shadow:inset 0 0 0 var(--a1) var(--m-fondo),inset 0 0 0 var(--a2) var(--m-aro);font:500 24px/1 var(--f-display);color:var(--ink);cursor:pointer;transition:background-color .35s,color .35s,box-shadow .35s,transform .25s}
-:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .medalla:hover{transform:scale(1.07)}
-:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .medalla:focus-visible{outline:2px solid var(--sea);outline-offset:4px;border-radius:50%}
-:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .medalla::after{content:"";position:absolute;inset:-5px;border:2px solid var(--red);border-radius:50%;opacity:0;pointer-events:none}
-:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .parada.hecho .medalla{--m-fondo:var(--line)}
-:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .parada.activo .medalla{--m-fondo:var(--red);--m-aro:var(--bg);color:#fff}
-:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .m-nombre{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);padding:4px 8px 5px;border-radius:4px;background:var(--bg);box-shadow:0 1px 2px rgba(27,31,42,.14);font:500 13px/1 var(--f-body);color:var(--ink);white-space:nowrap;pointer-events:none}
-:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto{position:absolute;z-index:3;top:0;left:0;width:max-content;max-width:230px;margin:0;padding:8px 12px 9px;border-radius:8px;background:var(--surface,#fff);box-shadow:0 1px 2px rgba(27,31,42,.08),0 6px 16px rgba(27,31,42,.1);font-size:13.5px;line-height:1.38;color:var(--ink);opacity:0;transform:translateY(-3px);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
-:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto.ver{opacity:1;transform:none}
-:where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto b{display:block;margin:0 0 4px;font:500 11.5px/1 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--red)}
+:where(#portada .banda[data-prov="albacete"]){position:relative}
+:where(#portada .banda[data-prov="albacete"]) .paradas{list-style:none;margin:0;padding:0}
+:where(#portada .banda[data-prov="albacete"]) .parada{position:absolute;z-index:2;transform:translate(-50%,-50%)}
+:where(#portada .banda[data-prov="albacete"]) .medalla{--m-fondo:var(--bg);--m-aro:var(--red);--a1:4px;--a2:5.5px;position:relative;display:grid;place-items:center;width:54px;height:54px;padding:0;border:2px solid var(--ink);border-radius:50%;background:var(--m-fondo);box-shadow:inset 0 0 0 var(--a1) var(--m-fondo),inset 0 0 0 var(--a2) var(--m-aro);font:500 24px/1 var(--f-display);color:var(--ink);cursor:pointer;transition:background-color .35s,color .35s,box-shadow .35s,transform .25s}
+:where(#portada .banda[data-prov="albacete"]) .medalla:hover{transform:scale(1.07)}
+:where(#portada .banda[data-prov="albacete"]) .medalla:focus-visible{outline:2px solid var(--sea);outline-offset:4px;border-radius:50%}
+:where(#portada .banda[data-prov="albacete"]) .medalla::after{content:"";position:absolute;inset:-5px;border:2px solid var(--red);border-radius:50%;opacity:0;pointer-events:none}
+:where(#portada .banda[data-prov="albacete"]) .parada.hecho .medalla{--m-fondo:var(--line)}
+:where(#portada .banda[data-prov="albacete"]) .parada.activo .medalla{--m-fondo:var(--red);--m-aro:var(--bg);color:#fff}
+:where(#portada .banda[data-prov="albacete"]) .m-nombre{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);padding:4px 8px 5px;border-radius:4px;background:var(--bg);box-shadow:0 1px 2px rgba(27,31,42,.14);font:500 13px/1 var(--f-body);color:var(--ink);white-space:nowrap;pointer-events:none}
+:where(#portada .banda[data-prov="albacete"]) .paso-texto{position:absolute;z-index:3;top:0;left:0;width:max-content;max-width:230px;margin:0;padding:8px 12px 9px;border-radius:8px;background:var(--surface,#fff);box-shadow:0 1px 2px rgba(27,31,42,.08),0 6px 16px rgba(27,31,42,.1);font-size:13.5px;line-height:1.38;color:var(--ink);opacity:0;transform:translateY(-3px);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
+:where(#portada .banda[data-prov="albacete"]) .paso-texto.ver{opacity:1;transform:none}
+:where(#portada .banda[data-prov="albacete"]) .paso-texto b{display:block;margin:0 0 4px;font:500 11.5px/1 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--red)}
 @media (prefers-reduced-motion:no-preference){
-  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .parada.activo .medalla::after{animation:h2-ping 4.8s ease-out infinite}
+  :where(#portada .banda[data-prov="albacete"]) .parada.activo .medalla::after{animation:h2-ping 4.8s ease-out infinite}
 }
 @keyframes h2-ping{from{transform:scale(1);opacity:.8}to{transform:scale(1.9);opacity:0}}
 @media (max-width:1180px){
-  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto{top:auto;bottom:10px;left:12px;right:12px;width:auto;max-width:none;text-align:center}
-  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto b{display:inline;margin:0 6px 0 0}
+  :where(#portada .banda[data-prov="albacete"]) .paso-texto{top:auto;bottom:10px;left:12px;right:12px;width:auto;max-width:none;text-align:center}
+  :where(#portada .banda[data-prov="albacete"]) .paso-texto b{display:inline;margin:0 6px 0 0}
 }
 @media (max-width:760px){
-  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .medalla{--a1:3px;--a2:4.5px;width:42px;height:42px;font-size:19px}
-  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .m-nombre{top:calc(100% + 6px);padding:3px 6px 4px;font-size:11.5px}
-  :where(#portada .banda[data-prov="albacete"],#portada .banda[data-prov="madrid"],#portada .banda[data-prov="espana"]) .paso-texto{font-size:13px}
+  :where(#portada .banda[data-prov="albacete"]) .medalla{--a1:3px;--a2:4.5px;width:42px;height:42px;font-size:19px}
+  :where(#portada .banda[data-prov="albacete"]) .m-nombre{top:calc(100% + 6px);padding:3px 6px 4px;font-size:11.5px}
+  :where(#portada .banda[data-prov="albacete"]) .paso-texto{font-size:13px}
 }
 /* ===== Rotación de provincias: pila sin saltos de diseño y botones ===== */
 #portada .pila-prov{display:inline-grid;font-style:inherit}
 #portada .pila-prov>span{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility 0s linear .6s}
 html[data-provincia="alicante"] #portada .pila-prov>[data-p="alicante"],
+html[data-provincia="elche"] #portada .pila-prov>[data-p="elche"],
+html[data-provincia="vega-baja"] #portada .pila-prov>[data-p="vega-baja"],
+html[data-provincia="vinalopo"] #portada .pila-prov>[data-p="vinalopo"],
+html[data-provincia="alcoia"] #portada .pila-prov>[data-p="alcoia"],
+html[data-provincia="marina-baixa"] #portada .pila-prov>[data-p="marina-baixa"],
+html[data-provincia="marina-alta"] #portada .pila-prov>[data-p="marina-alta"],
 html[data-provincia="valencia"] #portada .pila-prov>[data-p="valencia"],
 html[data-provincia="murcia"] #portada .pila-prov>[data-p="murcia"],
-html[data-provincia="albacete"] #portada .pila-prov>[data-p="albacete"],
-html[data-provincia="madrid"] #portada .pila-prov>[data-p="madrid"],
-html[data-provincia="espana"] #portada .pila-prov>[data-p="espana"]{opacity:1;visibility:visible;transition:opacity .6s ease}
+html[data-provincia="albacete"] #portada .pila-prov>[data-p="albacete"]{opacity:1;visibility:visible;transition:opacity .6s ease}
 #portada .tv .pila-prov>[data-p="valencia"]{margin-left:-.1em}
 #portada .sel-titulo{display:flex;align-items:center;gap:7px;margin:0 0 10px;font:600 14px/1.25 var(--f-body);color:var(--ink)}
 #portada .sel-titulo svg{flex:none;width:13px;height:13px;color:var(--red)}

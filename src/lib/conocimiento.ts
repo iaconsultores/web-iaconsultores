@@ -4,6 +4,7 @@ import comoTrabajamos from "../conocimiento/03-como-trabajamos.md?raw";
 import queHacemos from "../conocimiento/04-que-hacemos.md?raw";
 import sobreJuanLuis from "../conocimiento/06-sobre-juan-luis.md?raw";
 import contacto from "../conocimiento/08-contacto-y-precios.md?raw";
+import zonas from "../conocimiento/09-zonas-y-soluciones.md?raw";
 import { SERVICIOS } from "../datos/servicios";
 
 export function textoServicios(): string {
@@ -15,7 +16,7 @@ export function textoServicios(): string {
 
 /** System del chat: el mismo texto byte a byte en todo el despliegue (lo exige la caché de prompts) */
 export function componerConocimiento(): string {
-  return [reglas, quienes, textoServicios(), comoTrabajamos, queHacemos, sobreJuanLuis, contacto]
+  return [reglas, quienes, textoServicios(), comoTrabajamos, queHacemos, sobreJuanLuis, contacto, zonas]
     .map((t) => t.replace(/\r\n/g, "\n").trim())
     .join("\n\n");
 }

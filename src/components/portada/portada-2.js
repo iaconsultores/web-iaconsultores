@@ -1,5 +1,5 @@
 (() => {
-  /* Provincias 2 · bandas de Albacete, Madrid y España. Mismo motor que las bandas de frag-hero.html:
+  /* Provincias 2 · banda de Albacete (la Sartén). Mismo motor que las bandas de frag-hero.html:
      medallas-botón ① Datos ② IA ③ Proceso ④ Resultado alineadas con .contenedor, salto al pulsar,
      leyenda al pasar, pausa de la portada y estado final visible si IAC.reducido. */
   const IAC = window.IAC || {};
@@ -56,7 +56,6 @@
     };
   }
   const arco = (cx, cy, r, a0, a1, n) => { const p = []; for (let i = 0; i <= n; i++) { const a = a0 + (a1 - a0) * i / n; p.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]); } return p; };
-  const curva = (p0, p1, p2, p3, n = 24) => { const p = []; for (let i = 0; i <= n; i++) { const t = i / n, u = 1 - t; p.push([0, 1].map((j) => u * u * u * p0[j] + 3 * u * u * t * p1[j] + 3 * u * t * t * p2[j] + t * t * t * p3[j])); } return p; };
   const rombo = (capa, z, fill, extra = {}) => nodo("rect", Object.assign({ x: -z / 2, y: -z / 2, width: z, height: z, fill }, extra), capa);
 
   /* ---------------- Albacete · la Sartén: tres anillos, el templete y su mango ---------------- */
@@ -104,123 +103,6 @@
       estela: (g) => [[8, .55], [6, .38], [4, .22]].map(([z, o]) => rombo(g, z, "#A3312A", { opacity: o })),
       giro: 45,
       ambiente: (t) => amb.forEach((o) => { const a = o.a + o.s * t * 0.28; o.n.setAttribute("transform", `translate(${f1(cx + o.r * Math.cos(a))} ${f1(cy + o.r * Math.sin(a))}) rotate(45)`); })
-    };
-  }
-
-  /* ---------------- Madrid · el Km 0 y las líneas de metro de colores ---------------- */
-  function madrid(G, capa) {
-    const { nx, mid: cy, vx0, visW, mob } = G, a0 = vx0 - 40, a1 = vx0 + visW + 40, km = nx[0];
-    const d1 = mob ? 22 : 34, d2 = mob ? 44 : 64, grosor = mob ? 5.5 : 8;
-    // Cada línea sale del Km 0 (①) a 45°, corre por su carril y cruza la roja en un medallón (correspondencia)
-    const linea = (c0, cruces) => {
-      const p = [[a0, cy + c0], [km - Math.abs(c0), cy + c0], [km, cy], [km + Math.abs(c0), cy + c0]];
-      let c = c0;
-      cruces.forEach(([i, nuevo]) => { p.push([nx[i] - Math.abs(c), cy + c], [nx[i], cy], [nx[i] + Math.abs(nuevo), cy + nuevo]); c = nuevo; });
-      p.push([a1, cy + c]);
-      return ruta(p);
-    };
-    const lineas = [
-      { color: "#1A6AA6", rt: linea(-d2, [[1, d2], [3, -d2]]) },
-      { color: "#5FA4D3", rt: linea(d2, [[1, -d2], [3, d2]]) },
-      { color: "#3F8B5E", rt: linea(-d1, [[2, d1]]) },
-      { color: "#E0A82E", rt: linea(d1, [[2, -d1]]) },
-    ];
-    lineas.forEach((l) => nodo("path", { d: l.rt.d(), fill: "none", stroke: l.color, "stroke-width": f1(grosor), "stroke-linejoin": "round" }, capa));
-    const roja = ruta([[a0, cy], [a1, cy]]);
-    nodo("path", { d: roja.d(), stroke: "#A3312A", "stroke-width": f1(grosor) }, capa);
-    lineas.concat([{ color: "#A3312A", rt: roja }]).forEach((l) => {
-      let d = ""; const p = l.rt.pts;
-      for (let i = 1; i < p.length; i++) {
-        if (Math.abs(p[i][1] - p[i - 1][1]) > 0.5) continue;
-        for (let x = Math.ceil(p[i - 1][0] / 90) * 90 + 45; x < p[i][0]; x += 90) {
-          if (nx.some((m) => Math.abs(m - x) < (mob ? 30 : 46))) continue;
-          d += `M${f1(x)} ${f1(p[i][1] - grosor * 0.5)}v${f1(-grosor * 0.8)}`;
-        }
-      }
-      if (d) nodo("path", { d, stroke: l.color, "stroke-width": f1(grosor * 0.55) }, capa);
-    });
-    // Placa del Kilómetro Cero bajo el medallón ①: rayos de las carreteras radiales y rótulo
-    const r0 = mob ? 30 : 44;
-    nodo("circle", { cx: f1(km), cy: f1(cy), r: f1(r0), fill: "#F3EBDD", stroke: "#1B1F2A", "stroke-width": "1.4" }, capa);
-    let rad = ""; for (let a = 0; a < 360; a += 22.5) { const c = Math.cos(a * Math.PI / 180), s = Math.sin(a * Math.PI / 180); rad += `M${f1(km + r0 * .7 * c)} ${f1(cy + r0 * .7 * s)}L${f1(km + r0 * .92 * c)} ${f1(cy + r0 * .92 * s)}`; }
-    nodo("path", { d: rad, stroke: "#1B1F2A", "stroke-opacity": ".55", "stroke-width": "1.3", "stroke-linecap": "round" }, capa);
-    const etq = nodo("g", { transform: `translate(${f1(km)} ${f1(cy - r0 - (mob ? 9 : 12))})` }, capa);
-    const tx = nodo("text", { class: "h2-km", y: mob ? 3.5 : 4.5 }, etq); tx.textContent = "Km 0";
-    // Trenes de tres coches con ventanillas de datos
-    const trenes = lineas.map((l, i) => {
-      const coches = [0, 1, 2].map((c) => {
-        const cg = nodo("g", {}, capa);
-        nodo("rect", { x: -7, y: -3.6, width: 14, height: 7.2, rx: 3.2, fill: "#1B1F2A" }, cg);
-        nodo("rect", { x: -4, y: -1.3, width: 2.6, height: 2.6, fill: "#FAF6EE" }, cg);
-        nodo("rect", { x: 1.4, y: -1.3, width: 2.6, height: 2.6, fill: c === 0 ? "#FFE27A" : "#FAF6EE" }, cg);
-        return cg;
-      });
-      return { l, coches, fase: i * 0.27 + (i % 2) * 0.11 };
-    });
-    return {
-      rt: roja, Ls: nx.map((x) => x - a0),
-      paquete: (g) => rombo(g, 14, "#FAF6EE", { class: "h2-pk", rx: 2 }),
-      estela: (g) => [[8, .7], [6, .5], [4, .3]].map(([z, o]) => rombo(g, z, "#1B1F2A", { opacity: o })),
-      giro: 45,
-      ambiente: (t) => trenes.forEach((tr) => {
-        const L = tr.l.rt.total, d = ((t * 55 + tr.fase * L) % (L + 60)) - 20;
-        tr.coches.forEach((c, j) => { const dd = d - j * 16, [x, y, a] = tr.l.rt.en(dd); c.setAttribute("transform", `translate(${f1(x)} ${f1(y)}) rotate(${f1(a * 180 / Math.PI)})`); });
-      })
-    };
-  }
-
-  /* ---------------- España · red de alta velocidad ---------------- */
-  function trenAve(capa, datos) {
-    const g = nodo("g", {}, capa);
-    nodo("path", { d: "M-38 -2.6Q-38 -4.6 -36 -4.6H22Q33 -4.6 40 0Q33 4.6 22 4.6H-36Q-38 4.6 -38 2.6Z", fill: "#FFFDF8", stroke: "#1B1F2A", "stroke-width": "1.1" }, g);
-    nodo("rect", { x: -36, y: 1.3, width: 60, height: 1.6, fill: "#A3312A" }, g);
-    nodo("path", { d: "M-33 -2.7H20", stroke: "#1B1F2A", "stroke-width": "2.1" }, g);
-    let dd = ""; for (let x = -31; x < 18; x += 5) dd += `M${x} -2.7h2.2`;
-    nodo("path", { d: dd, stroke: datos, "stroke-width": "1.5" }, g);
-    nodo("path", { d: "M27 -3.9Q33 -3.4 36 -1.2H29Z", fill: "#1B1F2A" }, g);
-    return g;
-  }
-  function espana(G, capa) {
-    const { nx, mid: cy, vx0, visW, mob } = G, a0 = vx0 - 60, a1 = vx0 + visW + 60;
-    const yu = cy - (mob ? 50 : 62), yd = cy + (mob ? 54 : 70), D = mob ? 56 : 120;
-    const via = (p, ancho) => {
-      const d = ruta(p).d();
-      nodo("path", { d, fill: "none", stroke: "#1B1F2A", "stroke-opacity": ".35", "stroke-width": f1(ancho + 3), "stroke-dasharray": "1.1 5" }, capa);
-      nodo("path", { d, fill: "none", stroke: "#1B1F2A", "stroke-width": f1(ancho), "stroke-linejoin": "round" }, capa);
-      nodo("path", { d, fill: "none", stroke: "#FAF6EE", "stroke-width": f1(ancho - 2.6), "stroke-linejoin": "round" }, capa);
-    };
-    const enlaces = [
-      curva([nx[0], cy], [nx[0] + D * 0.5, cy], [nx[0] + D * 0.5, yu], [nx[0] + D, yu]),
-      curva([nx[1], cy], [nx[1] + D * 0.5, cy], [nx[1] + D * 0.5, yd], [nx[1] + D, yd]),
-      curva([nx[2] - D, yu], [nx[2] - D * 0.5, yu], [nx[2] - D * 0.5, cy], [nx[2], cy]),
-      curva([nx[3] - D, yd], [nx[3] - D * 0.5, yd], [nx[3] - D * 0.5, cy], [nx[3], cy]),
-    ];
-    via([[a0, yu], [a1, yu]], 5); via([[a0, yd], [a1, yd]], 5);
-    enlaces.forEach((p) => via(p, 5));
-    via([[a0, cy], [a1, cy]], 7.6);
-    const nodos = [[nx[0] + D, yu, 1], [nx[1] + D, yd, 1], [nx[2] - D, yu, 1], [nx[3] - D, yd, 1]];
-    for (let x = nx[0] - (mob ? 70 : 150); x < a1; x += mob ? 120 : 250) nodos.push([x, yu, 0], [x + (mob ? 60 : 125), yd, 0]);
-    nodos.forEach(([x, y, grande]) => {
-      if (x < vx0 + 8 || x > vx0 + visW - 8) return;
-      if (!grande && nodos.some(([X, Y, gg]) => gg && Y === y && Math.abs(X - x) < 40)) return;
-      nodo("circle", { cx: f1(x), cy: f1(y), r: grande ? 6 : 4.5, fill: "#FAF6EE", stroke: "#1B1F2A", "stroke-width": "1.6" }, capa);
-      if (grande) nodo("circle", { cx: f1(x), cy: f1(y), r: 2.2, fill: "#A3312A" }, capa);
-    });
-    const esc = mob ? 0.85 : 1.2;
-    const amb = [
-      { y: yu, v: -70, fase: 0.3, g: trenAve(capa, "#FFE27A") },
-      { y: yd, v: 60, fase: 0.65, g: trenAve(capa, "#FAF6EE") },
-    ];
-    const L = a1 - a0;
-    return {
-      rt: ruta([[a0, cy], [a1, cy]]), Ls: nx.map((x) => x - a0),
-      paquete: (g) => { const t = trenAve(g, "#FFE27A"); t.setAttribute("transform", `scale(${esc})`); return t; },
-      estela: (g) => [0.5, 0.32, 0.18].map((o, i) => nodo("path", { d: `M-${8 + i * 6} -3h${6 - i * 1.5}M-${10 + i * 6} 1.5h${5 - i}`, stroke: "#1B1F2A", "stroke-width": "1.2", "stroke-linecap": "round", opacity: o }, g)),
-      giro: 0, cola: 46 * esc,
-      ambiente: (t) => amb.forEach((o) => {
-        const d = (((t * Math.abs(o.v) + o.fase * L) % L) + L) % L, x = o.v < 0 ? a1 - d : a0 + d;
-        o.g.setAttribute("transform", `translate(${f1(x)} ${f1(o.y)}) scale(${o.v < 0 ? -esc : esc} ${esc})`);
-      })
     };
   }
 
@@ -345,7 +227,7 @@
   }
 
   /* ---------------- Arranque, visibilidad y pausa ---------------- */
-  const PINTORES = { albacete, madrid, espana };
+  const PINTORES = { albacete };
   const motores = [];
   Object.keys(PINTORES).forEach((p) => {
     const el = document.querySelector(`#portada .banda[data-prov="${p}"]`) || document.querySelector(`.banda[data-prov="${p}"]`);

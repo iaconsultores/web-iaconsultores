@@ -4,6 +4,7 @@ test("las páginas legales identifican al titular", async ({ page }) => {
   await page.goto("/aviso-legal");
   await expect(page.locator("main")).toContainText("Agentia Codex S.L.");
   await expect(page.locator("main")).toContainText("NIF: B05723184");
+  await expect(page.locator("main")).toContainText("Última actualización: 9 de noviembre de 2026");
   await expect(page.locator("main")).not.toContainText("pendiente de asignación");
   await expect(page.locator("main")).toContainText("Avda. Teodomiro 30, Entlo. B, 03300 Orihuela (Alicante)");
   await expect(page.locator("main")).toContainText("constituida ante notario");
@@ -21,7 +22,7 @@ test("404 propia, sitemap, robots, imagen social y datos estructurados", async (
   expect((await request.get("/robots.txt")).ok()).toBe(true);
   expect((await request.get("/og.png")).headers()["content-type"]).toContain("image/png");
   await page.goto("/");
-  await expect(page).toHaveTitle("Inteligencia artificial para empresas reales | IA Consultores");
+  await expect(page).toHaveTitle("IA y automatización para empresas en Alicante | IA Consultores");
   const ld = await page.locator('script[type="application/ld+json"]').textContent();
   expect(JSON.parse(ld ?? "{}")["@type"]).toBe("ProfessionalService");
 });

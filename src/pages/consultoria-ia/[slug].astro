@@ -1,0 +1,80 @@
+---
+/* Página de una zona: provincia, comarca o municipio. Estructura en datos/zonas.ts, texto en src/textos/zonas. */
+import { getCollection, render } from "astro:content";
+import Local from "../../layouts/Local.astro";
+import TarjetaSolucion from "../../components/local/TarjetaSolucion.astro";
+import { ZONAS, capitalizar, hijas, provinciaDe, rutaZona, zona } from "../../datos/zonas";
+import { solucion } from "../../datos/soluciones";
+import { h1Zona, hermanas, jsonServicioZona, migasZona, nombreConAlt, nombreCorto, solucionesParaZona, tituloZona } from "../../lib/paginas-locales";
+
+export async function getStaticPaths() {
+  const textos = await getCollection("zonas");
+  return textos.map((texto) => {
+    if (!ZONAS.some((z) => z.slug === texto.id)) throw new Error(`src/textos/zonas/${texto.id}.md no está en datos/zonas.ts`);
+    return { params: { slug: texto.id }, props: { texto } };
+  });
+}
+
+const { texto } = Astro.props;
+const z = zona(texto.id)!;
+const { Content } = await render(texto);
+const textosSol = await getCollection("soluciones");
+const datosSol = (slug: string) => textosSol.find((t) => t.id === slug)?.data;
+
+const relacionadas = solucionesParaZona(z)
+  .map((s) => ({ s, d: datosSol(s.slug) }))
+  .filter((x): x is { s: (typeof x)["s"]; d: NonNullable<(typeof x)["d"]> } => !!x.d)
+  .slice(0, 6);
+const conTexto = new Set((await getCollection("zonas")).map((t) => t.id));
+const visibles = (lista: typeof ZONAS[number][]) => lista.filter((x) => conTexto.has(x.slug));
+const dentro = visibles(hijas(z.slug));
+const cerca = visibles(hermanas(z));
+const padre = z.padre ? zona(z.padre) : undefined;
+const provincia = provinciaDe(z);
+const visita =
+  z.visita === "si"
+    ? "Sí: primero una llamada y, si encaja, vamos a verte"
+    : "En parte de la zona; en el resto, en remoto o con visita concertada";
+const etiquetaDentro = z.tipo === "provincia" ? (z.slug === "provincia-de-alicante" ? "Comarcas" : "Municipios a menos de hora y media") : "Municipios";
+---
+<Local titulo={tituloZona(z)} descripcion={texto.data.descripcion} ruta={rutaZona(z.slug)} migas={migasZona(z)} json={[jsonServicioZona(z, texto.data.descripcion)]} en={z.en}>
+  <header class="local-cabecera">
+    <p class="eyebrow">Consultoría de IA y automatización · {nombreCorto(provincia)}</p>
+    <h1 class="titulo-local">{h1Zona(z)}</h1>
+    <p class="entradilla">{texto.data.descripcion}</p>
+  </header>
+  <div class="local-rejilla">
+    <div class="prosa">
+      <Content />
+    </div>
+    <aside class="ficha" aria-label={`En resumen: ${capitalizar(nombreConAlt(z))}`}>
+      <dl>
+        <div><dt>Desde Alicante</dt><dd>{capitalizar(z.distancia)}</dd></div>
+        <div><dt>En persona</dt><dd>{visita}</dd></div>
+        <div><dt>Sectores</dt><dd><ul class="chips">{z.sectores.map((s) => <li>{s}</li>)}</ul></dd></div>
+      </dl>
+      <a class="btn btn-primario" href="/#contacto">Llamada gratuita de 30 min</a>
+    </aside>
+  </div>
+
+  {relacionadas.length > 0 && (
+    <section class="local-bloque" aria-labelledby="sol-titulo">
+      <h2 class="local-bloque-titulo" id="sol-titulo">Soluciones para empresas {z.de}</h2>
+      <div class="tarjetas-sol">
+        {relacionadas.map(({ s, d }) => <TarjetaSolucion slug={s.slug} titulo={d.titulo} resumen={d.resumen} sector={solucion(s.slug)!.sector} />)}
+      </div>
+      <p class="local-mas"><a class="enlace" href="/soluciones">Todas las soluciones por sector</a></p>
+    </section>
+  )}
+
+  {(dentro.length > 0 || cerca.length > 0 || padre) && (
+    <section class="local-bloque" aria-labelledby="zonas-titulo">
+      <h2 class="local-bloque-titulo" id="zonas-titulo">{dentro.length ? `${etiquetaDentro} ${z.de}` : "Zonas cercanas"}</h2>
+      <ul class="lista-zonas">
+        {(dentro.length ? dentro : cerca).map((x) => <li><a href={rutaZona(x.slug)}>{capitalizar(nombreConAlt(x))}</a></li>)}
+        {padre && <li><a href={rutaZona(padre.slug)}>{capitalizar(padre.nombre)}</a></li>}
+        <li><a href="/consultoria-ia">Todas las zonas</a></li>
+      </ul>
+    </section>
+  )}
+</Local>

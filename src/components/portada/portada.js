@@ -7,24 +7,19 @@
   const f1 = (n) => String(Math.round(n * 10) / 10);
   const reducido = !!IAC.reducido;
 
-  /* ---------- Datos de las seis provincias (columna derecha) ---------- */
-  const DATOS = {
-    alicante: { c: "38.34°N 0.48°W", lugar: "Castillo de Santa Bárbara, Alicante", cur: ["La Explanada está hecha con más de 6 millones de teselas de mármol."] },
-    valencia: { c: "39.47°N 0.38°W", lugar: "L’Hemisfèric y los naranjos, Valencia", cur: ["El Jardín del Turia ocupa el antiguo cauce del río: unos 9 km de parque."] },
-    murcia: { c: "37.98°N 1.13°W", lugar: "Torre de la Catedral y la huerta, Murcia", cur: ["La torre de la Catedral supera los 90 metros y se construyó durante más de 250 años."] },
-    albacete: { c: "38.99°N 1.86°W", lugar: "Pasaje de Lodares y la llanura manchega", cur: ["El recinto ferial tiene forma de sartén: un círculo con su mango."] },
-    madrid: { c: "40.42°N 3.70°W", lugar: "Edificio Metrópolis y Cuatro Torres, Madrid", cur: ["En la Puerta del Sol está el Kilómetro Cero, origen de las carreteras radiales."] },
-    espana: { c: "40.42°N 3.70°W", nota: "(centro)", lugar: "Una calle cualquiera, al atardecer", cur: ["En España el sol se pone tarde: vamos con la hora de Europa central.", "Tenemos la red de alta velocidad más extensa de Europa."] }
-  };
+  /* ---------- Datos de cada zona (columna derecha): datos/provincias.ts, vía IAC ---------- */
+  const DATOS = Object.fromEntries((IAC.provincias || []).map((p) => [p.id, { c: p.c, lugar: p.lugar, cur: [p.economia] }]));
+  const ENLACES = JSON.parse(document.getElementById("portada-enlaces")?.textContent || "{}");
   const datosDe = (p) => DATOS[p] || DATOS.alicante;
-  /* Proyección del minimapa (la misma con la que se dibujó su contorno) */
+  /* Proyección del minimapa (la misma con la que se dibujó su contorno); admite longitudes al este (la Marina Alta) */
   const enMapa = (c) => {
-    const [, la, lo] = c.match(/([\d.]+)°N ([\d.]+)°W/).map(Number);
-    return [(-lo + 9.45) * Math.cos(40 * Math.PI / 180) * 14, (43.92 - la) * 14];
+    const [, la, lo, h] = c.match(/([\d.]+)°N ([\d.]+)°([EW])/);
+    const lon = Number(lo) * (h === "W" ? -1 : 1);
+    return [(lon + 9.45) * Math.cos(40 * Math.PI / 180) * 14, (43.92 - Number(la)) * 14];
   };
 
   const elC = $(".coords-num"), elNota = $(".coords-nota"), elLugar = $(".lugar"), elDato = $(".dato");
-  const elEtq = $(".dato-etq"), elCur = $(".dato-texto"), rosa = $(".rosa"), punto = $(".mapa-punto");
+  const elCur = $(".dato-texto"), elEnlace = $(".dato-enlace"), rosa = $(".rosa"), punto = $(".mapa-punto");
   let vueltas = 0, tGeo = 0;
 
   /* Las cifras de las coordenadas «ruedan» hasta su valor nuevo */
@@ -38,23 +33,24 @@
     };
     requestAnimationFrame(paso);
   }
-  function escribirGeo(d) {
+  function escribirGeo(d, p) {
     elLugar.textContent = d.lugar;
-    elEtq.textContent = d.cur.length > 1 ? "Curiosidades" : "Curiosidad";
-    elCur.replaceChildren(...d.cur.map((t) => { const p = document.createElement("p"); p.textContent = t; return p; }));
+    elCur.replaceChildren(...d.cur.map((t) => { const q = document.createElement("p"); q.textContent = t; return q; }));
+    const e = ENLACES[p];
+    if (elEnlace && e) { elEnlace.href = e.ruta; elEnlace.textContent = e.texto; }
   }
   function pintarGeo(p, animar) {
     const d = datosDe(p);
     elNota.textContent = d.nota || "";
     const [mx, my] = enMapa(d.c);
     punto.style.transform = `translate(${f1(mx)}px,${f1(my)}px)`;
-    if (!animar || reducido) { elC.textContent = d.c; escribirGeo(d); return; }
+    if (!animar || reducido) { elC.textContent = d.c; escribirGeo(d, p); return; }
     rodar(elC, d.c);
     vueltas += 1;
     rosa.style.transform = `rotate(${vueltas * 360}deg)`;
     elDato.classList.add("cambiando"); elLugar.classList.add("cambiando");
     clearTimeout(tGeo);
-    tGeo = setTimeout(() => { escribirGeo(d); elDato.classList.remove("cambiando"); elLugar.classList.remove("cambiando"); }, 230);
+    tGeo = setTimeout(() => { escribirGeo(d, p); elDato.classList.remove("cambiando"); elLugar.classList.remove("cambiando"); }, 230);
   }
 
   /* ---------- Sombras: palmera (07) y rama de naranjo ---------- */
@@ -286,6 +282,107 @@
     };
   }
 
+  /* Elche y el Vinalopó · el calzado: una tira de piel con sus pespuntes y sus ojales */
+  function pintarCosturas(G, variante) {
+    const { nx, vx0, vy0, visW, visH, mid } = G;
+    const esp = nx[1] - nx[0], lam = esp * 2, A = Math.min(visH * .07, lam * .03), w = visH * .17;
+    const fase = (x) => 2 * Math.PI * (x - nx[0]) / lam;
+    const yc = (x) => mid + A * Math.cos(fase(x));
+    const xs = rango(vx0 - 24, vx0 + visW + 24, 6);
+    const borde = (off, rev) => trazo(xs, (x) => yc(x) + off, rev);
+    const piel = variante === "vinalopo" ? ["#B98A5E", "#A57A50"] : ["#9A5A3A", "#874D31"];
+    const azar = semilla(variante === "vinalopo" ? 21 : 17);
+    let h = `<defs><pattern id="cos-picado-${variante}" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="1.6" fill="#D9C7AE"/></pattern></defs>`
+      + fondo(G, "#FFFFFF") + fondo(G, `url(#cos-picado-${variante})`);
+    h += `<path d="${borde(-w - 6)}${borde(w + 6, true)}Z" fill="#EFE3CC"/>`;
+    h += `<path d="${borde(-w)}${borde(w, true)}Z" fill="${piel[0]}"/>`;
+    h += `<path d="${borde(-w * .35)}${borde(w * .35, true)}Z" fill="${piel[1]}" opacity=".55"/>`;
+    h += `<g fill="none" stroke="#FAF6EE" stroke-width="1.8" stroke-dasharray="7 5" stroke-linecap="round"><path d="${borde(-w * .74)}"/><path d="${borde(w * .74)}"/></g>`;
+    let ojales = "";
+    for (let x = nx[0] + esp * .5, k = 0; x < vx0 + visW + 30; x += esp, k++) {
+      if (G.mob && k % 2) continue;
+      for (const lado of [-1, 1]) ojales += `<circle cx="${f1(x)}" cy="${f1(yc(x) + lado * w * .45)}" r="4.2" fill="#FAF6EE" stroke="#1B1F2A" stroke-opacity=".7" stroke-width="1.6"/>`;
+    }
+    h += ojales + `<path class="carril" d="${borde(0)}" stroke="#FAF6EE" stroke-opacity=".7"/>`;
+    const amb = [];
+    for (let i = 0; i < 10; i++) amb.push({ off: (i % 2 ? 1 : -1) * w * .74, x0: azar() * visW, v: (i % 2 ? 1 : -1) * (10 + azar() * 12) });
+    h += `<g class="ambiente">${amb.map(() => `<rect x="-4" y="-1.2" width="8" height="2.4" rx="1.2" fill="#A3312A"/>`).join("")}</g>`;
+    return {
+      svg: h,
+      carril: xs.map((x) => [x, yc(x)]),
+      paquete: `<circle r="8" fill="#FAF6EE" stroke="#1B1F2A" stroke-width="2.4"/><circle r="3.2" fill="none" stroke="#A3312A" stroke-width="2"/>`,
+      estela: [[5, .55], [4, .38], [3, .22]].map(([r, o]) => `<circle r="${r}" fill="#FAF6EE" opacity="${o}"/>`),
+      ambiente: moverAmbiente(amb, (x, o) => yc(x) + o.off, G, false)
+    };
+  }
+
+  /* L'Alcoià · el textil: un tejido de urdimbre y trama; el dato es un botón que viaja por un hilo rojo */
+  function pintarTelar(G) {
+    const { nx, vx0, vy0, visW, visH, mid } = G;
+    const lam = (nx[1] - nx[0]) * 2, A = visH * .12;
+    const y = (x) => mid + A * Math.cos(2 * Math.PI * (x - nx[0]) / lam);
+    const xs = rango(vx0 - 12, vx0 + visW + 12, 6);
+    const COL = ["#E4EEF6", "#F5E4E1", "#EFE3CC", "#E4EEF6", "#FFFFFF", "#F3EBDD"];
+    let h = fondo(G, "#FFFFFF");
+    const alto = visH / 11;
+    for (let i = -1, yy = vy0 - alto; yy < vy0 + visH + alto; i++, yy += alto) h += `<rect x="${f1(vx0 - 2)}" y="${f1(yy)}" width="${f1(visW + 4)}" height="${f1(alto + .5)}" fill="${COL[((i % COL.length) + COL.length) % COL.length]}"/>`;
+    let urdimbre = "";
+    for (let x = Math.floor((vx0 - 10) / 9) * 9; x < vx0 + visW + 10; x += 9) urdimbre += `M${f1(x)} ${f1(vy0 - 4)}V${f1(vy0 + visH + 4)}`;
+    h += `<path d="${urdimbre}" stroke="#1B1F2A" stroke-opacity=".08" stroke-width="3"/>`;
+    let trama = "";
+    for (let yy = vy0 - alto; yy < vy0 + visH + alto; yy += alto / 3) trama += `M${f1(vx0 - 4)} ${f1(yy)}H${f1(vx0 + visW + 4)}`;
+    h += `<path d="${trama}" stroke="#1B1F2A" stroke-opacity=".07" stroke-dasharray="6 3"/>`;
+    h += `<path d="${trazo(xs, y)}" fill="none" stroke="#FAF6EE" stroke-width="9" stroke-linecap="round"/>`;
+    h += `<path d="${trazo(xs, y)}" fill="none" stroke="#A3312A" stroke-width="3.6" stroke-dasharray="14 6" stroke-linecap="round"/>`;
+    h += `<path class="carril" d="${trazo(xs, y)}"/>`;
+    const azar = semilla(5), amb = [];
+    for (let i = 0; i < 6; i++) amb.push({ yy: vy0 + alto * (1.5 + i * 1.6), x0: azar() * visW, v: (i % 2 ? -1 : 1) * (14 + azar() * 14) });
+    h += `<g class="ambiente">${amb.map(() => `<path d="M-11 0Q-5-4 0-4H4Q11-4 13 0Q11 4 4 4H0Q-5 4-11 0Z" fill="#1A6AA6" opacity=".55"/>`).join("")}</g>`;
+    return {
+      svg: h,
+      carril: xs.map((x) => [x, y(x)]),
+      paquete: `<circle r="8.5" fill="#FAF6EE" stroke="#1B1F2A" stroke-width="2"/><g fill="#1B1F2A"><circle cx="-2.3" cy="-2.3" r="1.3"/><circle cx="2.3" cy="-2.3" r="1.3"/><circle cx="-2.3" cy="2.3" r="1.3"/><circle cx="2.3" cy="2.3" r="1.3"/></g>`,
+      estela: [[5, .5], [4, .34], [3, .2]].map(([r, o]) => `<circle r="${r}" fill="#A3312A" opacity="${o}"/>`),
+      ambiente: moverAmbiente(amb, (x, o) => o.yy, G, false)
+    };
+  }
+
+  /* Las Marinas · el mar: una línea de boyas entre veleros que cruzan la bahía */
+  function pintarRegata(G, variante) {
+    const { nx, vx0, vy0, visW, visH, mid } = G;
+    const lam = (nx[1] - nx[0]) * 2, A = visH * .09;
+    const y = (x) => mid + A * Math.sin(2 * Math.PI * (x - nx[0]) / lam);
+    const xs = rango(vx0 - 12, vx0 + visW + 12, 6);
+    const alta = variante === "marina-alta";
+    let h = `<defs><linearGradient id="reg-mar-${variante}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${alta ? "#D2E5F2" : "#DCEBF6"}"/><stop offset="1" stop-color="${alta ? "#B9D4E8" : "#C6DDEE"}"/></linearGradient></defs>` + fondo(G, `url(#reg-mar-${variante})`);
+    if (!alta) h += `<rect x="${f1(vx0 - 2)}" y="${f1(vy0 - 2)}" width="${f1(visW + 4)}" height="${f1(visH * .16)}" fill="#F3E7D2"/>`;
+    let olas = "";
+    for (let yy = vy0 + visH * (alta ? .06 : .22); yy < vy0 + visH; yy += visH / 9) {
+      for (let x = vx0 - 40 + ((yy * 7) % 60); x < vx0 + visW + 40; x += 96) olas += `M${f1(x)} ${f1(yy)}q8-5 16 0t16 0`;
+    }
+    h += `<path d="${olas}" fill="none" stroke="#FFFFFF" stroke-opacity=".75" stroke-width="1.6" stroke-linecap="round"/>`;
+    if (!alta) {
+      let som = "";
+      for (let x = vx0 + 20; x < vx0 + visW; x += 58) som += `<path d="M${f1(x - 9)} ${f1(vy0 + visH * .1)}a9 4 0 0 1 18 0Z" fill="${(x / 58 | 0) % 2 ? "#A3312A" : "#1A6AA6"}" opacity=".55"/>`;
+      h += som;
+    }
+    h += `<path d="${trazo(xs, y)}" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity=".8"/>`;
+    let boyas = "";
+    for (let x = nx[0] + (nx[1] - nx[0]) * .25; x < vx0 + visW; x += (nx[1] - nx[0]) * .5) if (!nx.some((n) => Math.abs(n - x) < 30)) boyas += `<circle cx="${f1(x)}" cy="${f1(y(x))}" r="3.4" fill="#E0A82E" stroke="#1B1F2A" stroke-opacity=".5"/>`;
+    h += boyas + `<path class="carril" d="${trazo(xs, y)}"/>`;
+    const azar = semilla(alta ? 31 : 29), amb = [];
+    for (let i = 0; i < (alta ? 7 : 5); i++) amb.push({ yy: vy0 + visH * (.3 + azar() * .62), x0: azar() * visW, v: (azar() < .5 ? -1 : 1) * (6 + azar() * 9) });
+    const velero = (c) => `<path d="M-9 4H9L6 8H-6Z" fill="#1B1F2A" opacity=".75"/><path d="M0-14V3" stroke="#1B1F2A" stroke-width="1.2"/><path d="M1-13L9 2H1Z" fill="${c}"/><path d="M-1-10L-7 2H-1Z" fill="#FAF6EE" stroke="#1B1F2A" stroke-opacity=".3" stroke-width=".6"/>`;
+    h += `<g class="ambiente">${amb.map((_, i) => `<g>${velero(i % 3 ? "#FAF6EE" : "#A3312A")}</g>`).join("")}</g>`;
+    return {
+      svg: h,
+      carril: xs.map((x) => [x, y(x)]),
+      paquete: `<circle r="8" fill="#FAF6EE" stroke="#A3312A" stroke-width="2.4"/><path d="M-7.4-3H7.4M-7.4 3H7.4" stroke="#A3312A" stroke-width="2.2"/>`,
+      estela: [[5, .5], [4, .34], [3, .2]].map(([r, o]) => `<circle r="${r}" fill="#FFFFFF" opacity="${o}"/>`),
+      ambiente: moverAmbiente(amb, (x, o) => o.yy, G, false)
+    };
+  }
+
   /* Reserva · líneas de nivel en azul mar, para una provincia que aún no tenga banda propia */
   function pintarReserva(G) {
     const { nx, vx0, vy0, visW, visH, mid } = G;
@@ -438,7 +535,19 @@
   }
 
   const motores = new Map();
-  [["alicante", pintarMosaico], ["valencia", pintarTuria], ["murcia", pintarAcequias], ["reserva", pintarReserva]].forEach(([p, f]) => {
+  /* Banda de cada zona (Albacete la pinta portada-2.js) */
+  [
+    ["alicante", pintarMosaico],
+    ["elche", (G) => pintarCosturas(G, "elche")],
+    ["vega-baja", pintarAcequias],
+    ["vinalopo", (G) => pintarCosturas(G, "vinalopo")],
+    ["alcoia", pintarTelar],
+    ["marina-baixa", (G) => pintarRegata(G, "marina-baixa")],
+    ["marina-alta", (G) => pintarRegata(G, "marina-alta")],
+    ["valencia", pintarTuria],
+    ["murcia", pintarAcequias],
+    ["reserva", pintarReserva],
+  ].forEach(([p, f]) => {
     const el = $(`.banda[data-prov="${p}"]`);
     if (el) motores.set(p, crearMotor(el, f));
   });

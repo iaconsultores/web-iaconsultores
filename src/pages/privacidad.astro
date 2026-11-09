@@ -2,12 +2,12 @@
 import Legal from "../components/Legal.astro";
 import { SITIO } from "../datos/sitio";
 ---
-<Legal titulo="Política de privacidad" descripcion="Cómo tratamos tus datos en iaconsultores.com." ruta="/privacidad">
+<Legal titulo="Política de privacidad" descripcion="Cómo tratamos tus datos en iaconsultores.com." ruta="/privacidad" actualizado="9 de noviembre de 2026">
   <h2>Responsable del tratamiento</h2>
   <p>{SITIO.titular}, NIF {SITIO.nif} (ver el <a href="/aviso-legal">aviso legal</a>). Contacto: <a href={`mailto:${SITIO.email}`}>{SITIO.email}</a>.</p>
   <h2>Qué datos tratamos y para qué</h2>
   <ul>
-    <li><b>Solicitudes de llamada o de colaboración</b> (formulario o tarjeta del asistente): nombre, teléfono, empresa, el proceso que quieres mejorar y la franja horaria. Las usamos para llamarte y preparar la propuesta que nos pidas. Base jurídica: aplicar medidas precontractuales a petición tuya y tu consentimiento.</li>
+    <li><b>Solicitudes de llamada o de colaboración</b> (formulario o tarjeta del asistente): nombre, teléfono, empresa, el municipio de la empresa (opcional), el proceso que quieres mejorar y la franja horaria. Las usamos para llamarte y preparar la propuesta que nos pidas. Base jurídica: aplicar medidas precontractuales a petición tuya y tu consentimiento.</li>
     <li><b>Conversaciones con el asistente de IA</b>: lo que escribes en el chat se envía a Anthropic para generar la respuesta. No compartas datos sensibles en el chat; tu nombre y tu teléfono nunca se envían al asistente. Base jurídica: tu consentimiento al usarlo.</li>
     <li><b>Seguridad</b>: tratamos temporalmente la dirección IP para limitar abusos (límites de uso), sin guardarla en registros. Base jurídica: interés legítimo en proteger el servicio.</li>
     <li><b>Analítica</b>: estadísticas agregadas de visitas sin cookies ni identificadores personales (Cloudflare Web Analytics).</li>

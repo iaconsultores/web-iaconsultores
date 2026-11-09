@@ -1,0 +1,35 @@
+---
+/* Índice de los artículos de soluciones, agrupados por sector */
+import { getCollection } from "astro:content";
+import Local from "../layouts/Local.astro";
+import TarjetaSolucion from "../components/local/TarjetaSolucion.astro";
+import { SECTORES, SOLUCIONES } from "../datos/soluciones";
+import { capitalizar, zona } from "../datos/zonas";
+
+const textos = await getCollection("soluciones");
+const datos = (slug: string) => textos.find((t) => t.id === slug)?.data;
+const grupos = SECTORES.map((sector) => ({
+  sector,
+  lista: SOLUCIONES.filter((s) => s.sector === sector).flatMap((s) => {
+    const d = datos(s.slug);
+    return d ? [{ s, d }] : [];
+  }),
+})).filter((g) => g.lista.length);
+const descripcion = "Ideas concretas de IA y automatización para las empresas de Alicante y alrededores, sector a sector: calzado, juguete, turismo, agro, comercio y más.";
+---
+<Local titulo="Soluciones de IA y automatización por sector y zona | IA Consultores" descripcion={descripcion} ruta="/soluciones" migas={[{ nombre: "Inicio", ruta: "/" }, { nombre: "Soluciones", ruta: "/soluciones" }]}>
+  <header class="local-cabecera">
+    <p class="eyebrow">Soluciones por sector</p>
+    <h1 class="titulo-local">Qué puede hacer la IA por las empresas de tu zona</h1>
+    <p class="entradilla">Cada comarca tiene su forma de trabajar: el calzado del Vinalopó, el juguete de Ibi, el turismo de la costa, la huerta de la Vega Baja. Estas son ideas concretas para cada sector. Son ejemplos de lo que se puede hacer, no casos de clientes: lo tuyo lo vemos en una llamada gratuita de 30 minutos.</p>
+  </header>
+  {grupos.map((g, i) => (
+    <section class="local-bloque" aria-labelledby={`sector-${i}`}>
+      <h2 class="local-bloque-titulo" id={`sector-${i}`}>{g.sector}</h2>
+      <div class="tarjetas-sol">
+        {g.lista.map(({ s, d }) => <TarjetaSolucion slug={s.slug} titulo={d.titulo} resumen={d.resumen} sector={s.zonas.slice(0, 2).map((z) => capitalizar(zona(z)?.nombre ?? z)).join(" · ")} />)}
+      </div>
+    </section>
+  ))}
+  <p class="local-mas"><a class="enlace" href="/consultoria-ia">Ver todas las zonas donde trabajamos</a></p>
+</Local>

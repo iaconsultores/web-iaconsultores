@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { PROVINCIAS } from "../../src/datos/provincias";
 import { SERVICIOS } from "../../src/datos/servicios";
@@ -25,12 +25,23 @@ describe("la web y el asistente dicen lo mismo", () => {
       expect(publico).not.toMatch(prohibido);
     }
   });
-  it("cada provincia tiene su botón y su escena", () => {
-    const html = leer("src/components/portada/portada.html");
+  it("cada zona de la portada tiene su escena, su banda y su sitio en el CSS", () => {
+    const css = leer("src/components/portada/portada.css");
+    const js = leer("src/components/portada/portada.js") + leer("src/components/portada/portada-2.js");
     for (const p of PROVINCIAS) {
-      expect(html).toContain(`class="prov-chip" data-p="${p.id}"`);
-      expect(html).toContain(`data-prov="${p.id}"`);
+      const ruta = `src/components/portada/escenas/${p.id}.html`;
+      expect(existsSync(ruta), ruta).toBe(true);
+      expect(leer(ruta)).toContain(`<div class="escena" data-prov="${p.id}" role="img" aria-label="Ilustración`);
+      expect(css).toContain(`html[data-provincia="${p.id}"] #portada .escena[data-prov="${p.id}"]`);
+      expect(css).toContain(`html[data-provincia="${p.id}"] #portada .banda[data-prov="${p.id}"]`);
+      expect(css).toContain(`html[data-provincia="${p.id}"] #portada .pila-prov>[data-p="${p.id}"]`);
+      expect(js).toMatch(new RegExp(`\\["${p.id}"|${p.id}(:|,| })`));
     }
+    expect(css + js).not.toMatch(/madrid|espana/);
+  });
+  it("las escenas no repiten identificadores entre sí", () => {
+    const ids = PROVINCIAS.flatMap((p) => [...leer(`src/components/portada/escenas/${p.id}.html`).matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+    expect(new Set(ids).size).toBe(ids.length);
   });
   it("no quedan restos de las variantes descartadas ni del panel de opciones", () => {
     const todo = ["portada", "panel", "servicios", "flujos", "contenido"]
