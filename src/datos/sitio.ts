@@ -10,6 +10,8 @@ export const SITIO = {
   /** Código público de esta web */
   repositorio: "https://github.com/iaconsultores/web-iaconsultores",
   titular: "Agentia Codex S.L.",
+  /** NIF de la sociedad (comunicación de la AEAT del 6-oct-2026; el definitivo conserva el número) */
+  nif: "B05723184",
   /** Token público de Cloudflare Web Analytics (va en cada página). Vacío = sin analítica. */
   tokenAnalitica: "a6ba074f24084fb2afdefe20282c30db",
 } as const;
