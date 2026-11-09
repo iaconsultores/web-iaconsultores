@@ -6,7 +6,7 @@ resumen: "Listas de turoperadores, reseñas en varios idiomas, huéspedes que pr
 
 ## Los hoteles de Benidorm, todo el año
 
-Benidorm es uno de los grandes destinos turísticos de España y, a diferencia de muchos otros, no cierra en invierno. Llegan familias españolas, visitantes del Reino Unido y de otros países europeos y, en temporada baja, grupos de mayores y viajeros que buscan el clima suave. Muchos hoteles son medianos o grandes, con pensión completa o todo incluido, buffet, piscina y animación, y una plantilla que se organiza por departamentos: recepción, reservas, pisos, cocina, sala, mantenimiento.
+Benidorm es uno de los grandes destinos turísticos de España y, a diferencia de muchos otros, mantiene abierta buena parte de su oferta hotelera también en invierno. Llegan familias españolas, visitantes del Reino Unido y de otros países europeos y, en temporada baja, grupos de mayores y viajeros que buscan el clima suave. Muchos hoteles son medianos o grandes, con pensión completa o todo incluido, buffet, piscina y animación, y una plantilla que se organiza por departamentos: recepción, reservas, pisos, cocina, sala, mantenimiento.
 
 Esa escala tiene su propia complejidad. Las reservas entran por turoperadores, agencias, plataformas de reserva, la web propia y el teléfono, cada canal con sus condiciones. Los huéspedes hablan idiomas distintos y preguntan a todas horas. Y cada mañana hay que saber cuántas habitaciones de salida hay que limpiar, cuántos comensales tendrá el buffet y quién cubre cada turno. Ahí la inteligencia artificial y la automatización sirven para que la información llegue ordenada a cada departamento y para que el equipo dedique más tiempo al huésped que a la pantalla.
 

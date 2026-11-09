@@ -4,7 +4,7 @@ descripcion: "IA y automatización para empresas del Vinalopó Mitjà: calzado e
 
 ## El Vinalopó Mitjà, una comarca de oficios
 
-El Vinalopó Mitjà (el Medio Vinalopó) mezcla fábrica y campo a partes iguales, algo que se entiende en cuanto se recorre el valle. Elda y Petrer (Petrel) forman una sola ciudad a efectos prácticos y viven del calzado desde hace generaciones: fábricas, marcas y una industria auxiliar de hormas, tacones, suelas, troqueles, cajas y aparado. Novelda trabaja la piedra natural y es conocida por sus empresas de especias y condimentos, y junto con el Pinós forma el núcleo del mármol alicantino, con canteras, aserraderos y talleres de elaboración.
+El Vinalopó Mitjà (el Medio Vinalopó) mezcla fábrica y campo a partes iguales, algo que se entiende en cuanto se recorre el valle. Elda y Petrer (Petrel) son vecinas pegadas una a otra y viven del calzado desde hace generaciones: fábricas, marcas y una industria auxiliar de hormas, tacones, suelas, troqueles, cajas y aparado. Novelda trabaja el mármol y la piedra natural, con canteras en el Pinós y otros municipios de la comarca y fábricas y talleres de elaboración, y es conocida además por sus empresas de especias y condimentos.
 
 En el campo, Aspe, Novelda y Monforte del Cid son la tierra de la uva de mesa embolsada, la que se protege racimo a racimo en la vid y llega a muchas mesas en Nochevieja. Monòver y el Pinós tienen viñedo y bodegas con tradición. Es una comarca de empresas medianas y pequeñas, muchas familiares, donde la oficina suele ser corta para todo lo que tiene que gestionar.
 

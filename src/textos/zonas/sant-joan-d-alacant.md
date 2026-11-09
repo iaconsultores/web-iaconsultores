@@ -4,7 +4,7 @@ descripcion: "IA y automatización para clínicas, comercios y servicios de Sant
 
 ## Sant Joan d'Alacant: salud, comercio y servicios
 
-Sant Joan d'Alacant (San Juan de Alicante) está pegado a Alicante y comparte con la capital su día a día. Aquí están el Hospital Universitario de Sant Joan y el campus de la UMH donde se forman médicos y otros profesionales de la salud, y a su alrededor ha crecido un tejido de clínicas, consultas privadas, centros de fisioterapia, clínicas dentales, laboratorios, ortopedias y farmacias. Junto a ellos hay un comercio de proximidad y empresas de servicios que atienden a los vecinos y a quien llega de toda l'Alacantí.
+Sant Joan d'Alacant (San Juan de Alicante) está pegado a Alicante y comparte con la capital su día a día. Aquí están el Hospital Universitario de Sant Joan y el campus de la UMH donde se forman médicos y otros profesionales de la salud, y a su alrededor trabajan clínicas, consultas privadas, centros de fisioterapia y farmacias. Junto a ellos hay un comercio de proximidad y empresas de servicios que atienden a los vecinos y a quien llega de toda l'Alacantí.
 
 Lo que más preocupa a una clínica o una consulta de Sant Joan no suele ser la parte sanitaria, sino todo lo que la rodea: el teléfono que no para, las citas que se mueven, los papeles de las mutuas y una recepción que atiende al paciente que tiene delante mientras contesta mensajes. Además, se trabaja con datos de salud, que el RGPD protege de forma especial. Por eso aquí la inteligencia artificial tiene que ser útil y prudente a la vez: quitar trabajo administrativo sin tocar nunca las decisiones clínicas.
 

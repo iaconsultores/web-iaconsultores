@@ -14,9 +14,9 @@ Cada uno de esos mundos tiene su papeleo. Una fábrica de chocolate vive pendien
 
 Cada cliente, cada cadena y cada país pide la ficha técnica a su manera: ingredientes, alérgenos, información nutricional, vida útil, condiciones de conservación. Un asistente de IA con tus recetas y especificaciones puede rellenar la plantilla de cada cliente, en el idioma que pide, señalando de qué documento interno sale cada dato. El responsable de calidad la repasa y la firma antes de enviarla.
 
-### Informes para preparar Navidad y Pascua
+### Informes para preparar las campañas fuertes
 
-Las fechas fuertes del chocolate se preparan con meses de antelación, y casi siempre a partir de hojas que alguien monta a mano. Podemos conectar tus ventas, tus pedidos y tu stock de materias primas para que un informe compare esta campaña con la anterior, cliente a cliente y referencia a referencia, y la IA te explique en lenguaje claro qué está creciendo y qué se ha quedado parado. La decisión de cuánto producir y cuándo comprar sigue siendo de tu equipo.
+Las campañas fuertes del chocolate se preparan con meses de antelación, y casi siempre a partir de hojas que alguien monta a mano. Podemos conectar tus ventas, tus pedidos y tu stock de materias primas para que un informe compare esta campaña con la anterior, cliente a cliente y referencia a referencia, y la IA te explique en lenguaje claro qué está creciendo y qué se ha quedado parado. La decisión de cuánto producir y cuándo comprar sigue siendo de tu equipo.
 
 ### Notas de venta y trazabilidad del pescado
 

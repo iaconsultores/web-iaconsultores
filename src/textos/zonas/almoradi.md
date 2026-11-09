@@ -4,7 +4,7 @@ descripcion: "Consultoría de IA y automatización en Almoradí para almacenes a
 
 ## Almoradí, en plena huerta
 
-Almoradí está en el centro de la huerta de la Vega Baja, regada por el Segura a través de su red de acequias y azarbes. Hortalizas como la alcachofa, verduras de hoja y cítricos salen de sus campos hacia almacenes de manipulado y envasado, cooperativas y exportadores que venden en España y en el resto de Europa. Alrededor trabajan empresas de transporte, de suministros agrícolas, de riego y de maquinaria, y un comercio que atiende al municipio y a los pueblos cercanos.
+Almoradí está en plena huerta de la Vega Baja, regada por el Segura a través de su red de acequias y azarbes. Hortalizas como la alcachofa y los cítricos salen de sus campos hacia almacenes de manipulado y envasado, cooperativas y exportadores que venden en España y en el resto de Europa. Alrededor trabajan empresas de transporte, de suministros agrícolas, de riego y de maquinaria, y un comercio que atiende al municipio y a los pueblos cercanos.
 
 En un almacén hortofrutícola de Almoradí el día empieza con el género que entra del campo y termina con camiones que salen hacia otros países. Entre medias hay pedidos que cambian a última hora, especificaciones distintas para cada cliente, análisis, certificaciones y documentos de transporte. Gran parte de ese trabajo sigue haciéndose con llamadas, hojas de cálculo y papeles que se pasan a mano. La inteligencia artificial y la automatización pueden quitar mucho de ese trabajo de copiar y comprobar, dejando las decisiones a quien conoce el producto.
 

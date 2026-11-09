@@ -4,7 +4,7 @@ descripcion: "Consultoría de IA y automatización para empresas de Alcoi (Alcoy
 
 ## Alcoi, oficio industrial entre montañas
 
-Alcoi (Alcoy) lleva generaciones viviendo de la industria. El textil, que empezó con la lana, hoy abarca desde tejidos para el hogar hasta textiles técnicos. El papel tuvo aquí un nombre propio con el papel de fumar, y siguen en pie empresas papeleras y de artes gráficas. A su lado hay talleres de metal y mecanizado, fabricantes de alimentación y un comercio que atiende a toda l'Alcoià y buena parte del Comtat. El campus de la Universitat Politècnica de València forma ingenieros sin salir de Alcoi, y las fiestas de Moros y Cristianos marcan el calendario de la ciudad.
+Alcoi (Alcoy) lleva generaciones viviendo de la industria. El textil, que empezó con la lana, hoy abarca desde tejidos para el hogar hasta textiles técnicos. El papel tuvo aquí un nombre propio con el papel de fumar. A su lado hay talleres de metal y mecanizado, fabricantes de alimentación y un comercio que atiende a toda l'Alcoià y buena parte del Comtat. El campus de la Universitat Politècnica de València forma ingenieros sin salir de Alcoi, y las fiestas de Moros y Cristianos marcan el calendario de la ciudad.
 
 Muchas de estas empresas son familiares y conservan un saber hacer que no está escrito en ningún sitio: cómo se ajusta una máquina, qué receta de acabado funciona con cada fibra, qué cliente pide qué. Lo que preocupa a una fábrica alcoyana es que ese conocimiento no se vaya con la próxima jubilación, responder a clientes industriales cada vez más exigentes con la documentación y encontrar técnicos que quieran quedarse. Ahí la IA tiene un papel claro: ordenar, guardar y poner a mano lo que la empresa ya sabe.
 
@@ -24,7 +24,7 @@ Llegan planos y peticiones de oferta por correo, cada una con su formato. La IA 
 
 ### Certificados y documentación por pedido
 
-En papel, envases o alimentación, cada envío lleva su certificado de lote, su ficha técnica o su declaración de conformidad. Un flujo automático reúne los documentos que pide cada cliente, comprueba que corresponden al lote correcto y los deja listos. Calidad da el visto bueno antes de enviarlos.
+En textil, envases o alimentación, cada envío lleva su certificado de lote, su ficha técnica o su declaración de conformidad. Un flujo automático reúne los documentos que pide cada cliente, comprueba que corresponden al lote correcto y los deja listos. Calidad da el visto bueno antes de enviarlos.
 
 ### Etiquetas, alérgenos y fichas en la alimentación
 

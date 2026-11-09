@@ -6,7 +6,7 @@ resumen: "Entradas de fruta y verdura, partes de campo, liquidaciones a socios y
 
 ## La huerta de la Vega Baja y sus cooperativas
 
-La Vega Baja vive del Segura. Alrededor del río y de su red de acequias y azarbes se cultivan limones, naranjas, alcachofas, brócoli, lechugas y otras hortalizas que salen hacia mercados de toda España y del resto de Europa. En Almoradí y su entorno la alcachofa marca el invierno; el limón, con variedades que se recogen en distintas épocas, da trabajo durante buena parte del año en fincas de Orihuela, Callosa de Segura y el resto de la comarca.
+La Vega Baja vive del Segura. Alrededor del río y de su red de acequias y azarbes se cultivan limones, naranjas, alcachofas, brócoli, lechugas y otras hortalizas que salen hacia mercados de toda España y del resto de Europa. En Almoradí, Callosa de Segura y su entorno la alcachofa marca el invierno; el limón, con variedades que se recogen en distintas épocas, da trabajo durante buena parte del año en fincas de Orihuela y del resto de la comarca.
 
 Detrás de cada caja hay una cadena larga: socios que cultivan sus parcelas, cooperativas que reciben, clasifican y venden su producción, empresas agrícolas con fincas propias, almacenes de confección y comercializadoras que preparan los pedidos de cadenas de supermercados e importadores. Casi todas comparten un problema: el campo va deprisa y la oficina va detrás, pasando a limpio partes, tickets de báscula y hojas de cálculo. La inteligencia artificial y la automatización sirven para que esos datos lleguen ordenados desde el origen y para que la administración deje de reconstruir a mano lo que ya pasó.
 

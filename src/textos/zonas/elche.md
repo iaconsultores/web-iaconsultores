@@ -4,7 +4,7 @@ descripcion: "Consultoría de IA y automatización para empresas de Elche: calza
 
 ## El tejido empresarial de Elche
 
-Elche es la segunda ciudad de la provincia y una de sus grandes ciudades industriales. El calzado sigue marcando el ritmo de buena parte de su economía: marcas que diseñan aquí, fabricantes, talleres de aparado, proveedores de pieles, suelas y componentes, y empresas que venden por todo el mundo. Alrededor hay logística ligada al aeropuerto de Alicante-Elche y a las autovías, empresas de tecnología en Elche Parque Empresarial, un campo que sigue produciendo, el palmeral con sus dátiles y un comercio y unos servicios que atienden a toda la comarca.
+Elche es la segunda ciudad de la provincia y una de sus grandes ciudades industriales. El calzado sigue marcando el ritmo de buena parte de su economía: marcas que diseñan aquí, fabricantes, talleres de aparado, proveedores de pieles, suelas y componentes, y empresas que venden por todo el mundo. Alrededor hay logística ligada al aeropuerto de Alicante-Elche y a las autovías, empresas de logística e industria en Elche Parque Empresarial, un campo que sigue produciendo, el palmeral con sus dátiles y un comercio y unos servicios que atienden a toda la comarca.
 
 Mucho de ese trabajo diario sigue pasando por el correo, el teléfono, WhatsApp y hojas de Excel que solo entiende quien las hizo. Pedidos que llegan en formatos distintos, fichas técnicas que se copian a mano, albaranes que alguien teclea al final del día, presupuestos que tardan porque los datos están en tres sitios. Ahí es donde la inteligencia artificial y la automatización tienen sentido para una pyme ilicitana: no para sustituir a nadie, sino para quitar el trabajo repetitivo a quien sabe hacer cosas más valiosas.
 

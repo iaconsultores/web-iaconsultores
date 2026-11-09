@@ -81,31 +81,20 @@
 - El asistente sabe que vamos en persona a hora y media de Alicante y que existen las páginas de zonas y
   soluciones (`src/conocimiento/09-zonas-y-soluciones.md`).
 
-## Para revisar antes de publicar
+## Revisión del usuario (9-nov-2026) y lo que se hizo
 
-1. **Distancias en coche desde Alicante** (`src/datos/zonas.ts`): son aproximaciones redondeadas, por ejemplo
-   Elche a unos 25 min, Dénia a 1 h 15 y Xàbia a 1 h 20. Conviene repasarlas.
-2. **Hechos locales** que los redactores marcaron como menos obvios. Los creo correctos, pero conviene una lectura
-   de alguien de la zona:
-   - **Alicante:** la EUIPO en Alicante; el campus de la Universidad de Alicante en San Vicente; el hospital y el
-     campus de la UMH en Sant Joan; Dénia, ciudad creativa de la gastronomía de la UNESCO.
-   - **Agroalimentario:** la DOP de la uva embolsada del Vinalopó; las IGP del turrón de Jijona y de Alicante; la
-     granada mollar de Elche.
-   - **Industria:** el Monte Coto (el Pinós) y el Crema Marfil; Onil y sus muñecas; Alcoi y el papel de fumar.
-   - **Albacete y Valencia:** la aeronáutica en Albacete; el campus de la UPV en Gandia y en Alcoi.
-   - **Cartagena:** el valle de Escombreras.
-   - **Turismo:** Benidorm abierto todo el año.
-3. **Promesas de método** que aparecen en los textos y deben ser ciertas en la práctica:
-   - configurar los servicios de IA para que los datos no se usen para entrenar modelos;
-   - preferir servicios que guardan los datos en la Unión Europea (artículo de clínicas);
-   - copias de seguridad y accesos por persona.
-4. **Visitas fuera del radio:**
-   - Albacete capital (algo más de hora y media): «visita concertada o remoto».
-   - Valencia capital: lo mismo; en persona, el sur de la provincia (la Safor, la Costera y la Vall d'Albaida).
-   - Caudete, junto a Villena, sale como zona de visita en la página de Albacete.
-5. **Dirección:** los datos estructurados dicen «Alicante» como localidad y el aviso legal mantiene el domicilio
-   social de Orihuela. Si la sociedad cambia de domicilio, hay que actualizar el aviso legal.
-6. **Siguientes pasos de SEO local**, fuera de la web y a cargo de Juan Luis:
-   - un perfil de empresa en Google con la provincia de Alicante como zona de servicio;
-   - enviar el sitemap a Google Search Console;
-   - enlaces desde asociaciones y cámaras de comercio.
+1. **Distancias desde Alicante:** aprobadas.
+2. **Hechos locales:** seis revisores (Claude Sonnet 5.5) comprobaron con fuentes las afirmaciones sobre el mundo
+   real y corrigieron o quitaron las que no tenían evidencia. Los informes están en `docs/revision-hechos/`.
+3. **Datos:** confirmado. Configuración para no entrenar modelos, servidores en la UE o servidores propios no
+   compartidos, copias de seguridad y adaptación a las necesidades y al tamaño de cada empresa. Va en el bloque
+   «Tus datos, bajo control» de todas las páginas locales, en el asistente y en la guía de redacción.
+4. **Domicilio y NIF:** el domicilio social sigue en Orihuela; los datos estructurados lo usan con el NIF
+   B05723184, igual que el aviso legal.
+5. **Sitemaps:** índice `/sitemap.xml` con `sitemap-paginas.xml`, `sitemap-zonas.xml` y `sitemap-soluciones.xml`.
+   Cada URL lleva su `lastmod` (campo `actualizado` de cada texto o `LASTMOD_LOCALES`), sin `priority` ni
+   `changefreq`. El `robots.txt` declara el índice y cierra `/api/`.
+6. **Pendiente fuera de la web (Juan Luis):**
+   - Perfil de empresa en Google.
+   - Search Console, Bing Webmaster Tools y directorios.
+   - Reseñas y enlaces locales.

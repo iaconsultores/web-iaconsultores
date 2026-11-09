@@ -6,7 +6,7 @@ resumen: "Del embolsado en verano a los pedidos de Nochevieja: qué puede automa
 
 ## La uva embolsada de Novelda, Aspe y Monforte del Cid
 
-En el Vinalopó Mitjà la uva de mesa se cultiva de una forma muy propia de la comarca: en verano se cubre cada racimo con una bolsa de papel y ahí madura, protegido, hasta que se recoge en otoño y en los meses previos a la Navidad. Es la uva de la denominación de origen del Vinalopó, la que muchas casas eligen para las uvas de Nochevieja. Novelda, Aspe, Monforte del Cid y los municipios vecinos viven esa campaña con explotaciones familiares, cooperativas y almacenes que confeccionan y venden la fruta.
+En el Vinalopó Mitjà la uva de mesa se cultiva de una forma muy propia de la comarca: en verano se cubre cada racimo con una bolsa de papel y ahí madura, protegido, hasta que se recoge, entre el final del verano y las fiestas de fin de año. Es la uva de la denominación de origen del Vinalopó, la que muchas casas eligen para las uvas de Nochevieja. Novelda, Aspe, Monforte del Cid y los municipios vecinos viven esa campaña con explotaciones familiares, cooperativas y almacenes que confeccionan y venden la fruta.
 
 Aquí el calendario lo marca todo. El embolsado exige muchas manos en una ventana corta; la recolección se alarga y termina con un pico de pedidos en diciembre en el que todo el mundo quiere su uva a la vez. Entre medias hay que comprar bolsas, cajas y etiquetas, organizar cuadrillas, limpiar racimos en el almacén y cumplir con lo que pide la denominación de origen. Para automatizar aquí no hace falta un gran sistema: hace falta que la información de la campaña deje de estar en libretas, llamadas y la cabeza del encargado.
 

@@ -20,7 +20,7 @@ En la piedra natural no hay dos tableros iguales, y el cliente quiere ver la pie
 
 ### Certificados de análisis de las especias
 
-Cada lote de pimentón, pimienta o comino llega con su certificado de análisis del proveedor. La lectura de documentos con IA puede extraer los valores de cada certificado y compararlos con tus especificaciones y con las de tus clientes, avisando de lo que se sale de rango. El responsable de calidad decide si el lote se acepta, se analiza de nuevo o se rechaza.
+Cada lote de azafrán, pimienta o comino llega con su certificado de análisis del proveedor. La lectura de documentos con IA puede extraer los valores de cada certificado y compararlos con tus especificaciones y con las de tus clientes, avisando de lo que se sale de rango. El responsable de calidad decide si el lote se acepta, se analiza de nuevo o se rechaza.
 
 ### Etiquetas y formatos para cada cliente
 

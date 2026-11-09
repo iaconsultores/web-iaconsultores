@@ -1,12 +1,12 @@
 ---
 titulo: "IA y automatización para el textil de Alcoi y el Comtat"
 descripcion: "IA para empresas textiles de Alcoi y el Comtat: especificaciones técnicas de clientes, partidas y lotes, certificados, fichas de seguridad y trabajo a façon."
-resumen: "Del pliego técnico del cliente al certificado de cada partida: qué puede ordenar la IA en una hilatura, una tejeduría, una tintorería o un acabador de Alcoi."
+resumen: "Del pliego técnico del cliente al certificado de cada partida: qué puede ordenar la IA en una hilatura, una tejeduría o una empresa de acabados de Alcoi."
 ---
 
 ## El textil de Alcoi, de la lana al textil técnico
 
-Alcoi (Alcoy) fue de las primeras ciudades industriales de España, y la lana tuvo mucho que ver. Hoy, en la ciudad y en los valles cercanos, también en el Comtat, siguen trabajando hilaturas, tejedurías, tintorerías y empresas de acabados. Con los años, una parte del sector ha pasado del tejido para vestir y para el hogar al textil técnico: tejidos y no tejidos con usos industriales, sanitarios o de protección. La inteligencia artificial en una empresa textil de Alcoi tiene, por eso, más que ver con especificaciones, ensayos y trazabilidad que con catálogos de moda.
+Alcoi (Alcoy) fue de las primeras ciudades industriales de España, y la lana tuvo mucho que ver. Hoy, en la ciudad y en los valles cercanos, también en el Comtat, siguen trabajando hilaturas, tejedurías y empresas de acabados. Con los años, una parte del sector se ha orientado también al textil para el hogar y al textil técnico: tejidos y no tejidos con usos industriales, sanitarios o de protección. La inteligencia artificial en una empresa textil de Alcoi tiene, por eso, más que ver con especificaciones, ensayos y trazabilidad que con catálogos de moda.
 
 Ese cambio ha transformado el día a día. Un cliente industrial no compra un tejido bonito: compra un tejido que cumple una especificación, con ensayos que lo demuestran y un lote que se puede rastrear si algo falla. Muchas empresas, además, trabajan para otras: hilan, tiñen o acaban partidas ajenas a façon (a maquila), y viven de recibir, procesar y devolver material con sus papeles en regla. Todo eso genera documentos y datos que hoy se mueven a mano, entre el laboratorio, la planta y la administración.
 

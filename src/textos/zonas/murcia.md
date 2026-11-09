@@ -4,7 +4,7 @@ descripcion: "IA y automatización para empresas de Murcia: almacenes agrícolas
 
 ## Las empresas de Murcia y su día a día
 
-Murcia es la capital de la región y el punto donde se juntan la huerta, la industria que transforma lo que sale del campo y unos servicios que dan cobertura a buena parte del entorno. En el municipio y en sus pedanías conviven almacenes de fruta y hortaliza, fábricas de conservas y zumos, empresas de transporte por carretera que llevan la producción a Europa, distribuidores, comercios, despachos profesionales y una red amplia de clínicas y consultas privadas. La universidad y la administración regional suman todavía más peso a los servicios.
+Murcia es la capital de la región y el punto donde se juntan la huerta, la industria que transforma lo que sale del campo y unos servicios que dan cobertura a buena parte del entorno. En el municipio y en sus pedanías conviven almacenes de fruta y hortaliza, fábricas de conservas, empresas de transporte por carretera que llevan la producción a Europa, distribuidores, comercios, despachos profesionales y una red amplia de clínicas y consultas privadas. La universidad y la administración regional suman todavía más peso a los servicios.
 
 En una pyme murciana el trabajo suele ir a dos velocidades. En el agroalimentario manda la campaña: entradas de producto a todas horas, pedidos que cambian el mismo día, camiones que tienen que salir llenos y clientes que piden cada uno sus papeles. En el comercio y los servicios el atasco es otro: citas, llamadas, presupuestos y facturas que se llevan a mano mientras el negocio crece. En ambos casos la inteligencia artificial y la automatización sirven para lo mismo: que el dato correcto llegue a quien lo necesita sin que nadie lo copie varias veces.
 

@@ -6,7 +6,7 @@ resumen: "Pedidos con medidas y acabados a la carta, tarifas que cambian, camion
 
 ## El mueble en Yecla
 
-En Yecla el mueble marca el paso de la industria: fabricantes de dormitorios, salones, comedores, tapizados y mueble auxiliar, talleres de barnizado y lacado, y proveedores de tablero, herrajes, telas, espumas y embalaje, casi todos a pocos minutos unos de otros. Muchas fábricas son empresas familiares que han pasado de padres a hijos y que venden a tiendas de muebles, cadenas y distribuidores de toda España y de otros países. La feria del mueble de la ciudad es desde hace décadas una cita fija del sector, y la automatización de procesos tiene aquí mucho recorrido.
+En Yecla el mueble marca el paso de la industria: fabricantes de mueble de hogar, tapizados y mueble auxiliar, y talleres de acabado, barnizado y tapizado. Muchas fábricas son pymes que venden a tiendas de muebles, cadenas y distribuidores de toda España y de otros países. La feria del mueble de la ciudad es desde hace décadas una cita fija del sector, y la automatización de procesos tiene aquí mucho recorrido.
 
 El producto es cada vez más personalizado. La tienda pide un modelo en una medida concreta, con un acabado de la carta, una tela de otro muestrario y un tirador distinto al de catálogo. Cada combinación es, en la práctica, un pedido único que tiene que llegar sin errores a corte, a barnizado, a tapicería y al almacén. Y casi siempre esa información viaja por correo, por teléfono y en hojas impresas que van de mano en mano por la nave hasta que alguien pregunta por qué el armario ha salido con otro acabado.
 

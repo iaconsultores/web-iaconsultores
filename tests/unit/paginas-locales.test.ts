@@ -29,9 +29,11 @@ describe("páginas locales", () => {
     for (const s of SOLUCIONES) expect(enZonas, s.slug).toContain(s.slug);
   });
 
-  it("los datos estructurados dicen dónde estamos sin inventar una dirección", () => {
-    const j = jsonServicioZona(z("torrevieja"), "Descripción") as { address: Record<string, string>; areaServed: { name: string } };
-    expect(j.address).toEqual({ "@type": "PostalAddress", addressLocality: "Alicante", addressRegion: "Alicante", addressCountry: "ES" });
+  it("los datos estructurados llevan el domicilio social de Orihuela y el NIF, como el aviso legal", () => {
+    const j = jsonServicioZona(z("torrevieja"), "Descripción") as { address: Record<string, string>; areaServed: { name: string }; taxID: string; legalName: string };
+    expect(j.address).toEqual({ "@type": "PostalAddress", streetAddress: "Avda. Teodomiro 30, Entlo. B", postalCode: "03300", addressLocality: "Orihuela", addressRegion: "Alicante", addressCountry: "ES" });
+    expect(j.taxID).toBe("B05723184");
+    expect(j.legalName).toBe("Agentia Codex S.L.");
     expect(j.areaServed.name).toBe("Torrevieja");
   });
 

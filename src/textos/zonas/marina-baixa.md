@@ -6,7 +6,7 @@ descripcion: "Consultoría de IA y automatización en la Marina Baixa: hoteles d
 
 La Marina Baixa (la Marina Baja) es la comarca de Benidorm, y eso marca su economía: hoteles, apartamentos, restaurantes, ocio, comercio y una larga cadena de proveedores y servicios que trabaja para ellos todo el año, no solo en verano. Benidorm recibe visitantes de muchos países y en todas las estaciones, lo que obliga a sus empresas a atender en varios idiomas y a mantener la ocupación cuando en otros destinos se cierra.
 
-Pero la comarca no es solo Benidorm. La Vila Joiosa (Villajoyosa), con sus casas de colores junto al mar, tiene tradición chocolatera y puerto pesquero. Altea vive del turismo, de la gastronomía y de una vida cultural propia, con la Facultad de Bellas Artes de la UMH en el municipio. L'Alfàs del Pi tiene una comunidad muy numerosa de residentes del norte de Europa, la Nucia y Finestrat han crecido con urbanizaciones, comercio e instalaciones deportivas, y Callosa d'en Sarrià es conocida por sus nísperos. Es una comarca con mucho movimiento y poco tiempo para el papeleo.
+Pero la comarca no es solo Benidorm. La Vila Joiosa (Villajoyosa), con sus casas de colores junto al mar, tiene tradición chocolatera y puerto pesquero. Altea vive del turismo, de la gastronomía y de una vida cultural propia, con la Facultad de Bellas Artes de la UMH en el municipio. L'Alfàs del Pi tiene una comunidad muy numerosa de residentes del norte de Europa, la Nucia y Finestrat han crecido con urbanizaciones y servicios, y Callosa d'en Sarrià es conocida por sus nísperos. Es una comarca con mucho movimiento y poco tiempo para el papeleo.
 
 ## Procesos que se repiten en sus empresas
 

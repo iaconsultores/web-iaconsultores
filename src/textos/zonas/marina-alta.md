@@ -6,7 +6,7 @@ descripcion: "IA y automatización para empresas de la Marina Alta: Dénia, Xàb
 
 La Marina Alta es la esquina norte de la provincia, entre el Montgó, el cabo de la Nau y el Penyal d'Ifac. Su economía se apoya en un turismo residencial con muchos vecinos llegados de otros países de Europa que viven aquí todo el año o buena parte de él, y que necesitan servicios constantes: inmobiliarias, administración de propiedades, reformas, mantenimiento de casas, piscinas y jardines, clínicas, gestorías, seguros y comercio.
 
-Dénia tiene puerto con barcos a las Baleares y una gastronomía reconocida, con la gamba roja como emblema. Xàbia (Jávea) combina turismo residencial, náutica y hostelería. Calp (Calpe) mantiene su lonja y su puerto pesquero junto a una costa muy turística. Teulada-Moraira y Benissa tienen urbanizaciones, viñedo de moscatel y comercio, y en la zona de Ondara y Pedreguer se concentran comercios y servicios para toda la comarca. Hacia el interior y en los llanos quedan cítricos y huerta, y en Pego, el arroz del marjal.
+Dénia tiene puerto con barcos a las Baleares y una gastronomía reconocida, con la gamba roja como emblema. Xàbia (Jávea) combina turismo residencial, náutica y hostelería. Calp (Calpe) mantiene su lonja y su puerto pesquero junto a una costa muy turística. Teulada-Moraira y Benissa tienen urbanizaciones, viñedo de moscatel y comercio, y hacia el interior, en los llanos de Ondara y Pedreguer, quedan cítricos y huerta; en Pego, el arroz del marjal.
 
 ## Procesos que se repiten en sus empresas
 

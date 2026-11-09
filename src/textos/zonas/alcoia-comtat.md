@@ -4,7 +4,7 @@ descripcion: "IA y automatización para empresas de l'Alcoià y el Comtat: texti
 
 ## L'Alcoià y el Comtat, tierra de fábricas entre montañas
 
-L'Alcoià y el Comtat concentran buena parte de la industria del norte de la provincia. Alcoi (Alcoy) tiene una larga tradición fabril, con el textil, el papel y el metal como grandes oficios, empresas de alimentación y un campus universitario politécnico. Hoy conviven allí empresas de textil técnico y de hogar, papeleras, talleres de mecanizado, artes gráficas y un comercio que atiende a toda la comarca.
+L'Alcoià y el Comtat concentran buena parte de la industria del norte de la provincia. Alcoi (Alcoy) tiene una larga tradición fabril, con el textil, el papel y el metal como grandes oficios, empresas de alimentación y un campus universitario politécnico. Hoy conviven allí empresas textiles, papeleras, talleres de mecanizado, artes gráficas y un comercio que atiende a toda la comarca.
 
 Hacia el sur, la Foia de Castalla es el valle del juguete: Ibi, Onil, con su tradición de muñecas, y Castalla, con empresas de juguete, inyección de plástico, metal y una amplia industria auxiliar de moldes, envases y componentes. Banyeres de Mariola suma papel y textil. En el Comtat, Cocentaina es el centro comercial e industrial, famosa por su feria de Tots Sants, y Muro d'Alcoi combina industria y agricultura. Entre todas forman un tejido de pymes con mucho oficio y mucho trabajo técnico que todavía se gestiona con correos, hojas de cálculo y papeles en la nave.
 

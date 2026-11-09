@@ -6,7 +6,7 @@ resumen: "Planificar corte, aparado, montado y acabado sin pizarras, saber qué 
 
 ## El calzado a los dos lados de la A-31
 
-Almansa, ya en la provincia de Albacete, y Villena, en l'Alt Vinalopó, quedan cerca por la A-31 y comparten una industria: el calzado. Son fábricas que producen para marcas y para su propia colección, con proveedores y talleres a uno y otro lado del límite entre Castilla-La Mancha y la Comunitat Valenciana, y con el resto del Vinalopó a poca distancia. Este artículo explica qué puede aportar la IA y la automatización a una fábrica de calzado de Almansa o de Villena, centrándose en lo que pasa dentro de la nave.
+Almansa, ya en la provincia de Albacete, y Villena, en l'Alt Vinalopó, quedan cerca por la A-31 y comparten una industria: el calzado. Son fábricas que producen para marcas y para su propia colección, con el resto del calzado del Vinalopó a poca distancia. Este artículo explica qué puede aportar la IA y la automatización a una fábrica de calzado de Almansa o de Villena, centrándose en lo que pasa dentro de la nave.
 
 Sea cual sea el tamaño de la empresa, el reto se parece. Hay que coordinar las secciones de la fábrica, del corte al aparado y del montado al acabado, tener los materiales a tiempo y servir pedidos que cada cliente quiere recibir a su manera. Cuando la planificación vive en la cabeza del encargado y los partes de producción en papel, cualquier imprevisto, una baja, una suela que no llega, un pedido urgente, se resuelve a base de llamadas y de horas extra de quien sabe dónde está cada cosa.
 

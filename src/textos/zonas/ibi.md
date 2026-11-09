@@ -4,7 +4,7 @@ descripcion: "Consultoría de IA y automatización para empresas de Ibi: juguete
 
 ## Ibi, del juguete a la industria auxiliar
 
-Ibi es, junto con Onil y Castalla, el corazón del llamado valle del juguete, y en el municipio está el Museo Valenciano del Juguete. De esa tradición nació un saber hacer en inyección de plástico, moldes, matricería y trabajo del metal que hoy va mucho más allá del juguete: muchas empresas de Ibi fabrican piezas y componentes para otros sectores, y a su alrededor hay talleres, proveedores y empresas de servicios industriales.
+Ibi forma, con Onil, Castalla y otros municipios cercanos, el llamado valle del juguete, y en el municipio está el Museo Valenciano del Juguete. De esa tradición nació un saber hacer en inyección de plástico, moldes, matricería y trabajo del metal que hoy va mucho más allá del juguete: muchas empresas de Ibi fabrican piezas y componentes para otros sectores, y a su alrededor hay talleres, proveedores y empresas de servicios industriales.
 
 Una pyme industrial de Ibi trabaja con planos de clientes, ofertas que hay que dar rápido, controles de calidad y una documentación técnica cada vez más exigente. En el juguete, además, la campaña de Navidad se prepara con muchos meses de antelación y cualquier retraso se paga caro. Buena parte de ese trabajo de oficina técnica y de calidad sigue siendo manual: copiar datos de un plano a una hoja de cálculo, buscar el último ensayo de una referencia, rehacer informes. Ahí la inteligencia artificial y la automatización pueden liberar mucho tiempo de gente muy cualificada.
 

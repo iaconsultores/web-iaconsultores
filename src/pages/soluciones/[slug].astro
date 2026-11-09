@@ -28,7 +28,7 @@ const otras = SOLUCIONES.filter((x) => x.sector === s.sector && x.slug !== s.slu
   .slice(0, 3);
 const fecha = new Date(`${FECHA_SOLUCIONES}T12:00:00Z`).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 ---
-<Local titulo={`${texto.data.titulo} | IA Consultores`} descripcion={texto.data.descripcion} ruta={rutaSolucion(s.slug)} migas={migasSolucion(s, texto.data.titulo)} json={[jsonArticulo(s, texto.data, FECHA_SOLUCIONES)]} en={principal?.en}>
+<Local titulo={`${texto.data.titulo} | IA Consultores`} descripcion={texto.data.descripcion} ruta={rutaSolucion(s.slug)} migas={migasSolucion(s, texto.data.titulo)} json={[jsonArticulo(s, texto.data, FECHA_SOLUCIONES, texto.data.actualizado ?? FECHA_SOLUCIONES)]} en={principal?.en}>
   <article class="articulo">
     <header class="local-cabecera">
       <p class="eyebrow">{s.sector} · {zonas.map((z) => capitalizar(nombreConAlt(z))).join(" · ")}</p>

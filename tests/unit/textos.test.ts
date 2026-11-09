@@ -84,14 +84,16 @@ describe("textos de las páginas locales", () => {
   it.each(textosZonas.map((t) => [t.ruta, t] as const))("%s: cabecera y longitud", (_, t) => {
     const slug = t.ruta.split("/").pop()!.replace(/\.md$/, "");
     const z = ZONAS.find((x) => x.slug === slug);
-    expect(Object.keys(t.datos).sort()).toEqual(["descripcion"]);
+    expect(Object.keys(t.datos).filter((k) => k !== "actualizado").sort()).toEqual(["descripcion"]);
+    if (t.datos.actualizado) expect(t.datos.actualizado).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(t.datos.descripcion.length, "descripción entre 110 y 165 caracteres").toBeGreaterThanOrEqual(110);
     expect(t.datos.descripcion.length, "descripción entre 110 y 165 caracteres").toBeLessThanOrEqual(165);
     if (z) expect(palabras(t.cuerpo), `mínimo de palabras para ${z.tipo}`).toBeGreaterThanOrEqual(MINIMO[z.tipo]);
   });
 
   it.each(textosSoluciones.map((t) => [t.ruta, t] as const))("%s: cabecera y longitud", (_, t) => {
-    expect(Object.keys(t.datos).sort()).toEqual(["descripcion", "resumen", "titulo"]);
+    expect(Object.keys(t.datos).filter((k) => k !== "actualizado").sort()).toEqual(["descripcion", "resumen", "titulo"]);
+    if (t.datos.actualizado) expect(t.datos.actualizado).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(t.datos.titulo.length, "título entre 30 y 70 caracteres").toBeGreaterThanOrEqual(30);
     expect(t.datos.titulo.length, "título entre 30 y 70 caracteres").toBeLessThanOrEqual(70);
     expect(t.datos.descripcion.length, "descripción entre 110 y 165 caracteres").toBeGreaterThanOrEqual(110);

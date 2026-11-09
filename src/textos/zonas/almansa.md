@@ -4,9 +4,9 @@ descripcion: "IA y automatización para empresas de Almansa: fábricas de calzad
 
 ## Almansa, calzado e industria en un cruce de caminos
 
-Almansa está en la provincia de Albacete, junto al límite con la Comunitat Valenciana, y es uno de los núcleos zapateros del interior. Sus fábricas de calzado, con talleres de aparado y proveedores de pieles, suelas y componentes a su alrededor, conviven con industria de otros sectores en sus polígonos. Su posición, donde la autovía de Madrid a Alicante se cruza con la que baja hacia Valencia, la ha convertido además en un buen sitio para almacenes y empresas de transporte. El castillo, sobre la ciudad, es la imagen que todo el que pasa por la autovía reconoce.
+Almansa está en la provincia de Albacete, junto al límite con la Comunitat Valenciana, y es uno de los núcleos zapateros del interior. Sus fábricas de calzado, con talleres de aparado y proveedores de pieles, suelas y componentes a su alrededor, conviven con industria de otros sectores en sus polígonos. Su posición, donde la autovía de Madrid a Alicante se cruza con la que baja hacia Valencia, la ha convertido además en un buen sitio para almacenes y empresas de transporte. El castillo, sobre la ciudad, es su monumento más característico.
 
-La industria de Almansa comparte ritmo y problemas con la del Vinalopó, a la que está muy unida: temporadas cortas, muestrarios que hay que preparar a tiempo, pedidos de marcas que llegan con tallajes y fechas cerradas y una cadena de proveedores y talleres que hay que coordinar sin perder un día. En logística, el reto es otro: órdenes de carga, citas de descarga y albaranes firmados que hay que cuadrar a diario. En los dos casos, mucho de ese trabajo se puede automatizar sin tocar el oficio.
+La industria de Almansa comparte oficio con la del Vinalopó y tiene problemas parecidos: temporadas cortas, muestrarios que hay que preparar a tiempo, pedidos de marcas que llegan con tallajes y fechas cerradas y una cadena de proveedores y talleres que hay que coordinar sin perder un día. En logística, el reto es otro: órdenes de carga, citas de descarga y albaranes firmados que hay que cuadrar a diario. En los dos casos, mucho de ese trabajo se puede automatizar sin tocar el oficio.
 
 ## Qué podemos automatizar en empresas de Almansa
 

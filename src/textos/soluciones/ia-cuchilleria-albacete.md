@@ -6,7 +6,7 @@ resumen: "Navajas y cuchillos con muchas variantes, tiendas que reponen, encargo
 
 ## La cuchillería de Albacete
 
-La cuchillería forma parte de la identidad de Albacete. La navaja albaceteña es conocida en toda España, la ciudad tiene un museo dedicado al oficio y sus talleres y fábricas hacen navajas, cuchillos de cocina, de caza y profesionales, y piezas de regalo. Muchas son empresas familiares que han pasado el oficio de una generación a otra. Hablar de inteligencia artificial para la cuchillería de Albacete no es hablar de forjar ni de afilar, sino de todo lo que rodea a la pieza desde que se fabrica hasta que llega a quien la usa.
+La cuchillería forma parte de la identidad de Albacete. La navaja albaceteña es conocida en toda España, la ciudad tiene un museo dedicado al oficio y sus talleres y fábricas hacen navajas, cuchillos de cocina, de caza y profesionales, y piezas de regalo. Es un oficio artesanal con mucha tradición. Hablar de inteligencia artificial para la cuchillería de Albacete no es hablar de forjar ni de afilar, sino de todo lo que rodea a la pieza desde que se fabrica hasta que llega a quien la usa.
 
 Son negocios que combinan taller y comercio. Venden a cuchillerías y tiendas, a hostelería, a empresas que buscan un regalo con su logotipo y, cada vez más, directamente al público por internet. Eso supone catálogos con muchas variantes, pedidos pequeños y frecuentes, encargos personalizados con grabado y consultas de compradores que no saben qué diferencia hay entre un acero y otro. Buena parte de ese trabajo pasa hoy por el teléfono, el correo y WhatsApp, y lo lleva la misma persona que atiende el mostrador.
 

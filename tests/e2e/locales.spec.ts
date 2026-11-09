@@ -38,25 +38,51 @@ test("los índices enlazan todas las zonas y todas las soluciones", async ({ pag
   await expect(page.locator(".tarjeta-sol")).toHaveCount(SOLUCIONES.length);
 });
 
-test("el sitemap lista todas las páginas locales y cada enlace interno de ellas funciona", async ({ request }) => {
-  const xml = await (await request.get("/sitemap.xml")).text();
-  const urls = [...xml.matchAll(/<loc>https:\/\/iaconsultores\.com([^<]*)<\/loc>/g)].map((m) => m[1] || "/");
+test("el índice de sitemaps enlaza un sitemap por tipo, con lastmod, y cada enlace interno de las páginas locales funciona", async ({ request }) => {
+  const indice = await request.get("/sitemap.xml");
+  expect(indice.headers()["content-type"]).toContain("xml");
+  const xmlIndice = await indice.text();
+  expect(xmlIndice).toContain("<sitemapindex");
+  const hijos = [...xmlIndice.matchAll(/<loc>https:\/\/iaconsultores\.com(\/[^<]+)<\/loc>/g)].map((m) => m[1]);
+  expect(hijos).toEqual(["/sitemap-paginas.xml", "/sitemap-zonas.xml", "/sitemap-soluciones.xml"]);
+  expect(xmlIndice.match(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g)).toHaveLength(3);
+
+  const urls: string[] = [];
+  for (const h of hijos) {
+    const xml = await (await request.get(h)).text();
+    expect(xml).toContain("<urlset");
+    const locs = [...xml.matchAll(/<loc>https:\/\/iaconsultores\.com([^<]*)<\/loc>/g)].map((m) => m[1] || "/");
+    expect(xml.match(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g)?.length, h).toBe(locs.length);
+    expect(xml).not.toMatch(/<priority>|<changefreq>/);
+    urls.push(...locs);
+  }
+  expect(urls).toContain("/");
   expect(urls).toContain("/consultoria-ia");
   expect(urls).toContain("/soluciones");
+  expect(urls.some((u) => u.startsWith("/mohure") || u.startsWith("/api"))).toBe(false);
   for (const z of ZONAS) expect(urls).toContain(`/consultoria-ia/${z.slug}`);
   for (const s of SOLUCIONES) expect(urls).toContain(`/soluciones/${s.slug}`);
   expect(urls.length).toBe(6 + ZONAS.length + SOLUCIONES.length);
+  expect(new Set(urls).size).toBe(urls.length);
 
+  /* Cada URL del sitemap es indexable: 200, sin noindex y con canónica a sí misma */
   const enlaces = new Set<string>();
-  for (const u of urls.filter((x) => x.startsWith("/consultoria-ia") || x.startsWith("/soluciones"))) {
+  for (const u of urls) {
     const r = await request.get(u);
     expect(r.status(), u).toBe(200);
-    for (const [, href] of (await r.text()).matchAll(/href="(\/[^"#]*)/g)) enlaces.add(href);
+    expect(r.headers()["x-robots-tag"], u).toBeUndefined();
+    const html = await r.text();
+    expect(html, u).not.toContain('name="robots"');
+    expect(html, u).toContain(`<link rel="canonical" href="https://iaconsultores.com${u === "/" ? "/" : u}">`);
+    if (u.startsWith("/consultoria-ia") || u.startsWith("/soluciones")) for (const [, href] of html.matchAll(/href="(\/[^"#]*)/g)) enlaces.add(href);
   }
   for (const href of enlaces) {
     if (href.startsWith("/_astro/")) continue;
     expect((await request.get(href)).status(), href).toBe(200);
   }
+  const robots = await (await request.get("/robots.txt")).text();
+  expect(robots).toContain("Sitemap: https://iaconsultores.com/sitemap.xml");
+  expect(robots).not.toMatch(/Disallow: \/\s*$/m);
 });
 
 test("la portada lleva a las zonas: sección «Dónde trabajamos», enlace de la columna geo y menú", async ({ page }) => {

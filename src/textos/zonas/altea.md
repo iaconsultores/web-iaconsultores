@@ -4,7 +4,7 @@ descripcion: "IA y automatización para pymes de Altea: restaurantes, comercio y
 
 ## Altea y sus empresas
 
-Altea tiene una personalidad propia dentro de la Marina Baixa: el casco antiguo blanco en lo alto, presidido por la iglesia de la cúpula azul, el paseo junto al mar, el puerto y una tradición artística que se nota en sus galerías, en sus talleres y en la Facultad de Bellas Artes de la UMH. Su economía se apoya en un turismo tranquilo y de estancias largas, en la hostelería, en la vivienda residencial y en un comercio pequeño, muchas veces de artesanía, moda y decoración.
+Altea tiene una personalidad propia dentro de la Marina Baixa: el casco antiguo blanco en lo alto, presidido por la iglesia de la cúpula azul, el paseo junto al mar, el puerto y una tradición artística que se nota en sus talleres y en la Facultad de Bellas Artes de la UMH. Su economía se apoya en el turismo, la hostelería, la construcción, la vivienda residencial y un comercio pequeño, muchas veces de artesanía, moda y decoración.
 
 Son negocios con mucho trato personal y muy poca gente dedicada a la administración. El dueño de un restaurante del casco antiguo o de una tienda de cerámica hace a la vez de comprador, de vendedor y de administrativo. El tiempo se le va en reservas, en contestar a clientes que escriben en varios idiomas, en llevar el stock de memoria y en mantener la web al día. Bien usada, la inteligencia artificial quita ese peso sin que el negocio pierda la cercanía que lo hace distinto.
 

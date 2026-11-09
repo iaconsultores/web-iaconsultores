@@ -4,7 +4,7 @@ descripcion: "Consultoría de IA y automatización para empresas de Ontinyent: t
 
 ## Ontinyent y el textil hogar
 
-Ontinyent (Onteniente) es la capital de la Vall d'Albaida y una ciudad con larga tradición textil. Su especialidad es el textil hogar: mantas, ropa de cama, cortinas y tejidos para la decoración y la tapicería. En la ciudad y en otros pueblos de la comarca trabaja toda la cadena, de la hilatura y la tejeduría a los tintes, los acabados, la estampación y la confección, junto a almacenes, diseñadores y comerciales que venden en España y en ferias internacionales. Alrededor hay industria de otros sectores y un comercio que da servicio a toda la Vall d'Albaida.
+Ontinyent (Onteniente) es la capital de la Vall d'Albaida y una ciudad con larga tradición textil. Su especialidad es el textil hogar: mantas, ropa de cama, cortinas y tejidos para la decoración. En la ciudad y en otros pueblos de la comarca hay fabricantes y confeccionistas de textil hogar que venden en España y en ferias internacionales como Heimtextil. Alrededor hay industria de otros sectores y un comercio que da servicio a toda la Vall d'Albaida.
 
 Una empresa textil de Ontinyent maneja una cantidad enorme de referencias: cada diseño en varios colores, varias medidas y varios acabados, con colecciones que se renuevan cada temporada. Las cadenas y los distribuidores piden etiquetado, embalaje y documentación a su manera, y buena parte de la producción pasa por talleres externos de tinte, acabado o confección. Seguir todo eso con correos, llamadas y hojas de cálculo consume a la gente de oficina, y ahí es donde la automatización y la inteligencia artificial pueden aliviar la carga.
 

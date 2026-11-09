@@ -1,14 +1,14 @@
 ---
 titulo: "IA para fabricantes de turrón y heladeros de Xixona"
 descripcion: "IA y automatización para turroneras y heladeros de Xixona (Jijona): campaña de Navidad, pedidos de distribuidores, lotes, alérgenos y heladerías lejos."
-resumen: "Una campaña que se concentra al final del año y heladerías repartidas por España y Europa: qué puede automatizar una empresa de turrón o de helado de Xixona."
+resumen: "Una campaña que se concentra al final del año y heladerías repartidas por toda España: qué puede automatizar una empresa de turrón o de helado de Xixona."
 ---
 
 ## Turrón y helado: el calendario de Xixona
 
 Xixona (Jijona) es el pueblo del turrón. Allí conviven obradores familiares y empresas más grandes que elaboran turrón de Jijona y de Alicante, los dos con indicación geográfica protegida, además de otros dulces de almendra y miel. El año tiene un ritmo muy marcado: compra de almendra y de miel, producción que se intensifica a medida que se acerca la Navidad y unas ventas que se concentran en los últimos meses, repartidas entre distribuidores, grandes cadenas, tiendas especializadas, tiendas propias y venta por internet.
 
-La otra mitad de la historia es el helado. Durante generaciones, familias de Xixona han llevado el helado artesano a ciudades de toda España y de otros países europeos, con heladerías que abren cuando llega el calor. Hoy hay empresas en Xixona que preparan productos y materias primas para heladerías y heladeros que dirigen sus locales a muchos kilómetros del pueblo. Turrón y helado comparten algo: mucho trabajo en una temporada corta, muchos clientes pidiendo a la vez y una exigencia alta con los ingredientes, los lotes y los alérgenos.
+La otra mitad de la historia es el helado. Durante generaciones, familias de Xixona han llevado el helado artesano a ciudades de toda España, con heladerías que abren cuando llega el calor. Hoy hay empresas en Xixona que preparan productos y materias primas para heladerías y heladeros que dirigen sus locales a muchos kilómetros del pueblo. Turrón y helado comparten algo: mucho trabajo en una temporada corta, muchos clientes pidiendo a la vez y una exigencia alta con los ingredientes, los lotes y los alérgenos.
 
 ## Lo que complica el día a día
 

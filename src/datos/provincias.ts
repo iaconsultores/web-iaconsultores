@@ -56,7 +56,7 @@ export const PROVINCIAS: readonly Provincia[] = [
   {
     id: "alcoia", nombre: "l'Alcoià", etiqueta: "L'Alcoià", ante: "Alcoi, Ibi y el Comtat", zona: "alcoia-comtat",
     c: "38.70°N 0.47°W", lugar: "Fábricas textiles al pie de la sierra, Alcoi",
-    economia: "Textil y papel en Alcoi, juguete en Ibi y Onil, plástico y metal en toda la comarca.",
+    economia: "Textil en Alcoi, juguete en Ibi y Onil, plástico y metal en toda la comarca.",
   },
   {
     id: "marina-baixa", nombre: "la Marina Baixa", etiqueta: "Marina Baixa", ante: "Benidorm, la Vila Joiosa y Altea", zona: "marina-baixa",
@@ -65,7 +65,7 @@ export const PROVINCIAS: readonly Provincia[] = [
   },
   {
     id: "marina-alta", nombre: "la Marina Alta", etiqueta: "Marina Alta", ante: "Dénia, Xàbia y Calp", zona: "marina-alta",
-    c: "38.84°N 0.11°E", lugar: "El Penyal d'Ifac y el puerto, Calp",
+    c: "38.64°N 0.04°E", lugar: "El Penyal d'Ifac y el puerto, Calp",
     economia: "Turismo residencial, náutica y gastronomía; clientes que hablan muchos idiomas.",
   },
   {

@@ -57,7 +57,11 @@ asesoramiento fiscal, legal ni contable.
 - **Sin oficinas**: trabajamos desde Alicante y vamos a ver a la empresa; no tenemos oficina en cada municipio.
 - **Supervisión humana**: cuando la IA decide algo que importa (un presupuesto, una factura, una respuesta a un
   cliente), una persona lo revisa y aprueba. Dilo cuando venga al caso.
-- **Datos y RGPD**: con datos personales o de salud, prudencia y mención a la protección de datos.
+- **Datos y RGPD**: con datos personales o de salud, prudencia y mención a la protección de datos. Lo que sí
+  podemos afirmar de nuestra forma de trabajar (confirmado el 9-nov-2026): los servicios de IA se configuran para
+  que los datos no se usen para entrenar modelos; servidores en la Unión Europea o servidores propios no
+  compartidos; copias de seguridad y acceso por persona; nos adaptamos a las necesidades y al tamaño de cada
+  empresa. La plantilla ya lo resume en «Tus datos, bajo control».
 - Hechos sobre la zona: solo los conocidos y seguros (el calzado en Elche y Elda, el juguete en Ibi, el textil en
   Alcoi, el turrón en Xixona, el turismo en Benidorm, la huerta y los cítricos en la Vega Baja…). Ante la duda,
   más general.

@@ -4,7 +4,7 @@ descripcion: "Consultoría de IA y automatización para empresas de Yecla: fábr
 
 ## Yecla, el mueble y el vino del Altiplano
 
-Yecla está en el Altiplano murciano, a un paso de Villena, y su nombre va unido al mueble. Fábricas de mueble de hogar y de tapizados, talleres de barnizado y lacado, y una industria auxiliar de tableros, herrajes, telas, espumas, embalaje y transporte forman una cadena que vende por toda España y fuera de ella. La feria del mueble de la ciudad lleva décadas reuniendo a fabricantes y compradores. Junto a la industria están las bodegas de la denominación de origen Yecla, con la monastrell como uva principal, y un comercio que atiende a toda la comarca.
+Yecla está en el Altiplano murciano, cerca de Villena, y su nombre va unido al mueble. Fábricas de mueble de hogar y de tapizados, y talleres de acabado, barnizado y tapizado forman una industria que vende por toda España y fuera de ella. La feria del mueble de la ciudad lleva décadas reuniendo a fabricantes y compradores. Junto a la industria están las bodegas de la denominación de origen Yecla, con la monastrell como uva principal, y un comercio que atiende a toda la comarca.
 
 Muchas de estas empresas son familiares y han crecido a base de oficio, de conocer a sus tiendas y de resolver cada pedido con flexibilidad. Esa flexibilidad tiene un coste escondido: catálogos con un sinfín de combinaciones de medidas, acabados y telas, tarifas que hay que rehacer cuando sube el tablero, cargas de camión que se cuadran de cabeza y una postventa que vive en el WhatsApp del encargado. Es justo el tipo de trabajo que la automatización y la inteligencia artificial pueden ordenar sin cambiar la manera de fabricar.
 

@@ -63,6 +63,26 @@ export function jsonMigas(migas: Miga[]) {
   };
 }
 
+/** Domicilio social en los datos estructurados (el mismo que el aviso legal) */
+export const DIRECCION = {
+  "@type": "PostalAddress",
+  streetAddress: SITIO.domicilio.calle,
+  postalCode: SITIO.domicilio.cp,
+  addressLocality: SITIO.domicilio.localidad,
+  addressRegion: SITIO.domicilio.provincia,
+  addressCountry: "ES",
+} as const;
+
+/** Datos de la empresa que se repiten en cada ProfessionalService */
+export const DATOS_EMPRESA = {
+  telephone: "+34678310660",
+  email: SITIO.email,
+  address: DIRECCION,
+  legalName: SITIO.titular,
+  taxID: SITIO.nif,
+  founder: { "@type": "Person", name: "Juan Luis Toboso", sameAs: [SITIO.linkedin] },
+} as const;
+
 const TIPO_LUGAR: Record<Zona["tipo"], string> = { provincia: "AdministrativeArea", comarca: "AdministrativeArea", municipio: "City" };
 
 /** El servicio que se presta en una zona */
@@ -73,15 +93,12 @@ export function jsonServicioZona(z: Zona, descripcion: string) {
     name: `${SITIO.nombre} · ${capitalizar(nombreConAlt(z))}`,
     url: new URL(rutaZona(z.slug), SITIO.url).href,
     description: descripcion,
-    telephone: "+34678310660",
-    email: SITIO.email,
-    address: { "@type": "PostalAddress", addressLocality: "Alicante", addressRegion: "Alicante", addressCountry: "ES" },
+    ...DATOS_EMPRESA,
     areaServed: { "@type": TIPO_LUGAR[z.tipo], name: capitalizar(nombreConAlt(z)), containedInPlace: { "@type": "AdministrativeArea", name: capitalizar(provinciaDe(z).nombre) } },
-    founder: { "@type": "Person", name: "Juan Luis Toboso", sameAs: [SITIO.linkedin] },
   };
 }
 
-export function jsonArticulo(s: Solucion, datos: { titulo: string; descripcion: string }, fecha: string) {
+export function jsonArticulo(s: Solucion, datos: { titulo: string; descripcion: string }, fecha: string, modificado = fecha) {
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -90,7 +107,7 @@ export function jsonArticulo(s: Solucion, datos: { titulo: string; descripcion: 
     url: new URL(rutaSolucion(s.slug), SITIO.url).href,
     inLanguage: "es-ES",
     datePublished: fecha,
-    dateModified: fecha,
+    dateModified: modificado,
     author: { "@type": "Person", name: "Juan Luis Toboso", url: SITIO.linkedin },
     publisher: { "@type": "Organization", name: SITIO.nombre, url: SITIO.url },
     about: s.zonas.map((slug) => zona(slug)).filter((z): z is Zona => !!z).map((z) => ({ "@type": "Place", name: capitalizar(nombreConAlt(z)) })),

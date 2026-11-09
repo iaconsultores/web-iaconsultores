@@ -2,6 +2,7 @@
 /* Marco de las páginas locales (zonas, soluciones y sus índices): migas de pan, datos estructurados y llamada final */
 import Base from "./Base.astro";
 import CtaLocal from "../components/local/CtaLocal.astro";
+import DatosSeguros from "../components/local/DatosSeguros.astro";
 import type { Miga } from "../lib/paginas-locales";
 import { jsonMigas } from "../lib/paginas-locales";
 import "../styles/local.css";
@@ -33,6 +34,7 @@ const datos = [jsonMigas(migas), ...json];
       </nav>
       <slot />
     </div>
+    <DatosSeguros />
     <CtaLocal en={en} />
   </div>
 </Base>

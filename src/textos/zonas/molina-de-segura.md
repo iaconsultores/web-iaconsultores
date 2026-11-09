@@ -4,7 +4,7 @@ descripcion: "IA y automatización para empresas de Molina de Segura: conservera
 
 ## Molina de Segura, entre la conserva y los polígonos
 
-Molina de Segura está en la Vega Media del Segura, pegada a Murcia, y tiene una larga tradición conservera. Durante generaciones sus fábricas han convertido la fruta y la hortaliza de la vega en conservas, y hoy su industria agroalimentaria es más variada, con proveedores de envases, etiquetas, maquinaria y frío trabajando a su alrededor. Sus polígonos industriales reúnen además empresas de otros sectores y firmas de logística que aprovechan la cercanía a la autovía y a la capital.
+Molina de Segura está en la Vega Media del Segura, pegada a Murcia, y tiene una larga tradición conservera. Durante generaciones sus fábricas han convertido la fruta y la hortaliza de la vega en conservas, y hoy su industria agroalimentaria es más variada, con proveedores de envases, plásticos y cartonaje y empresas de transporte frigorífico trabajando a su alrededor. Sus polígonos industriales reúnen además empresas de otros sectores y firmas de logística que aprovechan la cercanía a la autovía y a la capital.
 
 Para una pyme molinense el reto suele estar en los picos. Cuando entra la campaña, la fábrica multiplica entradas, lotes y expediciones, y administración tiene que seguir el ritmo con las mismas personas. Los clientes, sobre todo las cadenas de distribución y los importadores, piden especificaciones, cuestionarios y trazabilidad con un detalle cada vez mayor. Y en el resto de la industria del municipio, el papeleo de pedidos, órdenes de fabricación y facturas crece al mismo paso que la producción.
 

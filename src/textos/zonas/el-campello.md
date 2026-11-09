@@ -4,7 +4,7 @@ descripcion: "Consultoría de IA y automatización en El Campello para restauran
 
 ## El Campello, entre el puerto y la playa
 
-El Campello mira al mar. Tiene un puerto pesquero y deportivo con su lonja, un paseo marítimo lleno de restaurantes de arroces y pescado, el yacimiento de la Illeta dels Banyets y playas largas como la de Muchavista. El TRAM lo une con Alicante, y mucha gente de la capital viene a comer o a pasar el día, sobre todo los fines de semana y en verano. Su economía combina la hostelería, el turismo, la pesca y un comercio que atiende a vecinos de todo el año y a quien tiene aquí su segunda residencia.
+El Campello mira al mar. Tiene un puerto pesquero y deportivo con su lonja, un paseo marítimo lleno de restaurantes de arroces y pescado, el yacimiento de la Illeta dels Banyets y playas largas como la de Muchavista. El TRAM lo une con Alicante. Su economía combina la hostelería, el turismo, la pesca y un comercio que atiende a vecinos de todo el año y a quien viene de visita.
 
 Con tantas viviendas y urbanizaciones, también hay mucho trabajo de reformas y mantenimiento. Lo que comparten estos negocios es que dependen del teléfono y del WhatsApp: encargos, reservas, avisos, presupuestos que se piden de palabra. Cuando llegan los picos, quien atiende el mostrador o la obra no puede contestar a todo, y lo que no se contesta a tiempo se va a otro sitio. La automatización y la inteligencia artificial ayudan a recoger y ordenar esas peticiones sin que nadie tenga que dejar lo que está haciendo.
 

@@ -6,7 +6,7 @@ resumen: "Referencias en muchas medidas y colores, etiquetas en varios idiomas, 
 
 ## El textil hogar en Ontinyent y la Vall d'Albaida
 
-Ontinyent (Onteniente), capital de la Vall d'Albaida, es conocido por su textil hogar. Ropa de cama, mantas, colchas, cortinas y tejidos de decoración salen de empresas de la ciudad y de los pueblos de alrededor, muchas de ellas familiares, que diseñan, tejen o confeccionan y venden a tiendas, cadenas, hoteles y, cada vez más, por internet. La automatización en una empresa de textil hogar de Ontinyent tiene que ver sobre todo con producto, catálogo y clientes, más que con la máquina de tejer.
+Ontinyent (Onteniente), capital de la Vall d'Albaida, es conocido por su textil hogar. Ropa de cama, mantas, colchas, cortinas y tejidos de decoración salen de empresas de la ciudad y de los pueblos de alrededor, que diseñan, tejen o confeccionan y venden a tiendas, cadenas, hoteles y, cada vez más, por internet. La automatización en una empresa de textil hogar de Ontinyent tiene que ver sobre todo con producto, catálogo y clientes, más que con la máquina de tejer.
 
 A diferencia del textil técnico, aquí el producto lo compra alguien para su casa o para un hotel, y eso cambia los problemas. Una colección se multiplica en medidas, colores y acabados; cada referencia necesita su etiqueta de composición y de cuidado; los grandes clientes exigen que pedidos, etiquetas y envíos sigan sus normas; y la venta online pide fotos, descripciones y stock al día. Muchas veces el trabajo administrativo crece más deprisa que la producción, y lo absorben las mismas personas de siempre.
 

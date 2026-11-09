@@ -79,3 +79,15 @@
 .cta-local-acciones{display:grid;gap:14px;justify-items:start}
 .cta-local-otros{font-size:15px}
 .cta-local-otros a{color:var(--sea);font-weight:600}
+
+/* Tus datos, bajo control */
+.datos-seguros{margin:80px 0 0}
+.datos-seguros .contenedor{border-top:1px solid var(--line);padding-top:40px}
+.datos-seguros-titulo{font-family:var(--f-display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);font-size:clamp(24px,2.2vw,30px);line-height:1.1;margin:0 0 20px}
+.datos-seguros ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 28px;list-style:none;margin:0;padding:0}
+@media (max-width:1060px){ .datos-seguros ul{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .datos-seguros ul{grid-template-columns:1fr} }
+.datos-seguros li{position:relative;padding-left:18px;font-size:15.5px;line-height:1.55;color:var(--texto-2)}
+.datos-seguros li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--sea)}
+.datos-seguros b{color:var(--ink);font-weight:600}
+.datos-seguros + .cta-local{margin-top:56px}
