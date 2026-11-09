@@ -34,6 +34,7 @@ y `/api/salud`.
 - Spec: `docs/superpowers/specs/2026-10-05-iaconsultores-web-design.md`
 - Plan: `docs/superpowers/plans/2026-10-05-iaconsultores-web-fase1.md`
 - Enfoque local (9-nov-2026): `docs/superpowers/specs/2026-11-09-enfoque-local-alicante.md`
+- SEO local fuera de la web (perfil de Google, Search Console, NAP, reseñas): `docs/seo-local-siguientes-pasos.md`
 
 © 2026 Agentia Codex S.L. Todos los derechos reservados. Repositorio público solo para consulta: no se concede
 licencia para copiar ni reutilizar su contenido (ver [LICENSE](LICENSE)).
