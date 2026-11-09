@@ -7,7 +7,7 @@ import { SITIO } from "../datos/sitio";
   <p>En cumplimiento del artículo 10 de la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico (LSSI-CE), te informamos de que iaconsultores.com es titularidad de:</p>
   <ul>
     <li>Denominación social: {SITIO.titular}</li>
-    <li>NIF: pendiente de asignación</li>
+    <li>NIF: {SITIO.nif}</li>
     <li>Domicilio social: Avda. Teodomiro 30, Entlo. B, 03300 Orihuela (Alicante)</li>
     <li>Inscripción: sociedad constituida ante notario; inscripción en el Registro Mercantil de Alicante en trámite</li>
     <li>Email: <a href={`mailto:${SITIO.email}`}>{SITIO.email}</a> · Teléfono: <a href={SITIO.telefonoEnlace}>{SITIO.telefono}</a></li>
