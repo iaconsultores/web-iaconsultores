@@ -3,7 +3,6 @@
 import { getCollection } from "astro:content";
 import Local from "../layouts/Local.astro";
 import { ZONAS, capitalizar, hijas, rutaZona, type Zona } from "../datos/zonas";
-import { nombreConAlt } from "../lib/paginas-locales";
 
 const conTexto = new Set((await getCollection("zonas")).map((t) => t.id));
 const enlace = (z: Zona) => (conTexto.has(z.slug) ? rutaZona(z.slug) : null);
@@ -27,7 +26,7 @@ const descripcion = "Consultoría de IA y automatización desde Alicante: en per
           <h3>{enlace(c) ? <a href={enlace(c)!}>{capitalizar(c.nombre)}</a> : capitalizar(c.nombre)}</h3>
           <p class="grupo-zona-sectores">{c.sectores.slice(0, 4).join(" · ")}</p>
           <ul class="lista-zonas">
-            {hijas(c.slug).map((m) => <li>{enlace(m) ? <a href={enlace(m)!}>{nombreConAlt(m)}</a> : nombreConAlt(m)}</li>)}
+            {hijas(c.slug).map((m) => <li>{enlace(m) ? <a href={enlace(m)!}>{m.nombre}</a> : m.nombre}</li>)}
           </ul>
         </div>
       ))}
@@ -42,7 +41,7 @@ const descripcion = "Consultoría de IA y automatización desde Alicante: en per
           <h3>{enlace(p) ? <a href={enlace(p)!}>{capitalizar(p.nombre)}</a> : capitalizar(p.nombre)}</h3>
           <p class="grupo-zona-sectores">{capitalizar(p.distancia)}</p>
           <ul class="lista-zonas">
-            {hijas(p.slug).map((m) => <li>{enlace(m) ? <a href={enlace(m)!}>{nombreConAlt(m)}</a> : nombreConAlt(m)}</li>)}
+            {hijas(p.slug).map((m) => <li>{enlace(m) ? <a href={enlace(m)!}>{m.nombre}</a> : m.nombre}</li>)}
           </ul>
         </div>
       ))}

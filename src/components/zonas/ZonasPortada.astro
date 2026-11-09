@@ -4,7 +4,6 @@
 import { getCollection } from "astro:content";
 import { ZONAS, capitalizar, hijas, rutaZona } from "../../datos/zonas";
 import { SOLUCIONES } from "../../datos/soluciones";
-import { nombreConAlt } from "../../lib/paginas-locales";
 
 const conTexto = new Set((await getCollection("zonas")).map((t) => t.id));
 const comarcas = hijas("provincia-de-alicante").filter((c) => conTexto.has(c.slug));
@@ -24,16 +23,16 @@ const cercanas = vecinas.flatMap((p) => hijas(p.slug)).filter((m) => conTexto.ha
           <h3><a href={rutaZona(c.slug)}>{capitalizar(c.nombre)}</a></h3>
           <p class="zp-sectores">{c.sectores.slice(0, 3).join(" · ")}</p>
           <ul>
-            {hijas(c.slug).filter((m) => conTexto.has(m.slug)).map((m) => <li><a href={rutaZona(m.slug)}>{nombreConAlt(m)}</a></li>)}
+            {hijas(c.slug).filter((m) => conTexto.has(m.slug)).map((m) => <li><a href={rutaZona(m.slug)}>{m.nombre}</a></li>)}
           </ul>
         </div>
       ))}
     </div>
     <p class="zp-vecinas">
-      <span>También en persona:</span>
-      {cercanas.map((m, i) => <>{i > 0 && " · "}<a href={rutaZona(m.slug)}>{nombreConAlt(m)}</a></>)}
+      <span>También en persona:</span>{" "}
+      {cercanas.map((m, i) => <>{i > 0 && " · "}<a href={rutaZona(m.slug)}>{m.nombre}</a></>)}
       <span class="zp-sep">·</span>
-      <span>Provincias:</span>
+      <span>Provincias:</span>{" "}
       {vecinas.map((p, i) => <>{i > 0 && " · "}<a href={rutaZona(p.slug)}>{capitalizar(p.nombre.replace(/^la /, ""))}</a></>)}
     </p>
     <div class="zp-acciones">

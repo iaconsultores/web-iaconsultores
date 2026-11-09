@@ -62,7 +62,7 @@ test("el sitemap lista todas las páginas locales y cada enlace interno de ellas
 test("la portada lleva a las zonas: sección «Dónde trabajamos», enlace de la columna geo y menú", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator('#zonas a[href="/consultoria-ia/vega-baja"]')).toBeVisible();
-  await expect(page.locator('#zonas a[href="/consultoria-ia/xabia"]')).toHaveText("Xàbia (Jávea)");
+  await expect(page.locator('#zonas a[href="/consultoria-ia/xabia"]')).toHaveText("Xàbia");
   await expect(page.locator("#portada .dato-enlace")).toHaveAttribute("href", "/consultoria-ia/alicante");
   await page.locator('.prov-chip[data-p="vega-baja"]').click();
   await expect(page.locator("#portada .dato-enlace")).toHaveAttribute("href", "/consultoria-ia/vega-baja");
