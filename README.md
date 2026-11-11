@@ -28,7 +28,9 @@ Astro 7 (HTML estático) + Express 5 (`servidor.mjs`) + `@astrojs/node` en modo 
 Se publica desde `main` en Hostinger: se sube un `web.zip` con la fuente (sin `node_modules`, `dist` ni `.env`) y
 Hostinger lo construye con Node 24 y npm, tipo express, entrada `servidor.mjs`, script `build` y salida `.`. Las
 variables de entorno viven en el alojamiento, nunca en el zip. Tras cada publicación se comprueban `/`, `/aviso-legal`
-y `/api/salud`.
+y `/api/salud`. Después, `node scripts/indexnow.mjs --desde=<fecha de hoy>` (o `--todas`, o las rutas cambiadas) avisa
+por IndexNow a Bing, Yandex, Seznam y Naver; Google no lo usa (para Google, Search Console › Inspección de URLs). La
+clave de IndexNow es pública por diseño: está en el script y en `public/<clave>.txt`.
 
 ## Diseño y plan
 - Spec: `docs/superpowers/specs/2026-10-05-iaconsultores-web-design.md`
