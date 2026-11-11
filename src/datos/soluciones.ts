@@ -8,7 +8,13 @@ export interface Solucion {
   sector: string;
   /** Zonas (slugs de datos/zonas.ts) en cuyas páginas aparece el artículo; la primera es la principal */
   zonas: string[];
+  /** Nota al final del artículo con un enlace a otra web de la misma sociedad (Agentia Codex S.L.), cuando viene a cuento.
+   *  Va aquí y no en el Markdown porque los textos no llevan enlaces externos. */
+  relacionado?: { titulo: string; antes: string; enlace: string; textoEnlace: string; despues: string };
 }
+
+/** Relevo Asesor (relevoasesor.es) es otra web de Agentia Codex S.L.: compraventa y traspaso de asesorías y gestorías. */
+export const RELEVO_ASESOR_ALICANTE = "https://relevoasesor.es/vender-asesoria/alicante/";
 
 export const SECTORES = [
   "Industria y fabricación",
@@ -50,7 +56,16 @@ export const SOLUCIONES: readonly (Solucion & { sector: Sector })[] = [
   { slug: "ia-hosteleria-altea-la-vila-joiosa", sector: "Turismo, hostelería e inmobiliario", zonas: ["altea", "la-vila-joiosa", "marina-baixa"] },
 
   /* Comercio, servicios y logística */
-  { slug: "ia-asesorias-gestorias-alicante", sector: "Comercio, servicios y logística", zonas: ["alicante", "provincia-de-alicante", "san-vicente-del-raspeig"] },
+  {
+    slug: "ia-asesorias-gestorias-alicante", sector: "Comercio, servicios y logística", zonas: ["alicante", "provincia-de-alicante", "san-vicente-del-raspeig"],
+    relacionado: {
+      titulo: "¿Te planteas vender o traspasar tu despacho?",
+      antes: "Relevo Asesor, otra web de Agentia Codex S.L., explica el ",
+      enlace: RELEVO_ASESOR_ALICANTE,
+      textoEnlace: "traspaso y la venta de asesorías en Alicante",
+      despues: ": el mercado de la provincia comarca a comarca, quién compra y cómo se valora un despacho.",
+    },
+  },
   { slug: "automatizacion-comercios-san-vicente", sector: "Comercio, servicios y logística", zonas: ["san-vicente-del-raspeig", "alicante", "alacanti"] },
   { slug: "ia-clinicas-sant-joan-alicante", sector: "Comercio, servicios y logística", zonas: ["sant-joan-d-alacant", "alicante", "murcia"] },
   { slug: "automatizacion-logistica-transporte-elche", sector: "Comercio, servicios y logística", zonas: ["elche", "alicante", "provincia-de-alicante"] },
