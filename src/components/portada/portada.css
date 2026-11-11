@@ -75,15 +75,13 @@ html[data-provincia="albacete"] #portada .escena[data-prov="albacete"]{display:b
 #portada .brillos line:nth-child(2n){animation-delay:-1.2s}
 #portada .brillos line:nth-child(3n){animation-delay:-2.3s}
 @keyframes por-brillo{50%{opacity:.2}}
-/* Escenas de las comarcas: aspas que giran, barcos que se mecen, humo, un helicóptero y una peonza */
+/* Escenas de las comarcas: aspas que giran, barcos que se mecen, humo y una peonza */
 #portada .esc-giro{transform-box:view-box;animation:por-giro 14s linear infinite}
 #portada .esc-giro-2{animation-duration:17s;animation-delay:-5s}
 #portada .esc-giro-3{animation-duration:21s;animation-delay:-9s}
 @keyframes por-giro{to{transform:rotate(360deg)}}
 #portada .esc-flota{animation:por-flota 4.5s ease-in-out infinite alternate}
 @keyframes por-flota{to{transform:translateY(3px)}}
-#portada .esc-deriva{animation:por-deriva 26s ease-in-out infinite alternate}
-@keyframes por-deriva{from{transform:translateX(-46px)}to{transform:translateX(34px)}}
 #portada .esc-humo circle{transform-box:fill-box;transform-origin:center;animation:por-humo 6s ease-out infinite}
 #portada .esc-humo circle:nth-child(2){animation-delay:-2s}
 #portada .esc-humo circle:nth-child(3){animation-delay:-4s}

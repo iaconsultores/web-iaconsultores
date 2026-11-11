@@ -40,6 +40,11 @@ const fecha = new Date(`${FECHA_SOLUCIONES}T12:00:00Z`).toLocaleDateString("es-E
       <div class="prosa">
         <p class="nota-ejemplos">Son ejemplos de lo que se puede hacer, no casos de clientes. Cada empresa es distinta: lo vemos juntos en una llamada gratuita de 30 minutos.</p>
         <Content />
+        {s.relacionado && (
+          <aside class="nota-ejemplos nota-relacionada" aria-label={s.relacionado.titulo}>
+            <strong>{s.relacionado.titulo}</strong> {s.relacionado.antes}<a href={s.relacionado.enlace}>{s.relacionado.textoEnlace}</a>{s.relacionado.despues}
+          </aside>
+        )}
       </div>
       <aside class="ficha" aria-label="Dónde lo hacemos">
         <dl>
