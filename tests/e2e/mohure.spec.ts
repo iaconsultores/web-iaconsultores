@@ -22,7 +22,7 @@ test("el título de la oferta va seguido de un resumen con los nombres completos
     "asesor fiscal",
     "Postgrado en Dirección y Gestión de Proyectos Empresariales",
     "Máster en IA Aplicada y Optimización de Procesos Productivos",
-    "finalización prevista en octubre de 2026",
+    "Universidad Tecnológica Atlántico Mediterráneo, UTAMED)",
   ])
     await expect(resumen).toContainText(texto);
 });
@@ -31,7 +31,7 @@ test("el CV se ve en pantalla, antes de la matriz y sin descargarlo", async ({ p
   await page.goto("/mohure");
   const cv = page.locator("#cv");
   await expect(cv).toBeVisible();
-  for (const texto of ["Experiencia", "Formación", "Agentia Contable", "Más de 50 webs", "Claude Code y Codex principalmente", "finalización prevista en octubre de 2026"])
+  for (const texto of ["Experiencia", "Formación", "Agentia Contable", "Más de 50 webs", "Claude Code y Codex principalmente", "UTAMED; 30 ECTS)"])
     await expect(cv).toContainText(texto);
   const antesDeLaMatriz = await page.evaluate(() => {
     const cv = document.getElementById("cv");

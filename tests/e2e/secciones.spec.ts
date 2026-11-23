@@ -88,7 +88,8 @@ test("«Quién dirige tu proyecto» y «Sobre mí» son un solo bloque, sin el n
   const texto = (await bloque.innerText()).replace(/\s+/g, " ");
   for (const frase of ["Juan Luis Toboso", "Máster", "Director financiero", "Economista", "50 webs", "asesor fiscal"])
     expect(texto.split(frase).length - 1, frase).toBe(1);
-  for (const dato of ["+10", "+1.000", "+50", "finalización prevista en octubre de 2026"]) await expect(bloque).toContainText(dato);
+  for (const dato of ["+10", "+1.000", "+50", "UTAMED"]) await expect(bloque).toContainText(dato);
+  await expect(bloque).not.toContainText("finalización prevista");
   await expect(bloque.locator(".pru-item")).toHaveCount(4);
   await expect(bloque).toContainText("de gestión con IA, diseñada y dirigida de principio a fin");
   expect(texto).not.toContain("agentiacontable.com");

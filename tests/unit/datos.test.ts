@@ -66,9 +66,9 @@ describe("datos compartidos", () => {
     expect(detalle("clientes")).toContain("durante más de una década");
     expect(detalle("copilot-studio")).toContain("sin uso en desarrollo de proyectos");
     expect(detalle("crm-erp")).toContain("RE/MAX");
-    /* El máster aún no ha terminado: se dice siempre (6-oct-2026) */
-    expect(detalle("procesos")).toContain("finalización prevista en octubre de 2026");
-    expect(CV.formacion.find((l) => l.inicio.startsWith("Máster"))?.resto).toContain("finalización prevista en octubre de 2026");
+    /* El máster ya ha terminado (confirmado el 23-nov-2026): sin «finalización prevista» */
+    expect(detalle("procesos")).not.toContain("prevista");
+    expect(CV.formacion.find((l) => l.inicio.startsWith("Máster"))?.resto).toContain("UTAMED; 30 ECTS)");
     /* La lectura de documentos va más allá de las facturas */
     expect(detalle("ocr")).not.toContain("facturas");
     expect(detalle("modelos-ia")).not.toContain("facturas");

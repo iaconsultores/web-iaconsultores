@@ -27,7 +27,7 @@ export const CV = {
     {
       inicio: "Máster en IA Aplicada y Optimización de Procesos Productivos",
       resto:
-        " (Universidad Tecnológica Atlántico Mediterráneo, UTAMED; 30 ECTS; finalización prevista en octubre de 2026): LLM y prompting, RAG, automatización no-code (Zapier, Make, n8n y Power Automate), agentes, multimodal y OCR, AI Act y RGPD.",
+        " (Universidad Tecnológica Atlántico Mediterráneo, UTAMED; 30 ECTS): LLM y prompting, RAG, automatización no-code (Zapier, Make, n8n y Power Automate), agentes, multimodal y OCR, AI Act y RGPD.",
     },
     { inicio: "Postgrado en Dirección y Gestión de Proyectos Empresariales", resto: " (Centro Europeo de Postgrado, CEUPE; 380 h)." },
     { inicio: "Economista", resto: ": Administración y Dirección de Empresas (Universidad de Alicante). CFA Level I." },
