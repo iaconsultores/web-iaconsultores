@@ -30,7 +30,7 @@ No vendemos un programa de facturación. Conectamos el que tienes para que la fa
 
 Ventas por cliente, márgenes por pedido, cobros pendientes, carga de trabajo por sección. Reunimos los datos que ya existen en tus programas y preparamos un cuadro de mando que se actualiza solo, acompañado de un resumen en lenguaje llano: qué ha cambiado desde la semana pasada y qué merece una conversación.
 
-## Ejemplos por sector en la provincia
+## Cómo se aplica en los sectores de la provincia
 
 En el calzado de Elche (Elx) y del Vinalopó, el dolor suele estar en los pedidos que llegan cada uno a su manera y en las fichas técnicas repartidas por carpetas; lo contamos con detalle en [IA para fábricas de calzado en Elche](/soluciones/ia-fabricas-calzado-elche). En el textil de Alcoi (Alcoy), una opción es comparar el pliego técnico del cliente con tus fichas antes de aceptar un pedido. En el juguete de Ibi, mantener una ficha maestra de producto de la que salgan las plantillas de cada distribuidor.
 
