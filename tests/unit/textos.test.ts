@@ -2,12 +2,14 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { ZONAS, rutaZona, type TipoZona } from "../../src/datos/zonas";
 import { SOLUCIONES, rutaSolucion } from "../../src/datos/soluciones";
+import { SERVICIOS, rutaServicio } from "../../src/datos/servicios";
 
 /* Textos de las páginas locales (src/textos): coherentes con los registros, honestos, únicos y con enlaces válidos.
    Lo que comprueba esta prueba está explicado en src/textos/LEEME.md. */
 
 const DIR_ZONAS = "src/textos/zonas";
 const DIR_SOLUCIONES = "src/textos/soluciones";
+const DIR_SERVICIOS = "src/textos/servicios";
 
 interface Texto {
   ruta: string;
@@ -32,10 +34,11 @@ function leerTexto(ruta: string): Texto {
 const md = (dir: string) => (existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith(".md")) : []);
 const textosZonas = md(DIR_ZONAS).map((f) => leerTexto(`${DIR_ZONAS}/${f}`));
 const textosSoluciones = md(DIR_SOLUCIONES).map((f) => leerTexto(`${DIR_SOLUCIONES}/${f}`));
-const todos = [...textosZonas, ...textosSoluciones];
+const textosServicios = md(DIR_SERVICIOS).map((f) => leerTexto(`${DIR_SERVICIOS}/${f}`));
+const todos = [...textosZonas, ...textosSoluciones, ...textosServicios];
 
 const palabras = (t: string) => t.replace(/[#*_>\-[\]()]/g, " ").split(/\s+/).filter(Boolean).length;
-const MINIMO: Record<TipoZona | "solucion", number> = { municipio: 450, comarca: 500, provincia: 600, solucion: 850 };
+const MINIMO: Record<TipoZona | "solucion" | "servicio", number> = { municipio: 450, comarca: 500, provincia: 600, solucion: 850, servicio: 750 };
 
 const RUTAS_VALIDAS = new Set([
   "/",
@@ -45,6 +48,8 @@ const RUTAS_VALIDAS = new Set([
   "/#sobre-mi",
   "/consultoria-ia",
   "/soluciones",
+  "/servicios",
+  ...SERVICIOS.map((s) => rutaServicio(s.slug)),
   ...ZONAS.map((z) => rutaZona(z.slug)),
   ...SOLUCIONES.map((s) => rutaSolucion(s.slug)),
 ]);
@@ -70,6 +75,7 @@ describe("textos de las páginas locales", () => {
     const solucionesMd = md(DIR_SOLUCIONES).map((f) => f.replace(/\.md$/, "")).sort();
     expect(zonasMd).toEqual(ZONAS.map((z) => z.slug).sort());
     expect(solucionesMd).toEqual(SOLUCIONES.map((s) => s.slug).sort());
+    expect(md(DIR_SERVICIOS).map((f) => f.replace(/\.md$/, "")).sort()).toEqual(SERVICIOS.map((s) => s.slug).sort());
   });
 
   it("los registros son coherentes: slugs únicos y zonas existentes", () => {
@@ -104,6 +110,18 @@ describe("textos de las páginas locales", () => {
     expect(t.cuerpo.match(/\]\(\/consultoria-ia\//g)?.length ?? 0, "enlaza al menos una zona").toBeGreaterThanOrEqual(1);
   });
 
+  it.each(textosServicios.map((t) => [t.ruta, t] as const))("%s: cabecera y longitud", (_, t) => {
+    expect(Object.keys(t.datos).filter((k) => k !== "actualizado").sort()).toEqual(["descripcion", "resumen", "titulo"]);
+    expect(t.datos.titulo.length, "título entre 30 y 70 caracteres").toBeGreaterThanOrEqual(30);
+    expect(t.datos.titulo.length, "título entre 30 y 70 caracteres").toBeLessThanOrEqual(70);
+    expect(t.datos.descripcion.length, "descripción entre 110 y 165 caracteres").toBeGreaterThanOrEqual(110);
+    expect(t.datos.descripcion.length, "descripción entre 110 y 165 caracteres").toBeLessThanOrEqual(165);
+    expect(t.datos.resumen.length, "resumen entre 80 y 220 caracteres").toBeGreaterThanOrEqual(80);
+    expect(t.datos.resumen.length, "resumen entre 80 y 220 caracteres").toBeLessThanOrEqual(220);
+    expect(palabras(t.cuerpo), "mínimo de palabras para un servicio").toBeGreaterThanOrEqual(MINIMO.servicio);
+    expect(t.cuerpo.match(/\]\(\/consultoria-ia\//g)?.length ?? 0, "enlaza al menos tres zonas").toBeGreaterThanOrEqual(3);
+  });
+
   it.each(todos.map((t) => [t.ruta, t] as const))("%s: formato, enlaces y honestidad", (_, t) => {
     expect(t.cuerpo, "sin H1: el título lo pone la plantilla").not.toMatch(/^# /m);
     expect(t.cuerpo.match(/^## /gm)?.length ?? 0, "al menos tres apartados ##").toBeGreaterThanOrEqual(3);
@@ -118,7 +136,7 @@ describe("textos de las páginas locales", () => {
   it("títulos y descripciones únicos", () => {
     const desc = todos.map((t) => t.datos.descripcion);
     expect(new Set(desc).size).toBe(desc.length);
-    const tit = textosSoluciones.map((t) => t.datos.titulo);
+    const tit = [...textosSoluciones, ...textosServicios].map((t) => t.datos.titulo);
     expect(new Set(tit).size).toBe(tit.length);
   });
 

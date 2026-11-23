@@ -92,3 +92,7 @@
 .datos-seguros li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--sea)}
 .datos-seguros b{color:var(--ink);font-weight:600}
 .datos-seguros + .cta-local{margin-top:56px}
+
+/* Enlaces a los servicios: en azul para distinguirlos de las zonas */
+.lista-servicios a{border-color:var(--sea-soft);background:var(--sea-soft);color:#134F7D;font-weight:600}
+.lista-servicios a:hover{border-color:var(--sea);color:var(--sea)}

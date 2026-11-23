@@ -84,3 +84,42 @@ Da de alta la empresa, con los mismos datos que el perfil de Google, en:
   «automatización empresas Torrevieja».
 - Cloudflare Web Analytics, que ya está en la web, para las visitas.
 - Las llamadas y los formularios, con el municipio que ahora pide el formulario.
+
+## Lectura de Search Console (23-nov-2026)
+
+Primeras dos semanas, del 10 al 21 de noviembre:
+
+- **Volumen:** 465 impresiones y 0 clics, con la posición media en torno a 52 (página 5 y siguientes).
+- **Tendencia:** las impresiones pasan de 2 a 100 al día.
+- **Sitemap:** el índice se leyó bien y Google descubrió las 79 URL.
+
+Es lo normal en una web con páginas nuevas: Google ya las asocia a las búsquedas correctas, pero todavía no confía en
+ellas lo bastante para ponerlas arriba.
+
+**Lo que dicen las búsquedas:**
+
+- **Alcoy:** reúne el 60 % de las impresiones. Se busca «consultor ia alcoy», «soluciones ia a medida alcoy»,
+  «agentes ia alcoy», «chatbots ia alcoy» o «estrategia ia alcoy», casi siempre con «Alcoy» y no «Alcoi». La página
+  `/consultoria-ia/alcoi` está en la posición 47.
+- **Alicante:** «consultoría ia alicante», «soluciones ia para empresas alicante» y «automatización de procesos
+  alicante». Ahí compiten la portada (posición 42) y la página de Alicante (71).
+- **El vocabulario:** «agentes de IA», «chatbots», «asistentes», «automatización de procesos y flujos de trabajo»,
+  «soluciones a medida» y «estrategia». No había ninguna página por servicio.
+
+**Qué se hizo:**
+
+- 5 páginas de servicio en `/servicios`, con ese vocabulario y la provincia de Alicante. Cada zona enlaza los cinco
+  servicios con su nombre.
+- Un apartado nuevo en la página de Alcoi pensado para «Alcoy».
+- Un enlace de la portada a la página de Alicante.
+- Un sitemap de servicios en el índice.
+
+**Qué hacer ahora:**
+
+1. En Search Console, en Inspección de URLs, pide la indexación de `/servicios`, de las 5 páginas de servicio, de
+   `/consultoria-ia/alcoi` y de `/consultoria-ia/alicante`.
+2. Revisa el Rendimiento dentro de 4 semanas y compara las posiciones de Alcoy y de Alicante, y si aparecen
+   búsquedas de servicio.
+3. El empujón que falta para pasar a la primera página es la autoridad: el perfil de Google, las reseñas y los
+   enlaces locales de este documento. Para Alcoy, por ejemplo, la asociación empresarial o la Cámara de Comercio de
+   Alcoy.

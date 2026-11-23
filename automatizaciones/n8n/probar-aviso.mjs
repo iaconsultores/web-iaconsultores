@@ -20,6 +20,7 @@ const cuerpo = JSON.stringify({
     nombre: "Prueba n8n (demo)",
     telefono: "+34600000000",
     empresa: "Asesoría de prueba (demo)",
+    localidad: "Elche",
     proceso: "Registramos a mano unas 300 facturas de proveedores al mes y queremos automatizarlo cuanto antes.",
     franja: "manana",
     motivo: "llamada",

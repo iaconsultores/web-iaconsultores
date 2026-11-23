@@ -8,7 +8,8 @@ Cada vez que alguien pide una llamada en iaconsultores.com:
 2. **n8n comprueba la firma y la hora** (nodo «Verificar firma»): rechaza avisos falsos o con más de 5 minutos.
 3. **Claude Haiku clasifica la petición** (nodo «Clasificar con Claude», salida estructurada): proceso, urgencia,
    resumen y siguiente paso. **El nombre y el teléfono no se envían a la IA.**
-4. **n8n guarda el lead con su clasificación** en la tabla «Leads web» (Data Tables de n8n; se crea sola).
+4. **n8n guarda el lead con su clasificación** en la tabla «Leads web» (Data Tables de n8n; se crea sola), con el
+   municipio de la empresa que el formulario pide desde el 9-nov-2026 (columna `localidad`, opcional).
 
 ```
 Web (Hostinger) ──firma HMAC──▶ Cloudflare Tunnel ──▶ n8n (Docker, este PC) ──▶ Claude Haiku ──▶ tabla «Leads web»
@@ -59,3 +60,17 @@ Web (Hostinger) ──firma HMAC──▶ Cloudflare Tunnel ──▶ n8n (Docke
 6. Activa el flujo en n8n y comprueba: `node probar-aviso.mjs https://n8n.iaconsultores.com/webhook/lead-iaconsultores`.
 7. En hPanel (variables de entorno de la web): `N8N_WEBHOOK_URL` con esa dirección y `N8N_WEBHOOK_SECRET` con el
    mismo valor que `IAC_WEBHOOK_SECRET`. Aplica los cambios y reinicia la aplicación.
+
+## Actualizar el flujo (columna «localidad», 23-nov-2026)
+
+El formulario de la web pide el municipio de la empresa (opcional) y lo envía en el aviso como `lead.localidad`. El
+flujo de `flujos/leads-web.json` ya lo pasa a Claude y lo guarda. Para ponerlo al día en este PC:
+
+1. **Añade la columna a la tabla que ya existe:** http://localhost:5678 → Overview → Data tables → «Leads web» →
+   añadir columna `localidad` de tipo texto. (La tabla ya existe, así que el nodo que la crea no la toca; sin esta
+   columna, guardar la fila fallaría.)
+2. **Importa el flujo:** `docker compose exec n8n n8n import:workflow --input=/files/leads-web.json`.
+3. **Revisa la credencial:** abre el nodo «Claude Haiku»; si sale vacío, vuelve a elegir tu credencial de Anthropic.
+   Después guarda y activa el flujo.
+4. **Prueba:** `node probar-aviso.mjs https://n8n.iaconsultores.com/webhook/lead-iaconsultores`. La fila nueva tiene
+   que llevar «Elche» en `localidad`.

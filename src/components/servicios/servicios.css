@@ -91,3 +91,9 @@
   #servicios .tarjeta{display:flex;flex-direction:column}
   #servicios .tarjeta .beneficio{margin-top:auto}
 }
+
+/* Enlaces a las páginas de cada servicio (/servicios/<slug>) */
+#servicios .s-detalle{margin:26px 0 0;font-size:15.5px;line-height:1.9;color:var(--texto-2)}
+#servicios .s-detalle span{color:var(--muted)}
+#servicios .s-detalle a{color:var(--sea);font-weight:600;text-underline-offset:4px}
+#servicios .s-detalle a:hover{color:var(--ink)}

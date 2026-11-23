@@ -16,7 +16,7 @@ describe("sitemaps", () => {
     expect(xml).toContain("<loc>https://iaconsultores.com/sitemap-zonas.xml</loc>\n    <lastmod>2026-11-09</lastmod>");
   });
   it("las páginas fijas son solo las indexables, con fechas válidas", () => {
-    expect(PAGINAS_FIJAS.map((p) => p.ruta)).toEqual(["/", "/consultoria-ia", "/soluciones", "/aviso-legal", "/privacidad", "/cookies"]);
+    expect(PAGINAS_FIJAS.map((p) => p.ruta)).toEqual(["/", "/servicios", "/consultoria-ia", "/soluciones", "/aviso-legal", "/privacidad", "/cookies"]);
     for (const p of PAGINAS_FIJAS) expect(p.lastmod).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 });

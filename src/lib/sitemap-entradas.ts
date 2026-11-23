@@ -2,10 +2,15 @@
 import { getCollection } from "astro:content";
 import { rutaZona } from "../datos/zonas";
 import { rutaSolucion } from "../datos/soluciones";
-import { LASTMOD_LOCALES, PAGINAS_FIJAS, type EntradaSitemap } from "./sitemap";
+import { rutaServicio } from "../datos/servicios";
+import { LASTMOD_LOCALES, LASTMOD_SERVICIOS, LASTMOD_ZONAS, PAGINAS_FIJAS, type EntradaSitemap } from "./sitemap";
 
 export async function entradasZonas(): Promise<EntradaSitemap[]> {
-  return (await getCollection("zonas")).map((t) => ({ ruta: rutaZona(t.id), lastmod: t.data.actualizado ?? LASTMOD_LOCALES }));
+  return (await getCollection("zonas")).map((t) => ({ ruta: rutaZona(t.id), lastmod: t.data.actualizado ?? LASTMOD_ZONAS }));
+}
+
+export async function entradasServicios(): Promise<EntradaSitemap[]> {
+  return (await getCollection("servicios")).map((t) => ({ ruta: rutaServicio(t.id), lastmod: t.data.actualizado ?? LASTMOD_SERVICIOS }));
 }
 
 export async function entradasSoluciones(): Promise<EntradaSitemap[]> {

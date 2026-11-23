@@ -1,0 +1,82 @@
+---
+/* Página de un servicio: estructura en datos/servicios.ts, texto en src/textos/servicios */
+import { getCollection, render } from "astro:content";
+import Local from "../../layouts/Local.astro";
+import TarjetaSolucion from "../../components/local/TarjetaSolucion.astro";
+import { SERVICIOS, rutaServicio, servicio } from "../../datos/servicios";
+import { solucion } from "../../datos/soluciones";
+import { ZONAS, capitalizar, rutaZona } from "../../datos/zonas";
+import { jsonServicio, nombreConAlt } from "../../lib/paginas-locales";
+
+export async function getStaticPaths() {
+  const textos = await getCollection("servicios");
+  return textos.map((texto) => {
+    if (!SERVICIOS.some((s) => s.slug === texto.id)) throw new Error(`src/textos/servicios/${texto.id}.md no está en datos/servicios.ts`);
+    return { params: { slug: texto.id }, props: { texto } };
+  });
+}
+
+const { texto } = Astro.props;
+const s = servicio(texto.id)!;
+const { Content } = await render(texto);
+const textosSol = await getCollection("soluciones");
+const relacionadas = s.relacionadas.flatMap((slug) => {
+  const d = textosSol.find((t) => t.id === slug)?.data;
+  const x = solucion(slug);
+  return d && x ? [{ x, d }] : [];
+});
+const conTexto = new Set((await getCollection("zonas")).map((t) => t.id));
+/* Dónde: la provincia, sus comarcas y los municipios que más se buscan */
+const DESTACADOS = ["provincia-de-alicante", "alicante", "elche", "alcoi", "benidorm", "torrevieja", "orihuela", "elda", "denia", "ibi", "villena", "murcia"];
+const donde = DESTACADOS.map((slug) => ZONAS.find((z) => z.slug === slug)).filter((z) => z && conTexto.has(z.slug));
+const textosSrv = await getCollection("servicios");
+const otros = SERVICIOS.filter((x) => x.slug !== s.slug && textosSrv.some((t) => t.id === x.slug));
+---
+<Local titulo={`${texto.data.titulo} | IA Consultores`} descripcion={texto.data.descripcion} ruta={rutaServicio(s.slug)} migas={[{ nombre: "Inicio", ruta: "/" }, { nombre: "Servicios", ruta: "/servicios" }, { nombre: s.corto, ruta: rutaServicio(s.slug) }]} json={[jsonServicio(s, texto.data)]} en="en la provincia de Alicante">
+  <article class="articulo">
+    <header class="local-cabecera">
+      <p class="eyebrow">Servicio · {s.titulo}</p>
+      <h1 class="titulo-local">{texto.data.titulo}</h1>
+      <p class="entradilla">{texto.data.resumen}</p>
+    </header>
+    <div class="local-rejilla">
+      <div class="prosa">
+        <Content />
+      </div>
+      <aside class="ficha" aria-label={`En resumen: ${s.corto}`}>
+        <dl>
+          <div><dt>Qué incluye</dt><dd><ul class="chips">{s.herramientas.map((h) => <li>{h}</li>)}</ul></dd></div>
+          <div><dt>Dónde</dt><dd>En persona en la provincia de Alicante y alrededores; en remoto, en el resto de España</dd></div>
+          <div><dt>Cómo empezamos</dt><dd>Llamada gratuita de 30 minutos y, si encaja, visita a tu empresa</dd></div>
+        </dl>
+        <a class="btn btn-primario" href="/#contacto">Llamada gratuita de 30 min</a>
+      </aside>
+    </div>
+  </article>
+
+  {relacionadas.length > 0 && (
+    <section class="local-bloque" aria-labelledby="ejemplos-titulo">
+      <h2 class="local-bloque-titulo" id="ejemplos-titulo">Ejemplos por sector y zona</h2>
+      <div class="tarjetas-sol">
+        {relacionadas.map(({ x, d }) => <TarjetaSolucion slug={x.slug} titulo={d.titulo} resumen={d.resumen} sector={x.sector} />)}
+      </div>
+    </section>
+  )}
+
+  <section class="local-bloque" aria-labelledby="donde-titulo">
+    <h2 class="local-bloque-titulo" id="donde-titulo">{s.corto} en la provincia de Alicante</h2>
+    <ul class="lista-zonas">
+      {donde.map((z) => <li><a href={rutaZona(z!.slug)}>{capitalizar(z!.tipo === "provincia" ? z!.nombre.replace(/^la /, "") : nombreConAlt(z!))}</a></li>)}
+      <li><a href="/consultoria-ia">Todas las zonas</a></li>
+    </ul>
+  </section>
+
+  {otros.length > 0 && (
+    <section class="local-bloque" aria-labelledby="otros-titulo">
+      <h2 class="local-bloque-titulo" id="otros-titulo">Otros servicios</h2>
+      <ul class="lista-zonas lista-servicios">
+        {otros.map((x) => <li><a href={rutaServicio(x.slug)}>{x.corto}</a></li>)}
+      </ul>
+    </section>
+  )}
+</Local>

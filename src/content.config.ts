@@ -23,4 +23,15 @@ const soluciones = defineCollection({
   }),
 });
 
-export const collections = { zonas, soluciones };
+/* Páginas de servicio (/servicios/<slug>): estructura en datos/servicios.ts */
+const servicios = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./src/textos/servicios" }),
+  schema: z.object({
+    titulo: z.string().min(30).max(70),
+    descripcion: z.string().min(110).max(165),
+    resumen: z.string().min(80).max(220),
+    actualizado: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+  }),
+});
+
+export const collections = { zonas, soluciones, servicios };

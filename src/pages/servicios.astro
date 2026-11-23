@@ -1,0 +1,27 @@
+---
+/* Índice de servicios: una tarjeta por servicio, con su página (/servicios/<slug>) */
+import { getCollection } from "astro:content";
+import Local from "../layouts/Local.astro";
+import TarjetaSolucion from "../components/local/TarjetaSolucion.astro";
+import { SERVICIOS, rutaServicio } from "../datos/servicios";
+
+const textos = await getCollection("servicios");
+const lista = SERVICIOS.flatMap((s) => {
+  const d = textos.find((t) => t.id === s.slug)?.data;
+  return d ? [{ s, d }] : [];
+});
+const descripcion = "Servicios de IA y automatización para pymes de la provincia de Alicante: soluciones a medida, agentes de IA y chatbots, automatización, web y formación.";
+---
+<Local titulo="Servicios de IA y automatización para empresas en Alicante | IA Consultores" descripcion={descripcion} ruta="/servicios" migas={[{ nombre: "Inicio", ruta: "/" }, { nombre: "Servicios", ruta: "/servicios" }]}>
+  <header class="local-cabecera">
+    <p class="eyebrow">Servicios</p>
+    <h1 class="titulo-local">Servicios de IA y automatización para empresas en Alicante</h1>
+    <p class="entradilla">Primero entendemos tu negocio y después desarrollamos la solución: a medida de tus procesos, con supervisión humana y con el programa que ya usas. En persona en toda la provincia de Alicante y alrededores; en remoto, en el resto de España.</p>
+  </header>
+  <section class="local-bloque" aria-label="Servicios">
+    <div class="tarjetas-sol">
+      {lista.map(({ s, d }) => <TarjetaSolucion slug={s.slug} titulo={d.titulo} resumen={d.resumen} sector={s.titulo} href={rutaServicio(s.slug)} mas="Ver el servicio →" />)}
+    </div>
+  </section>
+  <p class="local-mas"><a class="enlace" href="/soluciones">Ejemplos por sector y zona</a> · <a class="enlace" href="/consultoria-ia">Zonas donde trabajamos</a></p>
+</Local>
