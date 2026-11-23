@@ -16,7 +16,7 @@ describe("base de conocimiento del asistente", () => {
     expect(CONOCIMIENTO).toContain("Ha creado más de 50 webs en los últimos 10 años");
     expect(CONOCIMIENTO).toContain("programada con agentes de IA (Claude Code y Codex principalmente)");
     expect(CONOCIMIENTO).toContain("Inglés de nivel muy alto (C1-C2)");
-    expect(CONOCIMIENTO).toContain("Máster en IA Aplicada y Optimización de Procesos Productivos (Universidad Tecnológica Atlántico Mediterráneo, UTAMED; 30 ECTS; finalización prevista en octubre de 2026)");
+    expect(CONOCIMIENTO).toContain("Máster en IA Aplicada y Optimización de Procesos Productivos (Universidad Tecnológica Atlántico Mediterráneo, UTAMED; 30 ECTS)");
   });
   it("no vende un programa de contabilidad propio y deriva a las soluciones a medida", () => {
     expect(CONOCIMIENTO).toContain("No vendemos un programa de facturación ni de contabilidad propio");
