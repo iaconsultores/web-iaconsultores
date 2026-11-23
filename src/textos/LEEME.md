@@ -100,6 +100,11 @@ descripcion: "110–165 caracteres, con el lugar y lo que ofrecemos; es la meta 
 ---
 ```
 
+**Página de servicio** (`src/textos/servicios/<slug>.md`, uno por cada servicio de `src/datos/servicios.ts`): la
+misma cabecera que un artículo (titulo, descripcion, resumen), de 750 palabras como mínimo y con enlaces al menos a
+tres zonas. Responde a cómo se busca el servicio («agentes de IA», «chatbots», «automatización de procesos»,
+«soluciones de IA a medida», «estrategia de IA») sin prometer nada que no esté en la descripción del servicio.
+
 **Artículo de solución** (`src/textos/soluciones/<slug>.md`):
 
 ```markdown

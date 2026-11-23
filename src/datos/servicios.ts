@@ -1,4 +1,10 @@
 export interface Servicio {
+  /** Página del servicio: /servicios/<slug> (texto en src/textos/servicios/<slug>.md) */
+  slug: string;
+  /** Nombre como se busca, para enlaces y migas: «Agentes de IA y chatbots» */
+  corto: string;
+  /** Artículos de /soluciones que se enseñan en la página del servicio */
+  relacionadas: string[];
   titulo: string;
   descripcion: string;
   beneficio: string;
@@ -8,33 +14,51 @@ export interface Servicio {
 /** Las fichas de la sección de servicios (sin precios: todo se presupuesta tras la llamada de diagnóstico) */
 export const SERVICIOS: readonly Servicio[] = [
   {
+    slug: "soluciones-ia-a-medida",
+    corto: "Soluciones de IA a medida",
+    relacionadas: ["ia-fabricas-calzado-elche", "ia-asesorias-gestorias-alicante", "ia-cooperativas-agricolas-vega-baja", "ia-textil-alcoi"],
     titulo: "Soluciones a medida para tus procesos",
     descripcion: "Analizamos cómo trabaja tu empresa, medimos dónde se pierden tiempo y dinero y diseñamos la solución que encaja, aunque no exista una herramienta que lo haga: un CRM a tu medida, la lectura de facturas y documentos con IA hacia tu programa, la facturación automatizada con el programa que ya usas o informes y cuadros de mando que la IA te explica. Lo implantamos, formamos a tu equipo y medimos el resultado.",
     beneficio: "Una solución pensada para tu negocio, no tu negocio adaptado a una herramienta.",
     herramientas: ["Diagnóstico del proceso", "CRM a medida", "Documentos con IA", "Facturación automatizada", "Informes y cuadros de mando"],
   },
   {
+    slug: "automatizacion-de-procesos",
+    corto: "Automatización de procesos",
+    relacionadas: ["automatizacion-logistica-transporte-elche", "ia-distribuidores-alimentacion-alicante", "automatizacion-calzado-elda-petrer", "ia-empresas-juguete-ibi"],
     titulo: "Automatiza tu empresa",
     descripcion: "Conectamos tus aplicaciones para que los datos viajen solos, sin copiar y pegar, y dejamos tus sistemas conectados, seguros y con copias de seguridad.",
     beneficio: "Recuperas horas cada semana, cometes menos errores y todo queda bajo control.",
     herramientas: ["n8n", "Make", "Tus aplicaciones"],
   },
   {
+    slug: "agentes-ia-y-chatbots",
+    corto: "Agentes de IA y chatbots",
+    relacionadas: ["ia-hoteles-benidorm", "ia-clinicas-sant-joan-alicante", "ia-inmobiliarias-torrevieja-orihuela-costa", "ia-restaurantes-alicante"],
     titulo: "Tu asistente de IA",
     descripcion: "Un asistente con la información de tu empresa que atiende, clasifica y prepara trabajo, y que responde sobre tus manuales, contratos, pólizas o convenios citando el documento y el apartado exacto. Siempre con supervisión humana.",
     beneficio: "Respuestas rápidas y coherentes, y el conocimiento de la empresa accesible sin depender de una persona.",
     herramientas: ["Claude", "ChatGPT", "Gemini", "Tus documentos"],
   },
   {
+    slug: "diseno-web-con-ia",
+    corto: "Web con asistente de IA",
+    relacionadas: ["automatizacion-comercios-san-vicente", "ia-hosteleria-altea-la-vila-joiosa", "automatizacion-talleres-mecanicos-elche"],
     titulo: "Tu web",
     descripcion: "Webs a medida pensadas para captar clientes: claras, rápidas y enfocadas a tu negocio. Con un asistente de IA que atiende a tus visitas a cualquier hora y les propone una llamada, formularios conectados a tus herramientas y medición de lo que pasa en la web. Como esta.",
     beneficio: "Una web que trabaja para tu negocio, no solo una web bonita.",
     herramientas: ["Web a medida", "Asistente de IA", "Formularios conectados", "Medición"],
   },
   {
+    slug: "formacion-y-estrategia-ia",
+    corto: "Estrategia y formación en IA",
+    relacionadas: ["ia-asesorias-gestorias-alicante", "ia-empresas-reformas-construccion-alicante", "ia-marmol-piedra-novelda-pinoso"],
     titulo: "IA en tu equipo",
     descripcion: "Diagnóstico, hoja de ruta, política de uso de la IA (AI Act y RGPD) y cursos de IA adaptados a tu empresa y a tus empleados.",
     beneficio: "Tu equipo usa la IA con seguridad, criterio y resultados medibles.",
     herramientas: ["Cursos a medida", "AI Act", "RGPD"],
   },
 ];
+
+export const rutaServicio = (slug: string) => `/servicios/${slug}`;
+export const servicio = (slug: string) => SERVICIOS.find((s) => s.slug === slug);

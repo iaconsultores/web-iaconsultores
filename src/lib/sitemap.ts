@@ -11,7 +11,8 @@ export interface EntradaSitemap {
 
 /** Páginas fijas y la fecha de su último cambio de contenido */
 export const PAGINAS_FIJAS: readonly EntradaSitemap[] = [
-  { ruta: "/", lastmod: "2026-11-09" },
+  { ruta: "/", lastmod: "2026-11-23" },
+  { ruta: "/servicios", lastmod: "2026-11-23" },
   { ruta: "/consultoria-ia", lastmod: "2026-11-09" },
   { ruta: "/soluciones", lastmod: "2026-11-09" },
   { ruta: "/aviso-legal", lastmod: "2026-11-09" },
@@ -21,9 +22,13 @@ export const PAGINAS_FIJAS: readonly EntradaSitemap[] = [
 
 /** Fecha de las páginas locales si su texto no dice otra (campo `actualizado` de la cabecera) */
 export const LASTMOD_LOCALES = "2026-11-09";
+/** Las zonas ganaron el bloque de servicios el 23-nov-2026 */
+export const LASTMOD_ZONAS = "2026-11-23";
+/** Páginas de servicio, publicadas el 23-nov-2026 */
+export const LASTMOD_SERVICIOS = "2026-11-23";
 
 /** Sitemaps del índice, en este orden */
-export const SITEMAPS = ["sitemap-paginas.xml", "sitemap-zonas.xml", "sitemap-soluciones.xml"] as const;
+export const SITEMAPS = ["sitemap-paginas.xml", "sitemap-servicios.xml", "sitemap-zonas.xml", "sitemap-soluciones.xml"] as const;
 
 const url = (ruta: string) => new URL(ruta, SITIO.url).href;
 const escapar = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");

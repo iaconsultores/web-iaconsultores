@@ -30,6 +30,14 @@ En textil, envases o alimentación, cada envío lleva su certificado de lote, su
 
 Una empresa de alimentación tiene que mantener al día ingredientes, alérgenos y fichas de producto para cada distribuidor. La IA puede detectar incoherencias entre la receta, la etiqueta y la ficha que se envía, y avisar antes de que salga un error. La decisión final es de quien firma la etiqueta.
 
+## IA para empresas de Alcoy: asistentes, agentes y automatización
+
+En una empresa de Alcoy, la IA tiene sentido cuando resuelve algo que ya pasa cada semana. Un asistente de IA puede contestar a los técnicos sobre procedimientos y fichas de máquina; un agente puede leer las peticiones de oferta que entran en el taller, clasificarlas y dejar la hoja de cálculo a medio preparar; un chatbot en la web puede atender a los clientes de un comercio cuando la tienda está cerrada. Todo eso lo explicamos en [agentes de IA y chatbots](/servicios/agentes-ia-y-chatbots), siempre con una persona que revisa lo que sale hacia fuera.
+
+La otra mitad del trabajo es automatizar los flujos de trabajo: que los certificados de cada lote se reúnan solos, que el pedido del cliente pase al programa de gestión sin teclearlo otra vez o que la ficha de alérgenos cambie a la vez que la receta. Es lo que hacemos en [automatización de procesos](/servicios/automatizacion-de-procesos), conectando las aplicaciones que ya usáis.
+
+Y cuando ningún programa se adapta a la forma de trabajar de una tejeduría, un taller de mecanizado o una empresa de alimentación alcoyana, diseñamos una [solución de IA a medida](/servicios/soluciones-ia-a-medida). Si lo primero que necesitas es que tu equipo aprenda a usar la IA con criterio, empezamos por la formación.
+
 ## Cómo trabajamos en Alcoi
 
 Alcoi está a unos 50 minutos de Alicante. Te proponemos una llamada gratuita de 30 minutos para ver qué proceso conviene atacar primero. Si tiene sentido, subimos a conocer la fábrica, recorremos el proceso con quien lo hace y revisamos los documentos y programas que usáis. Después llega una propuesta con presupuesto personalizado.
@@ -37,6 +45,10 @@ Alcoi está a unos 50 minutos de Alicante. Te proponemos una llamada gratuita de
 Lo prudente es un piloto con un solo proceso, como las ofertas de un tipo de pieza o el asistente de una sección, que se mide antes de ampliar. Vamos igual a cualquier otro punto de [l'Alcoià y el Comtat](/consultoria-ia/alcoia-comtat): si fabricas juguete o plástico en [Ibi](/consultoria-ia/ibi), mira [IA para empresas del juguete de Ibi](/soluciones/ia-empresas-juguete-ibi). Y si estás en [Ontinyent](/consultoria-ia/ontinyent), ya en la provincia de Valencia, también nos acercamos.
 
 ## Preguntas frecuentes
+
+### ¿Trabajáis con empresas de Alcoy?
+
+Sí. Alcoy está a unos 50 minutos de Alicante y, si tras la llamada de diagnóstico vemos que encaja, subimos en persona a conocer la empresa. Lo mismo vale para el resto de l'Alcoià y el Comtat.
 
 ### Tenemos maquinaria antigua, ¿esto sirve?
 

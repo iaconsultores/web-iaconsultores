@@ -81,6 +81,10 @@
               "type": "string"
             },
             {
+              "name": "localidad",
+              "type": "string"
+            },
+            {
               "name": "proceso",
               "type": "string"
             },
@@ -129,7 +133,7 @@
         0
       ],
       "parameters": {
-        "text": "={{ (() => { const l = $('Verificar firma').first().json; return `Empresa: ${l.empresa || 'sin indicar'}\\nQué quiere mejorar: ${l.proceso}\\nFranja preferida para la llamada: ${l.franja}\\nTipo de solicitud: ${l.motivo}\\nOrigen: ${l.origen}`; })() }}",
+        "text": "={{ (() => { const l = $('Verificar firma').first().json; return `Empresa: ${l.empresa || 'sin indicar'}\\nMunicipio: ${l.localidad || 'sin indicar'}\\nQué quiere mejorar: ${l.proceso}\\nFranja preferida para la llamada: ${l.franja}\\nTipo de solicitud: ${l.motivo}\\nOrigen: ${l.origen}`; })() }}",
         "schemaType": "manual",
         "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"categoria\": {\n      \"type\": \"string\",\n      \"enum\": [\"facturas_contabilidad\", \"leads_crm\", \"documentos\", \"atencion_cliente\", \"informes\", \"web\", \"formacion\", \"colaboracion\", \"otro\"],\n      \"description\": \"Proceso principal que quiere mejorar\"\n    },\n    \"urgencia\": {\n      \"type\": \"string\",\n      \"enum\": [\"alta\", \"media\", \"baja\"],\n      \"description\": \"alta si menciona plazos inmediatos, errores o pérdidas; baja si solo explora\"\n    },\n    \"resumen\": {\n      \"type\": \"string\",\n      \"description\": \"Una frase en español de España con lo que necesita\"\n    },\n    \"siguiente_paso\": {\n      \"type\": \"string\",\n      \"description\": \"Qué preparar o preguntar en la llamada, en una frase\"\n    }\n  },\n  \"required\": [\"categoria\", \"urgencia\", \"resumen\", \"siguiente_paso\"]\n}",
         "options": {
@@ -167,7 +171,7 @@
         0
       ],
       "parameters": {
-        "jsCode": "// Une el lead con la clasificación de Claude: los nombres coinciden con las columnas de la tabla\nconst lead = $('Verificar firma').first().json;\nconst ia = $input.first().json.output ?? {};\nreturn [{ json: {\n  fecha: lead.fecha,\n  nombre: lead.nombre,\n  telefono: lead.telefono,\n  empresa: lead.empresa || '',\n  proceso: lead.proceso,\n  franja: lead.franja,\n  motivo: lead.motivo,\n  origen: lead.origen,\n  categoria: ia.categoria ?? 'otro',\n  urgencia: ia.urgencia ?? 'media',\n  resumen: ia.resumen ?? '',\n  siguiente_paso: ia.siguiente_paso ?? '',\n} }];"
+        "jsCode": "// Une el lead con la clasificación de Claude: los nombres coinciden con las columnas de la tabla\nconst lead = $('Verificar firma').first().json;\nconst ia = $input.first().json.output ?? {};\nreturn [{ json: {\n  fecha: lead.fecha,\n  nombre: lead.nombre,\n  telefono: lead.telefono,\n  empresa: lead.empresa || '',\n  localidad: lead.localidad || '',\n  proceso: lead.proceso,\n  franja: lead.franja,\n  motivo: lead.motivo,\n  origen: lead.origen,\n  categoria: ia.categoria ?? 'otro',\n  urgencia: ia.urgencia ?? 'media',\n  resumen: ia.resumen ?? '',\n  siguiente_paso: ia.siguiente_paso ?? '',\n} }];"
       }
     },
     {

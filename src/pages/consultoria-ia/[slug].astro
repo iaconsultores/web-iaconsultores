@@ -5,7 +5,8 @@ import Local from "../../layouts/Local.astro";
 import TarjetaSolucion from "../../components/local/TarjetaSolucion.astro";
 import { ZONAS, capitalizar, hijas, provinciaDe, rutaZona, zona } from "../../datos/zonas";
 import { solucion } from "../../datos/soluciones";
-import { h1Zona, hermanas, jsonServicioZona, migasZona, nombreConAlt, nombreCorto, solucionesParaZona, tituloZona } from "../../lib/paginas-locales";
+import { SERVICIOS, rutaServicio } from "../../datos/servicios";
+import { enConAlt, h1Zona, hermanas, jsonServicioZona, migasZona, nombreConAlt, nombreCorto, solucionesParaZona, tituloZona } from "../../lib/paginas-locales";
 
 export async function getStaticPaths() {
   const textos = await getCollection("zonas");
@@ -56,6 +57,13 @@ const etiquetaDentro = z.tipo === "provincia" ? (z.slug === "provincia-de-alican
       <a class="btn btn-primario" href="/#contacto">Llamada gratuita de 30 min</a>
     </aside>
   </div>
+
+  <section class="local-bloque" aria-labelledby="srv-titulo">
+    <h2 class="local-bloque-titulo" id="srv-titulo">Servicios de IA y automatización {enConAlt(z)}</h2>
+    <ul class="lista-zonas lista-servicios">
+      {SERVICIOS.map((s) => <li><a href={rutaServicio(s.slug)}>{s.corto}</a></li>)}
+    </ul>
+  </section>
 
   {relacionadas.length > 0 && (
     <section class="local-bloque" aria-labelledby="sol-titulo">

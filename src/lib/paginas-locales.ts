@@ -2,6 +2,7 @@
 import { SITIO } from "../datos/sitio";
 import { ZONAS, capitalizar, provinciaDe, rutaZona, zona, type Zona } from "../datos/zonas";
 import { SOLUCIONES, rutaSolucion, type Solucion } from "../datos/soluciones";
+import { rutaServicio, type Servicio } from "../datos/servicios";
 
 const sinTildes = (t: string) => t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
@@ -132,4 +133,24 @@ export function solucionesParaZona(z: Zona): Solucion[] {
   if (padre.length) return padre;
   const prov = provinciaDe(z).slug;
   return SOLUCIONES.filter((s) => s.zonas.some((slug) => { const x = zona(slug); return x ? provinciaDe(x).slug === prov : false; }));
+}
+
+/** Un servicio de la consultoría (página /servicios/<slug>) */
+export function jsonServicio(s: Servicio, datos: { titulo: string; descripcion: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: datos.titulo,
+    serviceType: s.corto,
+    description: datos.descripcion,
+    url: new URL(rutaServicio(s.slug), SITIO.url).href,
+    provider: { "@type": "ProfessionalService", name: SITIO.nombre, url: SITIO.url, ...DATOS_EMPRESA },
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "Provincia de Alicante" },
+      { "@type": "AdministrativeArea", name: "Provincia de Valencia" },
+      { "@type": "AdministrativeArea", name: "Región de Murcia" },
+      { "@type": "AdministrativeArea", name: "Provincia de Albacete" },
+      { "@type": "Country", name: "España" },
+    ],
+  };
 }
