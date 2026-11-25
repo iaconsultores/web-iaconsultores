@@ -8,8 +8,10 @@ test("las páginas legales identifican al titular", async ({ page }) => {
   await expect(page.locator("main")).not.toContainText("pendiente de asignación");
   await expect(page.locator("main")).toContainText("Avda. Teodomiro 30, Entlo. B, 03300 Orihuela (Alicante)");
   // El titular va sin coletilla de su estado registral: los datos registrales no se dicen mientras no existan.
-  await expect(page.locator("main")).not.toContainText(/inscripci[oó]n|en trámite|ante notario|en formación/i);
+  const sinColetilla = /inscripci[oó]n|en tr[aá]mite|ante notario|en formaci[oó]n|registro mercantil/i;
+  await expect(page.locator("main")).not.toContainText(sinColetilla);
   await page.goto("/privacidad");
+  await expect(page.locator("main")).not.toContainText(sinColetilla);
   await expect(page.locator("main")).toContainText("Anthropic");
   await expect(page.locator("main")).toContainText("Agencia Española de Protección de Datos");
   await page.goto("/cookies");
