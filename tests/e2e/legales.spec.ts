@@ -4,10 +4,11 @@ test("las páginas legales identifican al titular", async ({ page }) => {
   await page.goto("/aviso-legal");
   await expect(page.locator("main")).toContainText("Agentia Codex S.L.");
   await expect(page.locator("main")).toContainText("NIF: B05723184");
-  await expect(page.locator("main")).toContainText("Última actualización: 9 de noviembre de 2026");
+  await expect(page.locator("main")).toContainText("Última actualización: 25 de noviembre de 2026");
   await expect(page.locator("main")).not.toContainText("pendiente de asignación");
   await expect(page.locator("main")).toContainText("Avda. Teodomiro 30, Entlo. B, 03300 Orihuela (Alicante)");
-  await expect(page.locator("main")).toContainText("constituida ante notario");
+  // El titular va sin coletilla de su estado registral: los datos registrales no se dicen mientras no existan.
+  await expect(page.locator("main")).not.toContainText(/inscripci[oó]n|en trámite|ante notario|en formación/i);
   await page.goto("/privacidad");
   await expect(page.locator("main")).toContainText("Anthropic");
   await expect(page.locator("main")).toContainText("Agencia Española de Protección de Datos");
